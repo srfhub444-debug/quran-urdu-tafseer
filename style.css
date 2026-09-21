@@ -1982,3 +1982,195 @@ body {
     }
 
        }
+/* =====================================================
+   PREMIUM AYAH BUTTONS - FINAL
+===================================================== */
+
+.ayah-card button {
+    font-family: inherit !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+
+/* -------------------------
+   All normal Ayah buttons
+------------------------- */
+
+.ayah-card button:not(.tafseer-button):not(.nav-button) {
+
+    background: #f8f5ec !important;
+
+    color: #064f3c !important;
+
+    border: 1px solid #d8c9a3 !important;
+
+    border-radius: 10px !important;
+
+    min-height: 42px !important;
+
+    padding: 8px 12px !important;
+
+    font-size: 14px !important;
+
+}
+
+
+/* Hover / tap effect */
+
+.ayah-card button:not(.tafseer-button):not(.nav-button):hover {
+
+    background: #064f3c !important;
+
+    color: #ffffff !important;
+
+    border-color: #064f3c !important;
+
+    transform: translateY(-1px) !important;
+
+}
+
+
+/* -------------------------
+   Action buttons container
+------------------------- */
+
+.ayah-actions {
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr !important;
+
+    gap: 8px !important;
+
+    width: 100% !important;
+
+    margin-top: 14px !important;
+
+}
+
+
+/* -------------------------
+   Tafseer button
+------------------------- */
+
+.ayah-actions .tafseer-button {
+
+    grid-column: 1 / -1 !important;
+
+    width: 100% !important;
+
+    min-height: 44px !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #07563f,
+            #043d2d
+        ) !important;
+
+    color: white !important;
+
+    border: none !important;
+
+    font-size: 15px !important;
+
+}
+
+
+/* -------------------------
+   Navigation buttons
+------------------------- */
+
+.ayah-navigation {
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr !important;
+
+    gap: 8px !important;
+
+    width: 100% !important;
+
+    margin-top: 10px !important;
+
+}
+
+
+.ayah-navigation .nav-button {
+
+    width: 100% !important;
+
+    min-height: 40px !important;
+
+    border-radius: 10px !important;
+
+    background: #f5f2e9 !important;
+
+    color: #07563f !important;
+
+    border: 1px solid #d8c9a3 !important;
+
+    font-family: inherit !important;
+
+    font-size: 14px !important;
+
+}
+
+
+/* -------------------------
+   Mobile
+------------------------- */
+
+@media (max-width: 600px) {
+
+    .ayah-actions {
+
+        grid-template-columns: 1fr 1fr !important;
+
+        gap: 7px !important;
+
+    }
+
+
+    .ayah-card button:not(.tafseer-button):not(.nav-button) {
+
+        min-height: 42px !important;
+
+        font-size: 13px !important;
+
+        padding: 7px 5px !important;
+
+    }
+
+
+    .ayah-actions .tafseer-button {
+
+        min-height: 44px !important;
+
+        font-size: 14px !important;
+
+    }
+
+
+    .ayah-navigation {
+
+        grid-template-columns: 1fr 1fr !important;
+
+        gap: 7px !important;
+
+    }
+
+
+    .ayah-navigation .nav-button {
+
+        min-height: 42px !important;
+
+        font-size: 13px !important;
+
+    }
+
+   }
