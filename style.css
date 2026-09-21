@@ -3062,3 +3062,63 @@ body {
     background-image: none !important;
     opacity: 0 !important;
 }
+/* =========================================
+   PREMIUM HEADER
+========================================= */
+
+.top-header {
+    background: linear-gradient(
+        135deg,
+        #063d2f,
+        #07553f 55%,
+        #0a654b
+    ) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18) !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+.header-inner {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 14px 22px !important;
+}
+
+.brand {
+    color: #fff !important;
+}
+
+.brand-icon {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(212, 175, 55, 0.45) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.brand-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.brand-subtitle {
+    color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.main-nav a {
+    color: rgba(255, 255, 255, 0.90) !important;
+    border-radius: 10px !important;
+    transition: all 0.25s ease !important;
+}
+
+.main-nav a:hover {
+    color: #ffffff !important;
+    background: rgba(212, 175, 55, 0.16) !important;
+}
+
+.theme-button {
+    border: 1px solid rgba(212, 175, 55, 0.45) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+   }
