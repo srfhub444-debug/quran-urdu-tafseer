@@ -14,7 +14,14 @@ const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const themeButton = document.getElementById("themeButton");
 const backToTop = document.getElementById("backToTop");
-
+// Arabic Ayah Number
+function arabicAyahNumber(number) {
+    return Number(number).toLocaleString("ar-EG");
+}
+// Arabic Ayah Number
+function arabicAyahNumber(number) {
+    return Number(number).toLocaleString("ar-EG");
+}
 
 // -----------------------------------------------------
 // Website start
