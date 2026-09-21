@@ -210,7 +210,224 @@ body {
     place-items: center;
 
     font-size: 26px;
+/* =====================================================
+   PREMIUM AYAH ACTION BUTTONS
+===================================================== */
 
+.ayah-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 18px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid
+        rgba(181, 138, 58, 0.15);
+
+}
+
+
+.ayah-actions button {
+
+    min-height: 43px;
+
+    padding: 8px 16px;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* Tafseer button */
+
+.ayah-actions .tafseer-button {
+
+    width: auto;
+
+    margin-top: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-800),
+            var(--green-900)
+        );
+
+    color: white;
+
+    border:
+        1px solid
+        var(--green-800);
+
+}
+
+
+/* Other buttons */
+
+.action-button {
+
+    background:
+        rgba(181, 138, 58, 0.07);
+
+    color: var(--green-900);
+
+    border:
+        1px solid
+        rgba(181, 138, 58, 0.28);
+
+}
+
+
+.action-button:hover,
+.ayah-actions .tafseer-button:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* Bookmark */
+
+.bookmark-button {
+
+    color: var(--green-800);
+
+}
+
+
+/* Navigation */
+
+.ayah-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(181, 138, 58, 0.12);
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+}
+
+
+.nav-button {
+
+    border:
+        1px solid
+        rgba(181, 138, 58, 0.25);
+
+    background:
+        transparent;
+
+    color: var(--green-800);
+
+    padding: 8px 14px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+}
+
+
+.nav-button:hover {
+
+    background:
+        var(--green-800);
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   MOBILE AYAH BUTTONS
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .ayah-actions {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    .ayah-actions .tafseer-button {
+
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+    }
+
+
+    .ayah-actions button {
+
+        width: 100%;
+
+        min-height: 42px;
+
+        font-size: 15px;
+
+        padding: 7px 8px;
+
+    }
+
+
+    .ayah-navigation {
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+    }
+
+
+    .nav-button {
+
+        width: 100%;
+
+    }
+
+   }
     background:
         rgba(216, 183, 106, 0.10);
 
@@ -1414,3 +1631,128 @@ a:focus-visible {
     outline-offset: 3px;
 
     }
+/* =====================================================
+   MOBILE SEARCH / CONTROLS FIX
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .controls-section {
+
+        padding: 18px 10px;
+
+    }
+
+
+    .controls-container {
+
+        width: 94%;
+
+        padding: 13px;
+
+        border-radius: 17px;
+
+        gap: 10px;
+
+    }
+
+
+    .control-group {
+
+        width: 100%;
+
+        min-width: 0;
+
+    }
+
+
+    .control-group label {
+
+        font-size: 14px;
+
+    }
+
+
+    select,
+    .search-wrapper input {
+
+        min-height: 48px;
+
+        font-size: 16px;
+
+    }
+
+
+    .primary-button {
+
+        width: 100%;
+
+        min-height: 48px;
+
+        font-size: 17px;
+
+    }
+
+       }
+/* =====================================================
+   MOBILE HEADER IMPROVEMENT
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .header-inner {
+
+        width: 94%;
+
+        min-height: 68px;
+
+        gap: 8px;
+
+    }
+
+
+    .brand {
+
+        gap: 8px;
+
+    }
+
+
+    .brand-icon {
+
+        width: 39px;
+
+        height: 39px;
+
+        font-size: 19px;
+
+    }
+
+
+    .brand-title {
+
+        font-size: 20px;
+
+    }
+
+
+    .brand-subtitle {
+
+        font-size: 9px;
+
+        margin-top: 2px;
+
+    }
+
+
+    .theme-button {
+
+        padding: 8px 10px;
+
+        font-size: 13px;
+
+        white-space: nowrap;
+
+    }
+
+}
