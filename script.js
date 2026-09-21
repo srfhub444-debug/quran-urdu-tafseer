@@ -178,7 +178,7 @@ function displayAyahs(data) {
                 <div class="arabic"
                      dir="rtl">
 
-                    ${escapHTML(ayah.arabic)} ۝${arabicAyahNumber(ayah.ayah)}
+                    ${escapeHTML(ayah.arabic)}
 
                 </div>
 
