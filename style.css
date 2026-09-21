@@ -1891,3 +1891,94 @@ body {
     max-width: 100%;
     box-sizing: border-box;
    }
+/* =====================================================
+   FINAL PAGE STRUCTURE FIX
+===================================================== */
+
+/* Quran content ko poori height lene dein */
+.quran-main {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+
+/* Quran container ko content ke saath expand hone dein */
+.quran-container {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+
+/* Ayah container */
+#ayahContainer {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+/* Har Ayah apni poori jagah le */
+.ayah-card {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    clear: both !important;
+}
+
+/* Footer ko normal page flow mein rakhein */
+.site-footer {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin-top: 40px !important;
+
+    clear: both !important;
+
+    z-index: 1 !important;
+}
+
+/* Footer ke andar ki cheezen bhi normal flow mein */
+.footer-inner {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Mobile par bhi same fix */
+@media (max-width: 600px) {
+
+    .quran-main {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .quran-container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    #ayahContainer {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .ayah-card {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .site-footer {
+        position: relative !important;
+        width: 100% !important;
+        margin-top: 35px !important;
+    }
+
+       }
