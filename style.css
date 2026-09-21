@@ -3025,3 +3025,28 @@ body {
     }
 
    }
+/* FINAL HERO IMAGE UPDATE */
+
+.hero-section {
+    background-image:
+        linear-gradient(
+            rgba(0, 40, 30, 0.18),
+            rgba(0, 40, 30, 0.18)
+        ),
+        url("hero-bg.png?v=2");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        background-size: cover;
+        background-position: center center;
+    }
+}
