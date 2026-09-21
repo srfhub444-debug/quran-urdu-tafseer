@@ -3057,3 +3057,8 @@ body {
     background-position: center center !important;
     background-repeat: no-repeat !important;
 }
+/* REMOVE OLD HERO IMAGE */
+.hero-section::before {
+    background-image: none !important;
+    opacity: 0 !important;
+}
