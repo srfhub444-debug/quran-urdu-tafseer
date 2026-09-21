@@ -3122,3 +3122,83 @@ body {
     color: #ffffff !important;
     border-radius: 12px !important;
    }
+/* =========================================
+   PREMIUM ISLAMIC FOOTER
+========================================= */
+
+.site-footer {
+    position: relative !important;
+    margin-top: 60px !important;
+    padding: 55px 20px 35px !important;
+    background: linear-gradient(
+        135deg,
+        #063d2f,
+        #07533f 55%,
+        #06382c
+    ) !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    border-top: 1px solid rgba(212, 175, 55, 0.45) !important;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.12) !important;
+    overflow: hidden !important;
+}
+
+/* Decorative golden line */
+.site-footer::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 120px !important;
+    height: 3px !important;
+    background: #d4af37 !important;
+    border-radius: 0 0 10px 10px !important;
+}
+
+.footer-inner {
+    max-width: 850px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.footer-title {
+    color: #ffffff !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    margin-bottom: 10px !important;
+}
+
+.site-footer p {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.footer-line {
+    width: 70px !important;
+    height: 1px !important;
+    margin: 22px auto !important;
+    background: rgba(212, 175, 55, 0.65) !important;
+}
+
+.footer-small {
+    font-size: 14px !important;
+    opacity: 0.8 !important;
+}
+
+/* Mobile Footer */
+@media (max-width: 600px) {
+    .site-footer {
+        margin-top: 45px !important;
+        padding: 45px 18px 30px !important;
+    }
+
+    .footer-title {
+        font-size: 25px !important;
+    }
+
+    .footer-small {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+    }
+}
