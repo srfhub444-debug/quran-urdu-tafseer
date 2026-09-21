@@ -2,112 +2,338 @@
 <html lang="ur" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>قرآن کریم | ترجمہ اور تفسیر</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="قرآن کریم، اردو ترجمہ اور تفسیر">
+          content="قرآن کریم، اردو ترجمہ اور تفسیر">
 
+    <title>القرآن الكريم | ترجمہ و تفسیر</title>
+
+    <!-- Arabic & Urdu Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Website Design -->
     <link rel="stylesheet"
-        href="style.css">
+          href="style.css">
 
 </head>
 
+
 <body>
 
-    <!-- Header -->
-    <header class="site-header">
 
-        <div class="container">
+<!-- =========================================
+     TOP NAVIGATION
+========================================= -->
 
-            <h1>القرآن الكريم</h1>
+<header class="top-header">
 
-            <p>
-                قرآن کریم • اردو ترجمہ • تفسیر
-            </p>
+    <div class="header-inner">
+
+
+        <!-- Logo -->
+        <a href="#home"
+           class="brand">
+
+            <div class="brand-icon">
+                📖
+            </div>
+
+            <div class="brand-text">
+
+                <div class="brand-title">
+                    القرآن الكريم
+                </div>
+
+                <div class="brand-subtitle">
+                    قرآن کریم • اردو ترجمہ • تفسیر
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+
+            <a href="#home">
+                🏠 ہوم
+            </a>
+
+            <a href="#surahs">
+                📖 سورتیں
+            </a>
+
+            <a href="#bookmarks">
+                🔖 پسندیدہ
+            </a>
+
+            <a href="#search">
+                🔍 تلاش
+            </a>
+
+        </nav>
+
+
+        <!-- Theme -->
+        <button
+            id="themeButton"
+            class="theme-button"
+            type="button">
+
+            ☀️ 🌙
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     HERO SECTION
+========================================= -->
+
+<section id="home"
+         class="hero-section">
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-arabic">
+
+            القرآن الكريم
 
         </div>
 
-    </header>
+
+        <div class="hero-title">
+
+            قرآن کریم • اردو ترجمہ • تفسیر
+
+        </div>
 
 
-    <!-- Navigation / Controls -->
-    <section class="controls">
+        <p class="hero-description">
 
-        <div class="container">
+            یہ کتابِ ہدایت ہے، جو لوگوں کے لیے حق اور باطل میں فرق واضح کرتی ہے۔
 
-            <div class="controls-box">
+        </p>
 
-                <label for="surahSelect">
+
+        <div class="hero-divider">
+
+            ✦ ───────── ✦ ───────── ✦
+
+        </div>
+
+
+        <div class="hero-reference">
+
+            سورۃ البقرۃ • آیت 2
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     SEARCH / CONTROLS
+========================================= -->
+
+<section id="search"
+         class="controls-section">
+
+
+    <div class="controls-container">
+
+
+        <!-- Surah -->
+
+        <div class="control-group">
+
+            <label for="surahSelect">
+                سورت منتخب کریں
+            </label>
+
+            <select id="surahSelect">
+
+                <option value="">
                     سورت منتخب کریں
-                </label>
+                </option>
 
-                <select id="surahSelect">
-                    <option value="">
-                        سورت منتخب کریں
-                    </option>
-                </select>
+            </select>
+
+        </div>
 
 
-                <label for="searchInput">
-                    تلاش
-                </label>
 
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="آیت یا ترجمہ تلاش کریں..."
-                >
+        <!-- Search -->
+
+        <div class="search-wrapper">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="آیت، ترجمہ یا تفسیر میں تلاش کریں..."
+                autocomplete="off">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+        </div>
 
 
-                <button id="themeButton">
-                    🌙 ڈارک موڈ
-                </button>
+        <button
+            id="searchButton"
+            class="primary-button"
+            type="button">
+
+            تلاش
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     QURAN CONTENT
+========================================= -->
+
+<main id="surahs"
+      class="quran-main">
+
+
+    <div class="quran-container">
+
+
+        <!-- Page heading -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    القرآن الكريم
+                </span>
+
+                <h2>
+                    قرآن مجید
+                </h2>
+
+            </div>
+
+
+            <div class="reading-info">
+
+                عربی • اردو • تفسیر
 
             </div>
 
         </div>
 
-    </section>
 
 
-    <!-- Main Quran Area -->
-    <main>
+        <!-- Ayat will appear here -->
 
-        <div class="container">
+        <div id="ayahContainer">
 
-            <div id="ayahContainer">
-
-                <!-- Ayat JavaScript کے ذریعے یہاں آئیں گی -->
-
-            </div>
+            <!-- JavaScript یہاں آیات دکھائے گا -->
 
         </div>
 
-    </main>
+
+    </div>
+
+</main>
 
 
-    <!-- Footer -->
-    <footer>
 
-        <div class="container">
+<!-- =========================================
+     FOOTER
+========================================= -->
 
-            <p>
-                © 2026 قرآن کریم — اردو ترجمہ و تفسیر
-            </p>
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-title">
+
+            القرآن الكريم
 
         </div>
 
-    </footer>
+
+        <p>
+
+            قرآن کریم • اردو ترجمہ • تفسیر
+
+        </p>
 
 
-    <!-- JavaScript -->
-    <script src="data.js"></script>
+        <div class="footer-line"></div>
 
-    <script src="script.js"></script>
+
+        <p class="footer-small">
+
+            قرآن کے پیغام کو سمجھنے اور عام کرنے کی ایک کوشش
+
+        </p>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- Back To Top -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    type="button">
+
+    ↑
+
+</button>
+
+
+
+<!-- JavaScript -->
+
+<script src="data.js"></script>
+
+<script src="script.js"></script>
+
 
 </body>
 
