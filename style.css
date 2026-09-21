@@ -3050,3 +3050,10 @@ body {
         background-position: center center;
     }
 }
+/* FINAL HERO FIX */
+.hero-section {
+    background-image: url("hero-masjid.png") !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
