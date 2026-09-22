@@ -3,10 +3,9 @@
 // Main JavaScript
 // =====================================================
 
-
-// -----------------------------------------------------
-// Important HTML elements
-// -----------------------------------------------------
+// =====================================================
+// IMPORTANT HTML ELEMENTS
+// =====================================================
 
 const ayahContainer = document.getElementById("ayahContainer");
 const surahSelect = document.getElementById("surahSelect");
@@ -16,21 +15,56 @@ const themeButton = document.getElementById("themeButton");
 const backToTop = document.getElementById("backToTop");
 
 
-// -----------------------------------------------------
-// Website start
-// -----------------------------------------------------
+// =====================================================
+// ARABIC AYAH NUMBER
+// Example: 1 → ١
+// Example: 10 → ١٠
+// =====================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+function arabicAyahNumber(number) {
 
-    loadSurahs();
+    const arabicDigits = [
+        "٠",
+        "١",
+        "٢",
+        "٣",
+        "٤",
+        "٥",
+        "٦",
+        "٧",
+        "٨",
+        "٩"
+    ];
 
-    displayAyahs(quranData);
+    return String(number)
+        .split("")
+        .map(function (digit) {
 
-    loadSavedTheme();
+            return arabicDigits[Number(digit)] ?? digit;
 
-    openAyahFromURL();
+        })
+        .join("");
+}
 
-});
+
+// =====================================================
+// WEBSITE START
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadSurahs();
+
+        displayAyahs(quranData);
+
+        loadSavedTheme();
+
+        openAyahFromURL();
+
+    }
+);
 
 
 // =====================================================
@@ -41,7 +75,6 @@ function loadSurahs() {
 
     if (!surahSelect) return;
 
-    // Purani options ko clear karna
     surahSelect.innerHTML = `
         <option value="">
             سورت منتخب کریں
@@ -52,11 +85,12 @@ function loadSurahs() {
 
     quranData.forEach(function (ayah) {
 
-        const alreadyExists = surahs.some(function (surah) {
+        const alreadyExists =
+            surahs.some(function (surah) {
 
-            return surah.number === ayah.surah;
+                return surah.number === ayah.surah;
 
-        });
+            });
 
 
         if (!alreadyExists) {
@@ -78,7 +112,8 @@ function loadSurahs() {
 
     surahs.forEach(function (surah) {
 
-        const option = document.createElement("option");
+        const option =
+            document.createElement("option");
 
         option.value = surah.number;
 
@@ -112,8 +147,10 @@ function displayAyahs(data) {
 
             <div class="ayah-card">
 
-                <div class="urdu"
-                     style="min-height:120px;">
+                <div
+                    class="urdu"
+                    style="min-height:120px;"
+                >
 
                     کوئی نتیجہ نہیں ملا۔
 
@@ -124,15 +161,16 @@ function displayAyahs(data) {
         `;
 
         return;
-
     }
 
 
-    data.forEach(function (ayah, index) {
+    data.forEach(function (ayah) {
 
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
 
         card.className = "ayah-card";
+
 
         card.id =
             "ayah-" +
@@ -174,22 +212,31 @@ function displayAyahs(data) {
 
             <div class="ayah-content">
 
-
-                <div class="arabic"
-                     dir="rtl">
+                <div
+                    class="arabic"
+                    dir="rtl"
+                >
 
                     ${escapeHTML(ayah.arabic)}
+
+                    <span
+                        class="ayah-number"
+                        aria-label="آیت نمبر ${arabicAyahNumber(ayah.ayah)}"
+                    >
+                        ۝${arabicAyahNumber(ayah.ayah)}
+                    </span>
 
                 </div>
 
 
-                <div class="urdu"
-                     dir="rtl">
+                <div
+                    class="urdu"
+                    dir="rtl"
+                >
 
                     ${escapeHTML(ayah.urdu)}
 
                 </div>
-
 
             </div>
 
@@ -202,7 +249,8 @@ function displayAyahs(data) {
                 <button
                     class="tafseer-button"
                     type="button"
-                    data-action="tafseer">
+                    data-action="tafseer"
+                >
 
                     📖 تفسیر دیکھیں
 
@@ -212,9 +260,14 @@ function displayAyahs(data) {
                 <button
                     class="action-button bookmark-button"
                     type="button"
-                    data-action="bookmark">
+                    data-action="bookmark"
+                >
 
-                    ${isBookmarked ? "🔖 محفوظ شدہ" : "🔖 محفوظ کریں"}
+                    ${
+                        isBookmarked
+                            ? "🔖 محفوظ شدہ"
+                            : "🔖 محفوظ کریں"
+                    }
 
                 </button>
 
@@ -222,7 +275,8 @@ function displayAyahs(data) {
                 <button
                     class="action-button"
                     type="button"
-                    data-action="copy">
+                    data-action="copy"
+                >
 
                     📋 کاپی
 
@@ -232,7 +286,8 @@ function displayAyahs(data) {
                 <button
                     class="action-button"
                     type="button"
-                    data-action="share">
+                    data-action="share"
+                >
 
                     📤 شیئر
 
@@ -242,7 +297,8 @@ function displayAyahs(data) {
                 <button
                     class="action-button"
                     type="button"
-                    data-action="link">
+                    data-action="link"
+                >
 
                     🔗 لنک
 
@@ -256,18 +312,13 @@ function displayAyahs(data) {
 
             <div class="tafseer">
 
-
                 <strong>
                     📖 تفسیر
                 </strong>
 
-
                 <p>
-
                     ${escapeHTML(ayah.tafseer)}
-
                 </p>
-
 
             </div>
 
@@ -276,11 +327,11 @@ function displayAyahs(data) {
 
             <div class="ayah-navigation">
 
-
                 <button
                     class="nav-button"
                     type="button"
-                    data-action="previous">
+                    data-action="previous"
+                >
 
                     ← پچھلی آیت
 
@@ -295,21 +346,21 @@ function displayAyahs(data) {
                 <button
                     class="nav-button"
                     type="button"
-                    data-action="next">
+                    data-action="next"
+                >
 
                     اگلی آیت →
 
                 </button>
-
 
             </div>
 
         `;
 
 
-        // ------------------------------------------------
-        // Tafseer
-        // ------------------------------------------------
+        // =================================================
+        // TAFSEER
+        // =================================================
 
         const tafseerButton =
             card.querySelector(
@@ -349,9 +400,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Bookmark
-        // ------------------------------------------------
+        // =================================================
+        // BOOKMARK
+        // =================================================
 
         card.querySelector(
             '[data-action="bookmark"]'
@@ -364,6 +415,7 @@ function displayAyahs(data) {
                 const saved =
                     isAyahBookmarked(ayah);
 
+
                 this.textContent =
                     saved
                         ? "🔖 محفوظ شدہ"
@@ -373,9 +425,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Copy
-        // ------------------------------------------------
+        // =================================================
+        // COPY
+        // =================================================
 
         card.querySelector(
             '[data-action="copy"]'
@@ -389,9 +441,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Share
-        // ------------------------------------------------
+        // =================================================
+        // SHARE
+        // =================================================
 
         card.querySelector(
             '[data-action="share"]'
@@ -405,9 +457,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Direct Link
-        // ------------------------------------------------
+        // =================================================
+        // DIRECT LINK
+        // =================================================
 
         card.querySelector(
             '[data-action="link"]'
@@ -421,9 +473,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Previous
-        // ------------------------------------------------
+        // =================================================
+        // PREVIOUS
+        // =================================================
 
         card.querySelector(
             '[data-action="previous"]'
@@ -437,9 +489,9 @@ function displayAyahs(data) {
         );
 
 
-        // ------------------------------------------------
-        // Next
-        // ------------------------------------------------
+        // =================================================
+        // NEXT
+        // =================================================
 
         card.querySelector(
             '[data-action="next"]'
@@ -477,7 +529,6 @@ function performSearch() {
         displayAyahs(quranData);
 
         return;
-
     }
 
 
@@ -534,7 +585,9 @@ function performSearch() {
 }
 
 
-// Search while typing
+// =====================================================
+// SEARCH WHILE TYPING
+// =====================================================
 
 if (searchInput) {
 
@@ -546,7 +599,9 @@ if (searchInput) {
 }
 
 
-// Search button
+// =====================================================
+// SEARCH BUTTON
+// =====================================================
 
 if (searchButton) {
 
@@ -595,7 +650,8 @@ if (surahSelect) {
             displayAyahs(filtered);
 
 
-            document.getElementById("surahs")
+            document
+                .getElementById("surahs")
                 ?.scrollIntoView({
                     behavior: "smooth"
                 });
@@ -638,7 +694,9 @@ if (themeButton) {
 }
 
 
-// Load saved theme
+// =====================================================
+// LOAD SAVED THEME
+// =====================================================
 
 function loadSavedTheme() {
 
@@ -754,11 +812,14 @@ function copyAyah(ayah, button) {
 
     const text =
         ayah.arabic +
+        " ۝" +
+        arabicAyahNumber(ayah.ayah) +
         "\n\n" +
         ayah.urdu;
 
 
-    navigator.clipboard.writeText(text)
+    navigator.clipboard
+        .writeText(text)
         .then(function () {
 
             const oldText =
@@ -769,12 +830,15 @@ function copyAyah(ayah, button) {
                 "✓ کاپی ہوگیا";
 
 
-            setTimeout(function () {
+            setTimeout(
+                function () {
 
-                button.textContent =
-                    oldText;
+                    button.textContent =
+                        oldText;
 
-            }, 1800);
+                },
+                1800
+            );
 
         })
         .catch(function () {
@@ -800,19 +864,19 @@ function shareAyah(ayah) {
 
     const text =
         ayah.arabic +
+        " ۝" +
+        arabicAyahNumber(ayah.ayah) +
         "\n\n" +
         ayah.urdu;
 
 
-    if (
-        navigator.share
-    ) {
+    if (navigator.share) {
 
         navigator.share({
 
             title:
                 "قرآن کریم — آیت " +
-                ayah.ayah,
+                arabicAyahNumber(ayah.ayah),
 
             text: text,
 
@@ -872,12 +936,15 @@ function copyAyahLink(ayah, button) {
         "✓ لنک کاپی ہوگیا";
 
 
-    setTimeout(function () {
+    setTimeout(
+        function () {
 
-        button.textContent =
-            oldText;
+            button.textContent =
+                oldText;
 
-    }, 1800);
+        },
+        1800
+    );
 
 }
 
@@ -899,37 +966,43 @@ function openAyahFromURL() {
     }
 
 
-    setTimeout(function () {
+    setTimeout(
+        function () {
 
-        const element =
-            document.querySelector(hash);
-
-
-        if (element) {
-
-            element.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "center"
-
-            });
+            const element =
+                document.querySelector(hash);
 
 
-            element.style.outline =
-                "3px solid rgba(181, 138, 58, 0.45)";
+            if (element) {
 
+                element.scrollIntoView({
 
-            setTimeout(function () {
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
 
                 element.style.outline =
-                    "";
+                    "3px solid rgba(181, 138, 58, 0.45)";
 
-            }, 2500);
 
-        }
+                setTimeout(
+                    function () {
 
-    }, 300);
+                        element.style.outline =
+                            "";
+
+                    },
+                    2500
+                );
+
+            }
+
+        },
+        300
+    );
 
 }
 
@@ -974,26 +1047,29 @@ function goToPreviousAyah(ayah) {
     displayAyahs(quranData);
 
 
-    setTimeout(function () {
+    setTimeout(
+        function () {
 
-        const element =
-            document.getElementById(
-                "ayah-" +
-                previous.surah +
-                "-" +
-                previous.ayah
-            );
+            const element =
+                document.getElementById(
+                    "ayah-" +
+                    previous.surah +
+                    "-" +
+                    previous.ayah
+                );
 
 
-        element?.scrollIntoView({
+            element?.scrollIntoView({
 
-            behavior: "smooth",
+                behavior: "smooth",
 
-            block: "center"
+                block: "center"
 
-        });
+            });
 
-    }, 100);
+        },
+        100
+    );
 
 }
 
@@ -1041,26 +1117,29 @@ function goToNextAyah(ayah) {
     displayAyahs(quranData);
 
 
-    setTimeout(function () {
+    setTimeout(
+        function () {
 
-        const element =
-            document.getElementById(
-                "ayah-" +
-                next.surah +
-                "-" +
-                next.ayah
-            );
+            const element =
+                document.getElementById(
+                    "ayah-" +
+                    next.surah +
+                    "-" +
+                    next.ayah
+                );
 
 
-        element?.scrollIntoView({
+            element?.scrollIntoView({
 
-            behavior: "smooth",
+                behavior: "smooth",
 
-            block: "center"
+                block: "center"
 
-        });
+            });
 
-    }, 100);
+        },
+        100
+    );
 
 }
 
@@ -1128,15 +1207,33 @@ function copyText(text) {
 // SECURITY HELPER
 // =====================================================
 
-// User-provided data ko HTML mein safely display karne ke liye.
-
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
 
-            }
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
