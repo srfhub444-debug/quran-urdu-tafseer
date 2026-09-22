@@ -1237,3 +1237,174 @@ function escapeHTML(value) {
         );
 
 }
+// =====================================================
+// PREMIUM BUTTON ICON FIX
+// Computer par emoji ki jagah safe symbols
+// =====================================================
+
+(function () {
+
+    function fixButtonIcons() {
+
+        if (!ayahContainer) return;
+
+        const buttons =
+            ayahContainer.querySelectorAll("button");
+
+        buttons.forEach(function (button) {
+
+            // Tafseer
+            if (
+                button.classList.contains("tafseer-button")
+            ) {
+
+                if (
+                    button.textContent.includes("تفسیر دیکھیں")
+                ) {
+
+                    button.textContent =
+                        "◈ تفسیر دیکھیں";
+
+                }
+
+                if (
+                    button.textContent.includes("تفسیر بند کریں")
+                ) {
+
+                    button.textContent =
+                        "◆ تفسیر بند کریں";
+
+                }
+
+            }
+
+
+            // Bookmark
+            if (
+                button.classList.contains("bookmark-button")
+            ) {
+
+                if (
+                    button.textContent.includes("محفوظ شدہ")
+                ) {
+
+                    button.textContent =
+                        "☆ محفوظ شدہ";
+
+                } else if (
+                    button.textContent.includes("محفوظ کریں")
+                ) {
+
+                    button.textContent =
+                        "☆ محفوظ کریں";
+
+                }
+
+            }
+
+
+            // Copy
+            if (
+                button.getAttribute("data-action")
+                === "copy"
+            ) {
+
+                if (
+                    button.textContent.includes("کاپی")
+                ) {
+
+                    button.textContent =
+                        "▣ کاپی";
+
+                }
+
+            }
+
+
+            // Share
+            if (
+                button.getAttribute("data-action")
+                === "share"
+            ) {
+
+                if (
+                    button.textContent.includes("شیئر")
+                ) {
+
+                    button.textContent =
+                        "↗ شیئر";
+
+                }
+
+            }
+
+
+            // Link
+            if (
+                button.getAttribute("data-action")
+                === "link"
+            ) {
+
+                if (
+                    button.textContent.includes("لنک")
+                ) {
+
+                    button.textContent =
+                        "⌁ لنک";
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    // Page load hone ke baad
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            setTimeout(
+                fixButtonIcons,
+                100
+            );
+
+        }
+    );
+
+
+    // Tafseer / bookmark / search etc. ke baad
+    if (ayahContainer) {
+
+        const iconObserver =
+            new MutationObserver(
+                function () {
+
+                    fixButtonIcons();
+
+                }
+            );
+
+
+        iconObserver.observe(
+            ayahContainer,
+            {
+                childList: true,
+                subtree: true,
+                characterData: true
+            }
+        );
+
+    }
+
+
+    // Extra safety
+    setTimeout(
+        fixButtonIcons,
+        500
+    );
+
+
+})();
