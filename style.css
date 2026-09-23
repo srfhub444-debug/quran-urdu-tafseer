@@ -3371,7 +3371,49 @@ body {
         width: 48px !important;
         height: 42px !important;
     }
+/* =====================================================
+   PREMIUM SEARCH ICON
+   Emoji / square box completely removed
+===================================================== */
 
+.search-icon {
+    font-size: 0 !important;
+    width: 42px !important;
+    height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none !important;
+}
+
+.search-icon::before {
+    content: "" !important;
+    display: block !important;
+    width: 22px !important;
+    height: 22px !important;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5' stroke='%2307543f' stroke-width='2'/%3E%3Cpath d='m16 16 5 5' stroke='%23d4af37' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+}
+
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .search-icon {
+        width: 38px !important;
+        height: 38px !important;
+    }
+
+    .search-icon::before {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+}
     .theme-button::before {
         width: 20px !important;
         height: 20px !important;
