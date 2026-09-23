@@ -3202,3 +3202,178 @@ body {
         line-height: 1.9 !important;
     }
 }
+/* =====================================================
+   PREMIUM ICON SYSTEM
+   Emoji completely removed from header
+   Works on mobile + desktop
+===================================================== */
+
+/* ---------- BRAND ICON ---------- */
+
+.brand-icon {
+    font-size: 0 !important;
+    width: 52px !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.brand-icon::before {
+    content: "" !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: block !important;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cpath d='M13 11h31c5 0 8 3 8 8v35H21c-5 0-8-3-8-8V11Z' stroke='%23d4af37' stroke-width='3'/%3E%3Cpath d='M21 54h31' stroke='%23d4af37' stroke-width='3'/%3E%3Cpath d='M20 11v37c0 4 2 6 6 6' stroke='%23ffffff' stroke-width='3'/%3E%3Cpath d='M25 21h18M25 29h18M25 37h13' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.main-nav a {
+    font-size: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+
+/* Home */
+.main-nav a[href="#home"]::before {
+    content: "" !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 10.5 12 3l9 7.5' stroke='%23d4af37' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5.5 9.5V21h13V9.5M9 21v-7h6v7' stroke='%23ffffff' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+.main-nav a[href="#home"]::after {
+    content: "ہوم" !important;
+    font-size: 16px !important;
+}
+
+
+/* Surahs */
+.main-nav a[href="#surahs"]::before {
+    content: "" !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 4.5h10.5A3.5 3.5 0 0 1 19 8v11.5H8a3 3 0 0 1-3-3V4.5Z' stroke='%23d4af37' stroke-width='1.8'/%3E%3Cpath d='M8 19.5V7a2.5 2.5 0 0 1 2.5-2.5M9 9h7M9 13h7M9 17h5' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+.main-nav a[href="#surahs"]::after {
+    content: "سورتیں" !important;
+    font-size: 16px !important;
+}
+
+
+/* Bookmarks */
+.main-nav a[href="#bookmarks"]::before {
+    content: "" !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.8L6 21V4.5Z' stroke='%23d4af37' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M9 7h6M9 10.5h6' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+.main-nav a[href="#bookmarks"]::after {
+    content: "پسندیدہ" !important;
+    font-size: 16px !important;
+}
+
+
+/* Search */
+.main-nav a[href="#search"]::before {
+    content: "" !important;
+    width: 20px !important;
+    height: 20px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5' stroke='%23d4af37' stroke-width='1.8'/%3E%3Cpath d='m16 16 5 5' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+.main-nav a[href="#search"]::after {
+    content: "تلاش" !important;
+    font-size: 16px !important;
+}
+
+
+/* ---------- THEME BUTTON ---------- */
+
+.theme-button {
+    font-size: 0 !important;
+    width: 54px !important;
+    height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.theme-button::before {
+    content: "" !important;
+    width: 22px !important;
+    height: 22px !important;
+    display: block !important;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.7 8.7 0 1 0 12 12Z' stroke='%23d4af37' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 3v2M21 7h-2' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+}
+
+
+/* ---------- PREMIUM HOVER ---------- */
+
+.main-nav a:hover {
+    transform: translateY(-1px) !important;
+}
+
+.main-nav a:hover::before {
+    filter: drop-shadow(0 0 5px rgba(212,175,55,0.55)) !important;
+}
+
+.theme-button:hover::before {
+    transform: rotate(-10deg) scale(1.08) !important;
+    transition: transform 0.25s ease !important;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .brand-icon {
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    .main-nav a::before {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .main-nav a::after {
+        font-size: 14px !important;
+    }
+
+    .theme-button {
+        width: 48px !important;
+        height: 42px !important;
+    }
+
+    .theme-button::before {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
