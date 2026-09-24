@@ -1719,3 +1719,146 @@ document.addEventListener(
     );
 
 })();
+// =====================================================
+// FINAL ENGLISH LANGUAGE DISPLAY FIX
+// =====================================================
+
+(function () {
+
+    async function loadEnglishAndShow() {
+
+        try {
+
+            const response = await fetch(
+                "https://quranenc.com/api/v1/translation/sura/english_saheeh/1"
+            );
+
+            const data = await response.json();
+
+            const rows = data.result || [];
+
+            rows.forEach(function (item) {
+
+                const ayah = quranData.find(function (q) {
+
+                    return (
+                        Number(q.surah) === Number(item.sura) &&
+                        Number(q.ayah) === Number(item.aya)
+                    );
+
+                });
+
+                if (ayah) {
+                    ayah.english = item.translation;
+                }
+
+            });
+
+            showSelectedLanguage();
+
+        } catch (error) {
+
+            console.error(
+                "English translation error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    function showSelectedLanguage() {
+
+        const selector =
+            document.getElementById("languageSelect");
+
+        if (!selector) return;
+
+        if (selector.value !== "en") return;
+
+        const cards =
+            ayahContainer.querySelectorAll(".ayah-card");
+
+        cards.forEach(function (card) {
+
+            const parts =
+                card.id.split("-");
+
+            const surahNumber =
+                Number(parts[1]);
+
+            const ayahNumber =
+                Number(parts[2]);
+
+            const ayah =
+                quranData.find(function (item) {
+
+                    return (
+                        Number(item.surah) === surahNumber &&
+                        Number(item.ayah) === ayahNumber
+                    );
+
+                });
+
+            if (ayah && ayah.english) {
+
+                const translation =
+                    card.querySelector(".urdu");
+
+                if (translation) {
+
+                    translation.textContent =
+                        ayah.english;
+
+                    translation.setAttribute(
+                        "dir",
+                        "ltr"
+                    );
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const selector =
+                document.getElementById("languageSelect");
+
+            if (selector) {
+
+                selector.addEventListener(
+                    "change",
+                    function () {
+
+                        setTimeout(
+                            function () {
+
+                                showSelectedLanguage();
+
+                                if (this.value === "en") {
+                                    loadEnglishAndShow();
+                                }
+
+                            }.bind(this),
+                            100
+                        );
+
+                    }
+                );
+
+            }
+
+            loadEnglishAndShow();
+
+        }
+    );
+
+})();
