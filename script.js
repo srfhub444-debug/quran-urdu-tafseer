@@ -1862,3 +1862,320 @@ document.addEventListener(
     );
 
 })();
+// =====================================================
+// ENGLISH MODE — BUTTONS + TAFSEER UI
+// =====================================================
+
+(function () {
+
+    function isEnglishMode() {
+
+        const selector =
+            document.getElementById("languageSelect");
+
+        return selector && selector.value === "en";
+    }
+
+
+    function applyEnglishUI() {
+
+        if (!isEnglishMode()) return;
+
+        const cards =
+            document.querySelectorAll(".ayah-card");
+
+
+        cards.forEach(function (card) {
+
+            // Tafseer button
+            const tafseerButton =
+                card.querySelector(
+                    '[data-action="tafseer"]'
+                );
+
+            if (tafseerButton) {
+
+                const text =
+                    tafseerButton.textContent;
+
+                if (
+                    text.includes("تفسیر بند کریں") ||
+                    text.includes("تفسیر")
+                ) {
+
+                    if (
+                        card.querySelector(".tafseer") &&
+                        card.querySelector(".tafseer").style.display === "block"
+                    ) {
+                        tafseerButton.textContent =
+                            "📕 Close Tafsir";
+                    } else {
+                        tafseerButton.textContent =
+                            "📖 View Tafsir";
+                    }
+
+                }
+            }
+
+
+            // Bookmark
+            const bookmarkButton =
+                card.querySelector(
+                    '[data-action="bookmark"]'
+                );
+
+            if (bookmarkButton) {
+
+                const saved =
+                    isBookmarkCardSaved(card);
+
+                bookmarkButton.textContent =
+                    saved
+                        ? "🔖 Saved"
+                        : "🔖 Save";
+            }
+
+
+            // Copy
+            const copyButton =
+                card.querySelector(
+                    '[data-action="copy"]'
+                );
+
+            if (copyButton) {
+                copyButton.textContent = "📋 Copy";
+            }
+
+
+            // Share
+            const shareButton =
+                card.querySelector(
+                    '[data-action="share"]'
+                );
+
+            if (shareButton) {
+                shareButton.textContent = "📤 Share";
+            }
+
+
+            // Link
+            const linkButton =
+                card.querySelector(
+                    '[data-action="link"]'
+                );
+
+            if (linkButton) {
+                linkButton.textContent = "🔗 Link";
+            }
+
+
+            // Tafseer heading
+            const tafseerBox =
+                card.querySelector(".tafseer");
+
+            if (tafseerBox) {
+
+                const heading =
+                    tafseerBox.querySelector("strong");
+
+                if (heading) {
+                    heading.textContent =
+                        "📖 Tafsir";
+                }
+            }
+
+
+            // Previous
+            const previousButton =
+                card.querySelector(
+                    '[data-action="previous"]'
+                );
+
+            if (previousButton) {
+                previousButton.textContent =
+                    "← Previous Ayah";
+            }
+
+
+            // Next
+            const nextButton =
+                card.querySelector(
+                    '[data-action="next"]'
+                );
+
+            if (nextButton) {
+                nextButton.textContent =
+                    "Next Ayah →";
+            }
+
+
+            // Ayah number
+            const navigation =
+                card.querySelector(
+                    ".ayah-navigation span"
+                );
+
+            if (navigation) {
+
+                const match =
+                    navigation.textContent.match(/\d+/);
+
+                if (match) {
+                    navigation.textContent =
+                        "Ayah " + match[0];
+                }
+            }
+
+        });
+
+
+        // =================================================
+        // MAIN WEBSITE TEXT
+        // =================================================
+
+        const heroTitle =
+            document.querySelector(".hero h1");
+
+        if (heroTitle) {
+            heroTitle.textContent =
+                "The Holy Quran • Translation & Tafsir";
+        }
+
+
+        const heroText =
+            document.querySelector(".hero p");
+
+        if (heroText) {
+            heroText.textContent =
+                "Read the Holy Quran with translation and Tafsir.";
+        }
+
+
+        const sectionTitle =
+            document.querySelector("#surahs h2");
+
+        if (sectionTitle) {
+            sectionTitle.textContent =
+                "The Holy Quran";
+        }
+
+
+        const readingInfo =
+            document.querySelector("#surahs .reading-info");
+
+        if (readingInfo) {
+            readingInfo.textContent =
+                "Arabic • English • Tafsir";
+        }
+
+    }
+
+
+    function isBookmarkCardSaved(card) {
+
+        const button =
+            card.querySelector(
+                '[data-action="bookmark"]'
+            );
+
+        if (!button) return false;
+
+        return button.textContent.includes("محفوظ شدہ");
+
+    }
+
+
+    // After every Ayah render
+    const originalDisplay =
+        window.displayAyahs || displayAyahs;
+
+    if (typeof originalDisplay === "function") {
+
+        window.displayAyahs =
+            function (data) {
+
+                originalDisplay(data);
+
+                setTimeout(
+                    applyEnglishUI,
+                    50
+                );
+
+            };
+    }
+
+
+    // Language change
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const selector =
+                document.getElementById(
+                    "languageSelect"
+                );
+
+            if (selector) {
+
+                selector.addEventListener(
+                    "change",
+                    function () {
+
+                        setTimeout(
+                            applyEnglishUI,
+                            200
+                        );
+
+                    }
+                );
+            }
+
+
+            setTimeout(
+                applyEnglishUI,
+                500
+            );
+
+        }
+    );
+
+
+    // When Tafsir / bookmark buttons are clicked
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (!isEnglishMode()) return;
+
+            const button =
+                event.target.closest("button");
+
+            if (!button) return;
+
+            if (
+                button.dataset.action ===
+                "tafseer"
+            ) {
+
+                setTimeout(
+                    applyEnglishUI,
+                    50
+                );
+            }
+
+
+            if (
+                button.dataset.action ===
+                "bookmark"
+            ) {
+
+                setTimeout(
+                    applyEnglishUI,
+                    50
+                );
+            }
+
+        }
+    );
+
+})();
