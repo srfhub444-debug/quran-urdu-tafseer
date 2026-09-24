@@ -1505,3 +1505,77 @@ document.addEventListener(
 
     }
 );
+// =====================================================
+// ENGLISH QURAN TRANSLATION
+// QuranEnc - English Saheeh
+// =====================================================
+
+(function () {
+
+    const ENGLISH_TRANSLATION_KEY = "english_saheeh";
+
+    async function loadEnglishTranslation() {
+
+        try {
+
+            const response = await fetch(
+                "https://quranenc.com/api/v1/translation/sura/" +
+                ENGLISH_TRANSLATION_KEY +
+                "/1"
+            );
+
+            if (!response.ok) {
+                throw new Error("English translation could not be loaded.");
+            }
+
+            const englishData = await response.json();
+
+            if (!Array.isArray(englishData)) {
+                throw new Error("Invalid English translation data.");
+            }
+
+            englishData.forEach(function (item) {
+
+                const ayah = quranData.find(function (q) {
+
+                    return (
+                        Number(q.surah) === Number(item.sura) &&
+                        Number(q.ayah) === Number(item.aya)
+                    );
+
+                });
+
+                if (ayah) {
+
+                    ayah.english = item.translation;
+
+                }
+
+            });
+
+            console.log(
+                "English translation loaded successfully."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "English translation error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadEnglishTranslation();
+
+        }
+    );
+
+})();
