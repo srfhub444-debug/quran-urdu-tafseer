@@ -1237,3 +1237,271 @@ function escapeHTML(value) {
         );
 
 }
+// =====================================================
+// MULTI-LANGUAGE SYSTEM
+// =====================================================
+
+const languageSelect = document.getElementById("languageSelect");
+
+const languageUI = {
+
+    ur: {
+        name: "اردو",
+        direction: "rtl",
+
+        chooseLanguage: "🌐 زبان منتخب کریں",
+        home: "🏠 ہوم",
+        surahs: "📖 سورتیں",
+        favorites: "🔖 پسندیدہ",
+        search: "🔍 تلاش",
+
+        surahSelect: "سورت منتخب کریں",
+        searchPlaceholder: "آیت، ترجمہ یا تفسیر میں تلاش کریں...",
+        searchButton: "تلاش",
+
+        tafseerOpen: "📖 تفسیر دیکھیں",
+        tafseerClose: "📕 تفسیر بند کریں",
+
+        bookmarkSave: "🔖 محفوظ کریں",
+        bookmarkSaved: "🔖 محفوظ شدہ",
+
+        copy: "📋 کاپی",
+        share: "📤 شیئر",
+        link: "🔗 لنک",
+
+        previous: "← پچھلی آیت",
+        next: "اگلی آیت →",
+
+        noResult: "کوئی نتیجہ نہیں ملا۔",
+        tafseerTitle: "📖 تفسیر"
+    },
+
+    en: {
+        name: "English",
+        direction: "ltr",
+
+        chooseLanguage: "🌐 Choose Your Language",
+        home: "🏠 Home",
+        surahs: "📖 Surahs",
+        favorites: "🔖 Favorites",
+        search: "🔍 Search",
+
+        surahSelect: "Select Surah",
+        searchPlaceholder: "Search Ayah, translation or Tafseer...",
+        searchButton: "Search",
+
+        tafseerOpen: "📖 View Tafseer",
+        tafseerClose: "📕 Close Tafseer",
+
+        bookmarkSave: "🔖 Save",
+        bookmarkSaved: "🔖 Saved",
+
+        copy: "📋 Copy",
+        share: "📤 Share",
+        link: "🔗 Link",
+
+        previous: "← Previous Ayah",
+        next: "Next Ayah →",
+
+        noResult: "No results found.",
+        tafseerTitle: "📖 Tafseer"
+    },
+
+    hi: {
+        name: "हिन्दी",
+        direction: "ltr",
+
+        chooseLanguage: "🌐 भाषा चुनें",
+        home: "🏠 होम",
+        surahs: "📖 सूरह",
+        favorites: "🔖 पसंदीदा",
+        search: "🔍 खोज",
+
+        surahSelect: "सूरह चुनें",
+        searchPlaceholder: "आयत, अनुवाद या तफ़सीर खोजें...",
+        searchButton: "खोजें",
+
+        tafseerOpen: "📖 तफ़सीर देखें",
+        tafseerClose: "📕 तफ़सीर बंद करें",
+
+        bookmarkSave: "🔖 सुरक्षित करें",
+        bookmarkSaved: "🔖 सुरक्षित किया गया",
+
+        copy: "📋 कॉपी",
+        share: "📤 शेयर",
+        link: "🔗 लिंक",
+
+        previous: "← पिछली आयत",
+        next: "अगली आयत →",
+
+        noResult: "कोई परिणाम नहीं मिला।",
+        tafseerTitle: "📖 तफ़सीर"
+    },
+
+    ar: {
+        name: "العربية",
+        direction: "rtl",
+
+        chooseLanguage: "🌐 اختر لغتك",
+        home: "🏠 الرئيسية",
+        surahs: "📖 السور",
+        favorites: "🔖 المفضلة",
+        search: "🔍 بحث",
+
+        surahSelect: "اختر السورة",
+        searchPlaceholder: "ابحث في الآية أو الترجمة أو التفسير...",
+        searchButton: "بحث",
+
+        tafseerOpen: "📖 عرض التفسير",
+        tafseerClose: "📕 إغلاق التفسير",
+
+        bookmarkSave: "🔖 حفظ",
+        bookmarkSaved: "🔖 محفوظ",
+
+        copy: "📋 نسخ",
+        share: "📤 مشاركة",
+        link: "🔗 الرابط",
+
+        previous: "← الآية السابقة",
+        next: "الآية التالية →",
+
+        noResult: "لم يتم العثور على نتائج.",
+        tafseerTitle: "📖 التفسير"
+    }
+};
+
+
+// -----------------------------------------------------
+// CURRENT LANGUAGE
+// -----------------------------------------------------
+
+let currentLanguage =
+    localStorage.getItem("quranLanguage") || "ur";
+
+
+// -----------------------------------------------------
+// APPLY LANGUAGE TO WEBSITE
+// -----------------------------------------------------
+
+function applyLanguage(language) {
+
+    if (!languageUI[language]) {
+        language = "ur";
+    }
+
+    currentLanguage = language;
+
+    localStorage.setItem(
+        "quranLanguage",
+        language
+    );
+
+    const ui = languageUI[language];
+
+    document.documentElement.lang = language;
+    document.documentElement.dir = ui.direction;
+
+    document.body.dir = ui.direction;
+
+
+    // Language label
+    const languageLabel =
+        document.querySelector(".language-bar label");
+
+    if (languageLabel) {
+        languageLabel.textContent =
+            ui.chooseLanguage;
+    }
+
+
+    // Navigation
+    const navLinks =
+        document.querySelectorAll(".main-nav a");
+
+    if (navLinks.length >= 4) {
+
+        navLinks[0].textContent = ui.home;
+        navLinks[1].textContent = ui.surahs;
+        navLinks[2].textContent = ui.favorites;
+        navLinks[3].textContent = ui.search;
+
+    }
+
+
+    // Surah selector
+    if (surahSelect) {
+
+        const firstOption =
+            surahSelect.querySelector("option");
+
+        if (firstOption) {
+            firstOption.textContent =
+                ui.surahSelect;
+        }
+
+    }
+
+
+    // Search
+    if (searchInput) {
+        searchInput.placeholder =
+            ui.searchPlaceholder;
+    }
+
+    if (searchButton) {
+        searchButton.textContent =
+            ui.searchButton;
+    }
+
+
+    // Rebuild Ayah cards
+    if (typeof displayAyahs === "function") {
+        displayAyahs(quranData);
+    }
+}
+
+
+// -----------------------------------------------------
+// LANGUAGE SELECTOR
+// -----------------------------------------------------
+
+if (languageSelect) {
+
+    languageSelect.value =
+        currentLanguage;
+
+    languageSelect.addEventListener(
+        "change",
+        function () {
+
+            applyLanguage(
+                this.value
+            );
+
+        }
+    );
+
+}
+
+
+// -----------------------------------------------------
+// LOAD SAVED LANGUAGE
+// -----------------------------------------------------
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        if (languageSelect) {
+
+            languageSelect.value =
+                currentLanguage;
+
+        }
+
+        applyLanguage(
+            currentLanguage
+        );
+
+    }
+);
