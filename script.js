@@ -1579,3 +1579,68 @@ document.addEventListener(
     );
 
 })();
+// =====================================================
+// SHOW ENGLISH TRANSLATION
+// =====================================================
+
+(function () {
+
+    const originalDisplayAyahs = displayAyahs;
+
+    displayAyahs = function (data) {
+
+        originalDisplayAyahs(data);
+
+        if (typeof currentLanguage !== "undefined" &&
+            currentLanguage === "en") {
+
+            const cards =
+                ayahContainer.querySelectorAll(".ayah-card");
+
+            cards.forEach(function (card) {
+
+                const parts =
+                    card.id.split("-");
+
+                const surahNumber =
+                    Number(parts[1]);
+
+                const ayahNumber =
+                    Number(parts[2]);
+
+                const ayah =
+                    quranData.find(function (item) {
+
+                        return (
+                            Number(item.surah) === surahNumber &&
+                            Number(item.ayah) === ayahNumber
+                        );
+
+                    });
+
+                if (ayah && ayah.english) {
+
+                    const translation =
+                        card.querySelector(".urdu");
+
+                    if (translation) {
+
+                        translation.textContent =
+                            ayah.english;
+
+                        translation.setAttribute(
+                            "dir",
+                            "ltr"
+                        );
+
+                    }
+
+                }
+
+            });
+
+        }
+
+    };
+
+})();
