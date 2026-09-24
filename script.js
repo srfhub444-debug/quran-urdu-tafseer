@@ -1644,3 +1644,78 @@ document.addEventListener(
     };
 
 })();
+// =====================================================
+// ENGLISH TRANSLATION FIX
+// =====================================================
+
+(function () {
+
+    async function loadEnglishTranslationFix() {
+
+        try {
+
+            const response = await fetch(
+                "https://quranenc.com/api/v1/translation/sura/english_saheeh/1"
+            );
+
+            const data = await response.json();
+
+            const englishRows =
+                data.result || data;
+
+            if (!Array.isArray(englishRows)) {
+                console.error(
+                    "English translation format is invalid."
+                );
+                return;
+            }
+
+            englishRows.forEach(function (item) {
+
+                const ayah = quranData.find(function (q) {
+
+                    return (
+                        Number(q.surah) === Number(item.sura) &&
+                        Number(q.ayah) === Number(item.aya)
+                    );
+
+                });
+
+                if (ayah) {
+                    ayah.english = item.translation;
+                }
+
+            });
+
+            console.log(
+                "English translation FIX loaded."
+            );
+
+            if (
+                typeof currentLanguage !== "undefined" &&
+                currentLanguage === "en"
+            ) {
+
+                displayAyahs(quranData);
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "English translation FIX error:",
+                error
+            );
+
+        }
+
+    }
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+            loadEnglishTranslationFix();
+        }
+    );
+
+})();
