@@ -2519,3 +2519,762 @@ function escapeHTML(
         );
 
         }
+// =====================================================
+// 🌐 MULTI-LANGUAGE QURAN TRANSLATION ENGINE
+// ADD THIS CODE AT THE VERY END OF script.js
+// =====================================================
+
+(function () {
+
+    "use strict";
+
+    // -------------------------------------------------
+    // Translation sources
+    // -------------------------------------------------
+
+    const MULTI_LANGUAGE_SOURCES = {
+
+        ur: {
+            type: "local"
+        },
+
+        en: {
+            type: "alquran",
+            edition: "en.sahih"
+        },
+
+        hi: {
+            type: "alquran",
+            edition: "hi.hindi"
+        },
+
+        ar: {
+            type: "arabic"
+        },
+
+        bn: {
+            type: "alquran",
+            edition: "bn.bengali"
+        },
+
+        gu: {
+            type: "quranenc",
+            key: "gujarati_omari"
+        },
+
+        ta: {
+            type: "alquran",
+            edition: "ta.tamil"
+        },
+
+        te: {
+            type: "quranenc",
+            key: "telugu_muhammad"
+        },
+
+        tr: {
+            type: "alquran",
+            edition: "tr.diyanet"
+        },
+
+        fa: {
+            type: "alquran",
+            edition: "fa.ayati"
+        },
+
+        id: {
+            type: "alquran",
+            edition: "id.indonesian"
+        },
+
+        ms: {
+            type: "alquran",
+            edition: "ms.basmeih"
+        },
+
+        fr: {
+            type: "alquran",
+            edition: "fr.hamidullah"
+        },
+
+        de: {
+            type: "alquran",
+            edition: "de.bubenheim"
+        },
+
+        es: {
+            type: "alquran",
+            edition: "es.cortes"
+        },
+
+        ru: {
+            type: "alquran",
+            edition: "ru.kuliev"
+        }
+
+    };
+
+
+    // -------------------------------------------------
+    // Store translations
+    // -------------------------------------------------
+
+    window.quranMultiTranslations =
+        window.quranMultiTranslations || {};
+
+
+    // -------------------------------------------------
+    // Get current translation
+    // -------------------------------------------------
+
+    function getMultiTranslation(ayah) {
+
+        const lang =
+            typeof currentLanguage !== "undefined"
+                ? currentLanguage
+                : "ur";
+
+
+        // Arabic
+        if (lang === "ar") {
+
+            return ayah.arabic || "";
+
+        }
+
+
+        // Urdu
+        if (lang === "ur") {
+
+            return ayah.urdu || "";
+
+        }
+
+
+        // Loaded translation
+        if (
+            window.quranMultiTranslations[lang] &&
+            window.quranMultiTranslations[lang][
+                ayah.surah + ":" + ayah.ayah
+            ]
+        ) {
+
+            return window.quranMultiTranslations[lang][
+                ayah.surah + ":" + ayah.ayah
+            ];
+
+        }
+
+
+        // Fallback
+        return ayah.urdu || "";
+
+    }
+
+
+    // -------------------------------------------------
+    // Fetch one Surah
+    // -------------------------------------------------
+
+    async function fetchSurahTranslation(
+        surahNumber,
+        lang
+    ) {
+
+        const source =
+            MULTI_LANGUAGE_SOURCES[lang];
+
+
+        if (!source) return;
+
+
+        // Arabic
+        if (source.type === "arabic") {
+
+            return;
+
+        }
+
+
+        // Urdu is already inside data.js
+        if (source.type === "local") {
+
+            return;
+
+        }
+
+
+        // ---------------------------------------------
+        // Al Quran Cloud
+        // ---------------------------------------------
+
+        if (source.type === "alquran") {
+
+            const url =
+                "https://api.alquran.cloud/v1/surah/" +
+                surahNumber +
+                "/" +
+                source.edition;
+
+
+            const response =
+                await fetch(url);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Translation API error: " +
+                    response.status
+                );
+
+            }
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !result ||
+                !result.data ||
+                !result.data.ayahs
+            ) {
+
+                throw new Error(
+                    "Invalid translation response"
+                );
+
+            }
+
+
+            if (
+                !window.quranMultiTranslations[lang]
+            ) {
+
+                window.quranMultiTranslations[lang] = {};
+
+            }
+
+
+            result.data.ayahs.forEach(
+                function (item) {
+
+                    const key =
+                        surahNumber +
+                        ":" +
+                        item.numberInSurah;
+
+
+                    window.quranMultiTranslations[
+                        lang
+                    ][key] = item.text || "";
+
+                }
+            );
+
+
+            return;
+
+        }
+
+
+        // ---------------------------------------------
+        // QuranEnc
+        // ---------------------------------------------
+
+        if (source.type === "quranenc") {
+
+            const url =
+                "https://quranenc.com/api/v1/translation/sura/" +
+                source.key +
+                "/" +
+                surahNumber;
+
+
+            const response =
+                await fetch(url);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "QuranEnc API error: " +
+                    response.status
+                );
+
+            }
+
+
+            const result =
+                await response.json();
+
+
+            const items =
+                Array.isArray(result)
+                    ? result
+                    : (
+                        result.result ||
+                        result.data ||
+                        []
+                    );
+
+
+            if (
+                !window.quranMultiTranslations[lang]
+            ) {
+
+                window.quranMultiTranslations[lang] = {};
+
+            }
+
+
+            items.forEach(
+                function (item) {
+
+                    const ayahNumber =
+                        item.aya ||
+                        item.ayah ||
+                        item.numberInSurah;
+
+
+                    if (!ayahNumber) return;
+
+
+                    const text =
+                        item.translation ||
+                        item.text ||
+                        "";
+
+
+                    const key =
+                        surahNumber +
+                        ":" +
+                        ayahNumber;
+
+
+                    window.quranMultiTranslations[
+                        lang
+                    ][key] = text;
+
+                }
+            );
+
+        }
+
+    }
+
+
+    // -------------------------------------------------
+    // Load all Surahs currently present in data.js
+    // -------------------------------------------------
+
+    async function loadMultiLanguage(lang) {
+
+        if (!MULTI_LANGUAGE_SOURCES[lang]) {
+            return;
+        }
+
+
+        if (
+            lang === "ur" ||
+            lang === "ar"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            window.quranMultiTranslations[lang] &&
+            Object.keys(
+                window.quranMultiTranslations[lang]
+            ).length > 0
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            typeof quranData === "undefined" ||
+            !Array.isArray(quranData)
+        ) {
+
+            return;
+
+        }
+
+
+        const surahs = [];
+
+
+        quranData.forEach(
+            function (ayah) {
+
+                if (
+                    !surahs.includes(
+                        ayah.surah
+                    )
+                ) {
+
+                    surahs.push(
+                        ayah.surah
+                    );
+
+                }
+
+            }
+        );
+
+
+        if (surahs.length === 0) {
+            return;
+        }
+
+
+        // Loading text
+        showTranslationLoading(lang);
+
+
+        try {
+
+            await Promise.all(
+                surahs.map(
+                    function (surahNumber) {
+
+                        return fetchSurahTranslation(
+                            surahNumber,
+                            lang
+                        );
+
+                    }
+                )
+            );
+
+
+            console.log(
+                "✅ Translation loaded:",
+                lang
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "❌ Translation loading failed:",
+                lang,
+                error
+            );
+
+        }
+
+
+        // Redraw
+        if (
+            typeof displayAyahs ===
+            "function"
+        ) {
+
+            displayAyahs(
+                quranData
+            );
+
+        }
+
+    }
+
+
+    // -------------------------------------------------
+    // Temporary loading message
+    // -------------------------------------------------
+
+    function showTranslationLoading(lang) {
+
+        if (!ayahContainer) return;
+
+
+        const config =
+            typeof getCurrentLanguage ===
+            "function"
+                ? getCurrentLanguage()
+                : null;
+
+
+        const loadingText =
+            config &&
+            config.loading
+                ? config.loading
+                : "Loading translation...";
+
+
+        const cards =
+            ayahContainer.querySelectorAll(
+                ".ayah-card"
+            );
+
+
+        cards.forEach(
+            function (card) {
+
+                const translation =
+                    card.querySelector(
+                        ".urdu"
+                    );
+
+
+                if (translation) {
+
+                    translation.style.opacity =
+                        "0.55";
+
+                }
+
+            }
+        );
+
+
+        console.log(
+            "🌐 Loading:",
+            lang,
+            loadingText
+        );
+
+    }
+
+
+    // -------------------------------------------------
+    // Replace translation after normal rendering
+    // -------------------------------------------------
+
+    function applyLoadedTranslations() {
+
+        if (!ayahContainer) return;
+
+
+        const cards =
+            ayahContainer.querySelectorAll(
+                ".ayah-card"
+            );
+
+
+        cards.forEach(
+            function (card) {
+
+                const id =
+                    card.id || "";
+
+
+                const parts =
+                    id.split("-");
+
+
+                if (parts.length < 3) {
+                    return;
+                }
+
+
+                const surah =
+                    Number(parts[1]);
+
+
+                const ayahNumber =
+                    Number(parts[2]);
+
+
+                if (
+                    !surah ||
+                    !ayahNumber
+                ) {
+
+                    return;
+
+                }
+
+
+                const ayah =
+                    quranData.find(
+                        function (item) {
+
+                            return (
+                                Number(item.surah) ===
+                                    surah
+                                &&
+                                Number(item.ayah) ===
+                                    ayahNumber
+                            );
+
+                        }
+                    );
+
+
+                if (!ayah) return;
+
+
+                const translation =
+                    card.querySelector(
+                        ".urdu"
+                    );
+
+
+                if (!translation) return;
+
+
+                translation.textContent =
+                    getMultiTranslation(
+                        ayah
+                    );
+
+
+                translation.style.opacity =
+                    "1";
+
+
+                // Direction according to language
+                const lang =
+                    typeof currentLanguage !==
+                    "undefined"
+                        ? currentLanguage
+                        : "ur";
+
+
+                if (
+                    lang === "ur" ||
+                    lang === "ar" ||
+                    lang === "fa"
+                ) {
+
+                    translation.dir =
+                        "rtl";
+
+                } else {
+
+                    translation.dir =
+                        "ltr";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // -------------------------------------------------
+    // Wrap existing displayAyahs
+    // -------------------------------------------------
+
+    const originalDisplayAyahs =
+        displayAyahs;
+
+
+    displayAyahs =
+        function (data) {
+
+            originalDisplayAyahs(
+                data
+            );
+
+
+            setTimeout(
+                function () {
+
+                    applyLoadedTranslations();
+
+                },
+                0
+            );
+
+        };
+
+
+    // -------------------------------------------------
+    // Language selector
+    // -------------------------------------------------
+
+    if (languageSelect) {
+
+        languageSelect.addEventListener(
+            "change",
+            function () {
+
+                const selectedLanguage =
+                    this.value;
+
+
+                setTimeout(
+                    function () {
+
+                        loadMultiLanguage(
+                            selectedLanguage
+                        );
+
+                    },
+                    50
+                );
+
+            }
+        );
+
+    }
+
+
+    // -------------------------------------------------
+    // Initial language
+    // -------------------------------------------------
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            setTimeout(
+                function () {
+
+                    const lang =
+                        typeof currentLanguage !==
+                        "undefined"
+                            ? currentLanguage
+                            : "ur";
+
+
+                    if (
+                        lang !== "ur" &&
+                        lang !== "ar"
+                    ) {
+
+                        loadMultiLanguage(
+                            lang
+                        );
+
+                    }
+
+                },
+                500
+            );
+
+        }
+    );
+
+
+    // -------------------------------------------------
+    // Search selected language
+    // -------------------------------------------------
+
+    const originalPerformSearch =
+        typeof performSearch ===
+        "function"
+            ? performSearch
+            : null;
+
+
+    if (originalPerformSearch) {
+
+        console.log(
+            "🌐 Multilingual translation system ready."
+        );
+
+    }
+
+})();
