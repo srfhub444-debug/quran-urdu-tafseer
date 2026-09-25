@@ -3494,3 +3494,39 @@ body {
         font-size: 13px;
     }
    }
+/* =========================================
+   JAMEEL NOORI NASTALEEQ - URDU FONT
+   ========================================= */
+
+@font-face {
+    font-family: "Jameel Noori Nastaleeq";
+    src: url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff")
+         format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Urdu website text */
+html[lang="ur"] body,
+html[lang="ur"] body * {
+    font-family: "Jameel Noori Nastaleeq", serif;
+}
+
+/* Quran Arabic ko alag font */
+html[lang="ur"] .arabic,
+html[lang="ur"] .ayah-arabic,
+html[lang="ur"] .arabic-text {
+    font-family: "Amiri", serif;
+}
+
+/* Urdu translation */
+.urdu,
+.urdu-text,
+.ayah-urdu,
+.ayah-translation,
+.translation,
+.tafseer,
+.tafseer-content {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
