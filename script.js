@@ -3278,3 +3278,1071 @@ function escapeHTML(
     }
 
 })();
+/* =========================================================
+   FINAL MULTI-LANGUAGE QURAN TRANSLATION ENGINE
+   QuranEnc API
+   ========================================================= */
+
+(function () {
+
+    "use strict";
+
+
+    /* =====================================================
+       SETTINGS
+       ===================================================== */
+
+    const QURAN_ENC_API =
+        "https://quranenc.com/api/v1";
+
+    const TRANSLATION_CACHE = {};
+
+    let activeTranslationKey = "";
+
+    let activeTranslationInfo = null;
+
+    let translationRequestId = 0;
+
+
+    /* =====================================================
+       LANGUAGE MAP
+       ===================================================== */
+
+    const QURAN_LANGUAGE_CODES = {
+
+        ur: "ur",
+        en: "en",
+        hi: "hi",
+        ar: "ar",
+        bn: "bn",
+        gu: "gu",
+        ta: "ta",
+        te: "te",
+        tr: "tr",
+        fa: "fa",
+        id: "id",
+        ms: "ms",
+        fr: "fr",
+        de: "de",
+        es: "es",
+        ru: "ru"
+
+    };
+
+
+    /* =====================================================
+       RTL LANGUAGES
+       ===================================================== */
+
+    const RTL_LANGUAGES = {
+
+        ur: true,
+        ar: true,
+        fa: true
+
+    };
+
+
+    /* =====================================================
+       GET SELECTED LANGUAGE
+       ===================================================== */
+
+    function getSelectedLanguage() {
+
+        return (
+            currentLanguage ||
+            localStorage.getItem(
+                "quranLanguage"
+            ) ||
+            "ur"
+        );
+
+    }
+
+
+    /* =====================================================
+       CREATE CACHE KEY
+       ===================================================== */
+
+    function createCacheKey(
+        language,
+        surah
+    ) {
+
+        return (
+            "quranenc_" +
+            language +
+            "_" +
+            surah
+        );
+
+    }
+
+
+    /* =====================================================
+       GET CACHED SURAH
+       ===================================================== */
+
+    function getCachedSurah(
+        language,
+        surah
+    ) {
+
+        const key =
+            createCacheKey(
+                language,
+                surah
+            );
+
+        return TRANSLATION_CACHE[key] || null;
+
+    }
+
+
+    /* =====================================================
+       SAVE SURAH CACHE
+       ===================================================== */
+
+    function saveCachedSurah(
+        language,
+        surah,
+        data
+    ) {
+
+        const key =
+            createCacheKey(
+                language,
+                surah
+            );
+
+        TRANSLATION_CACHE[key] = data;
+
+    }
+
+
+    /* =====================================================
+       FETCH AVAILABLE TRANSLATION
+       ===================================================== */
+
+    async function findTranslation(
+        language
+    ) {
+
+        const languageCode =
+            QURAN_LANGUAGE_CODES[
+                language
+            ];
+
+        if (!languageCode) {
+
+            throw new Error(
+                "Unsupported language: " +
+                language
+            );
+
+        }
+
+
+        const url =
+            QURAN_ENC_API +
+            "/translations/list/" +
+            languageCode +
+            "/?localization=" +
+            languageCode;
+
+
+        const response =
+            await fetch(url, {
+                method: "GET",
+                cache: "no-cache"
+            });
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Translation list request failed: " +
+                response.status
+            );
+
+        }
+
+
+        const translations =
+            await response.json();
+
+
+        if (
+            !Array.isArray(
+                translations
+            ) ||
+            translations.length === 0
+        ) {
+
+            throw new Error(
+                "No Quran translation found for " +
+                language
+            );
+
+        }
+
+
+        /*
+         * Prefer a complete translation.
+         * QuranEnc may have multiple translations
+         * for the same language.
+         */
+
+        let selected =
+            translations.find(
+                function (item) {
+
+                    return (
+                        item &&
+                        item.key
+                    );
+
+                }
+            );
+
+
+        if (!selected) {
+
+            throw new Error(
+                "No valid translation key found."
+            );
+
+        }
+
+
+        return selected;
+
+    }
+
+
+    /* =====================================================
+       FETCH ONE SURAH
+       ===================================================== */
+
+    async function fetchSurahTranslation(
+        translationKey,
+        surah
+    ) {
+
+        const url =
+            QURAN_ENC_API +
+            "/translation/sura/" +
+            encodeURIComponent(
+                translationKey
+            ) +
+            "/" +
+            surah;
+
+
+        const response =
+            await fetch(url, {
+                method: "GET",
+                cache: "default"
+            });
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Surah " +
+                surah +
+                " request failed: " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !Array.isArray(data)
+        ) {
+
+            throw new Error(
+                "Invalid translation data."
+            );
+
+        }
+
+
+        return data;
+
+    }
+
+
+    /* =====================================================
+       GET ALL SURAH NUMBERS USED BY YOUR DATA
+       ===================================================== */
+
+    function getAvailableSurahs() {
+
+        const numbers = [];
+
+
+        if (
+            typeof quranData ===
+            "undefined" ||
+            !Array.isArray(quranData)
+        ) {
+
+            return numbers;
+
+        }
+
+
+        quranData.forEach(
+            function (ayah) {
+
+                const number =
+                    Number(
+                        ayah.surah
+                    );
+
+
+                if (
+                    number >= 1 &&
+                    number <= 114 &&
+                    !numbers.includes(
+                        number
+                    )
+                ) {
+
+                    numbers.push(
+                        number
+                    );
+
+                }
+
+            }
+        );
+
+
+        numbers.sort(
+            function (a, b) {
+                return a - b;
+            }
+        );
+
+
+        return numbers;
+
+    }
+
+
+    /* =====================================================
+       FIND TRANSLATION FOR ONE AYAH
+       ===================================================== */
+
+    function getOnlineTranslation(
+        ayah
+    ) {
+
+        const language =
+            getSelectedLanguage();
+
+
+        /*
+         * Urdu continues using your
+         * existing local data.js translation.
+         */
+
+        if (
+            language === "ur"
+        ) {
+
+            return (
+                ayah.urdu ||
+                ""
+            );
+
+        }
+
+
+        const surah =
+            Number(
+                ayah.surah
+            );
+
+        const aya =
+            Number(
+                ayah.ayah
+            );
+
+
+        const cached =
+            getCachedSurah(
+                language,
+                surah
+            );
+
+
+        if (
+            !cached ||
+            !Array.isArray(cached)
+        ) {
+
+            return (
+                ayah.urdu ||
+                ""
+            );
+
+        }
+
+
+        const item =
+            cached.find(
+                function (entry) {
+
+                    return (
+                        Number(
+                            entry.aya
+                        ) === aya
+                    );
+
+                }
+            );
+
+
+        if (
+            !item
+        ) {
+
+            return (
+                ayah.urdu ||
+                ""
+            );
+
+        }
+
+
+        return (
+            item.translation ||
+            ayah.urdu ||
+            ""
+        );
+
+    }
+
+
+    /* =====================================================
+       UPDATE TRANSLATION TEXT
+       WITHOUT REBUILDING THE CARDS
+       ===================================================== */
+
+    function updateRenderedTranslations() {
+
+        if (
+            typeof quranData ===
+            "undefined"
+        ) {
+
+            return;
+
+        }
+
+
+        const cards =
+            document.querySelectorAll(
+                ".ayah-card"
+            );
+
+
+        cards.forEach(
+            function (card) {
+
+                const id =
+                    card.id || "";
+
+
+                const match =
+                    id.match(
+                        /^ayah-(\d+)-(\d+)$/
+                    );
+
+
+                if (!match) {
+                    return;
+                }
+
+
+                const surah =
+                    Number(
+                        match[1]
+                    );
+
+                const aya =
+                    Number(
+                        match[2]
+                    );
+
+
+                const ayah =
+                    quranData.find(
+                        function (item) {
+
+                            return (
+                                Number(
+                                    item.surah
+                                ) === surah &&
+                                Number(
+                                    item.ayah
+                                ) === aya
+                            );
+
+                        }
+                    );
+
+
+                if (!ayah) {
+                    return;
+                }
+
+
+                const translation =
+                    getOnlineTranslation(
+                        ayah
+                    );
+
+
+                const element =
+                    card.querySelector(
+                        ".urdu"
+                    );
+
+
+                if (!element) {
+                    return;
+                }
+
+
+                element.textContent =
+                    translation;
+
+                element.setAttribute(
+                    "dir",
+                    RTL_LANGUAGES[
+                        getSelectedLanguage()
+                    ]
+                        ? "rtl"
+                        : "ltr"
+                );
+
+
+                element.classList.add(
+                    "multilingual-translation"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       LOADING MESSAGE
+       ===================================================== */
+
+    function showTranslationLoading() {
+
+        const language =
+            getSelectedLanguage();
+
+
+        if (
+            language === "ur"
+        ) {
+
+            return;
+
+        }
+
+
+        const config =
+            getCurrentLanguage();
+
+
+        const cards =
+            document.querySelectorAll(
+                ".ayah-card .urdu"
+            );
+
+
+        cards.forEach(
+            function (element) {
+
+                element.textContent =
+                    config.loading ||
+                    "Translation loading...";
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SOURCE INFORMATION
+       ===================================================== */
+
+    function updateTranslationSource() {
+
+        const language =
+            getSelectedLanguage();
+
+
+        let notice =
+            document.getElementById(
+                "quranTranslationSource"
+            );
+
+
+        if (!notice) {
+
+            notice =
+                document.createElement(
+                    "div"
+                );
+
+            notice.id =
+                "quranTranslationSource";
+
+
+            notice.style.cssText =
+                [
+                    "margin:12px auto",
+                    "padding:10px 14px",
+                    "max-width:900px",
+                    "border-radius:10px",
+                    "font-size:12px",
+                    "line-height:1.7",
+                    "text-align:center",
+                    "background:rgba(15,61,46,.06)",
+                    "color:#555"
+                ].join(";");
+
+
+            const container =
+                document.getElementById(
+                    "ayahContainer"
+                );
+
+
+            if (container) {
+
+                container.parentNode.insertBefore(
+                    notice,
+                    container
+                );
+
+            }
+
+        }
+
+
+        if (
+            language === "ur"
+        ) {
+
+            notice.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        notice.style.display =
+            "block";
+
+
+        if (
+            activeTranslationInfo
+        ) {
+
+            const title =
+                activeTranslationInfo.title ||
+                "Quran translation";
+
+
+            const version =
+                activeTranslationInfo.version ||
+                "";
+
+
+            notice.textContent =
+                "Translation source: QuranEnc.com • " +
+                title +
+                (
+                    version
+                        ? " • Version " +
+                          version
+                        : ""
+                );
+
+        } else {
+
+            notice.textContent =
+                "Translation source: QuranEnc.com";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOAD SELECTED LANGUAGE
+       ===================================================== */
+
+    async function loadSelectedLanguageTranslation() {
+
+        const requestId =
+            ++translationRequestId;
+
+
+        const language =
+            getSelectedLanguage();
+
+
+        /*
+         * Urdu uses the translation already
+         * stored in data.js.
+         */
+
+        if (
+            language === "ur"
+        ) {
+
+            activeTranslationKey =
+                "";
+
+            activeTranslationInfo =
+                null;
+
+            updateTranslationSource();
+
+            updateRenderedTranslations();
+
+            return;
+
+        }
+
+
+        showTranslationLoading();
+
+
+        try {
+
+            /*
+             * Find the correct translation
+             * automatically from QuranEnc.
+             */
+
+            const translation =
+                await findTranslation(
+                    language
+                );
+
+
+            /*
+             * User may have changed language
+             * while the request was running.
+             */
+
+            if (
+                requestId !==
+                translationRequestId
+            ) {
+
+                return;
+
+            }
+
+
+            activeTranslationKey =
+                translation.key;
+
+
+            activeTranslationInfo =
+                translation;
+
+
+            updateTranslationSource();
+
+
+            const surahs =
+                getAvailableSurahs();
+
+
+            /*
+             * Load only the Surahs that actually
+             * exist in your data.js.
+             *
+             * This avoids unnecessary API requests.
+             */
+
+            const pending =
+                [];
+
+
+            surahs.forEach(
+                function (surah) {
+
+                    const cached =
+                        getCachedSurah(
+                            language,
+                            surah
+                        );
+
+
+                    if (!cached) {
+
+                        pending.push(
+                            surah
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Load 4 Surahs at a time.
+             * This is much lighter for mobile.
+             */
+
+            const batchSize =
+                4;
+
+
+            for (
+                let i = 0;
+                i < pending.length;
+                i += batchSize
+            ) {
+
+                if (
+                    requestId !==
+                    translationRequestId
+                ) {
+
+                    return;
+
+                }
+
+
+                const batch =
+                    pending.slice(
+                        i,
+                        i + batchSize
+                    );
+
+
+                await Promise.all(
+                    batch.map(
+                        async function (
+                            surah
+                        ) {
+
+                            try {
+
+                                const data =
+                                    await fetchSurahTranslation(
+                                        activeTranslationKey,
+                                        surah
+                                    );
+
+
+                                saveCachedSurah(
+                                    language,
+                                    surah,
+                                    data
+                                );
+
+                            } catch (
+                                error
+                            ) {
+
+                                console.warn(
+                                    "QuranEnc Surah " +
+                                    surah +
+                                    " failed:",
+                                    error
+                                );
+
+                            }
+
+                        }
+                    )
+                );
+
+
+                /*
+                 * Show translations as they
+                 * become available.
+                 */
+
+                updateRenderedTranslations();
+
+            }
+
+
+            /*
+             * Final update.
+             */
+
+            if (
+                requestId ===
+                translationRequestId
+            ) {
+
+                updateRenderedTranslations();
+
+            }
+
+        } catch (
+            error
+        ) {
+
+            console.error(
+                "Quran translation error:",
+                error
+            );
+
+
+            if (
+                requestId !==
+                translationRequestId
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * If online translation fails,
+             * keep the existing Urdu translation
+             * instead of breaking the website.
+             */
+
+            updateRenderedTranslations();
+
+
+            const notice =
+                document.getElementById(
+                    "quranTranslationSource"
+                );
+
+
+            if (notice) {
+
+                notice.style.display =
+                    "block";
+
+
+                notice.textContent =
+                    "Selected language translation could not be loaded. Please try again.";
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       OVERRIDE DISPLAY AYAH
+       ===================================================== */
+
+    const originalDisplayAyahs =
+        displayAyahs;
+
+
+    displayAyahs =
+        function (data) {
+
+            /*
+             * Keep your existing card design,
+             * buttons, Tafseer, bookmark,
+             * copy and share functionality.
+             */
+
+            originalDisplayAyahs(
+                data
+            );
+
+
+            /*
+             * Immediately apply whatever
+             * online translation is already cached.
+             */
+
+            updateRenderedTranslations();
+
+        };
+
+
+    /* =====================================================
+       LANGUAGE CHANGE
+       ===================================================== */
+
+    if (
+        languageSelect
+    ) {
+
+        languageSelect.addEventListener(
+            "change",
+            function () {
+
+                /*
+                 * Give the existing language
+                   * system a moment to update
+                 * currentLanguage.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        loadSelectedLanguageTranslation();
+
+                    },
+                    50
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIAL LOAD
+       ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            setTimeout(
+                function () {
+
+                    loadSelectedLanguageTranslation();
+
+                },
+                150
+            );
+
+        }
+    );
+
+
+})();
