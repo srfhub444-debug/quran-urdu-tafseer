@@ -3530,3 +3530,85 @@ html[lang="ur"] .arabic-text {
 .tafseer-content {
     font-family: "Jameel Noori Nastaleeq", serif !important;
 }
+/* =========================================================
+   FINAL URDU FONT - JAMEEL NOORI NASTALEEQ
+   APPLY TO ALL URDU CONTENT
+========================================================= */
+
+html[lang="ur"] body,
+html[lang="ur"] body * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- QURAN ARABIC ---------- */
+/* Arabic Quran ko Jameel se bachakar Amiri mein rakhein */
+
+html[lang="ur"] .arabic,
+html[lang="ur"] .arabic *,
+html[lang="ur"] .hero-arabic,
+html[lang="ur"] .hero-arabic *,
+html[lang="ur"] .ayah-number {
+    font-family: "Amiri", serif !important;
+}
+
+
+/* ---------- URDU TRANSLATION ---------- */
+
+html[lang="ur"] .ayah-card .urdu,
+html[lang="ur"] .ayah-card .urdu * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- TAFSEER ---------- */
+
+html[lang="ur"] .tafseer,
+html[lang="ur"] .tafseer * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- HEADER URDU ---------- */
+
+html[lang="ur"] .brand-subtitle,
+html[lang="ur"] .main-nav,
+html[lang="ur"] .main-nav *,
+html[lang="ur"] .language-bar,
+html[lang="ur"] .language-bar * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- HERO URDU ---------- */
+
+html[lang="ur"] .hero-title,
+html[lang="ur"] .hero-description,
+html[lang="ur"] .hero-reference {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- SEARCH / SELECT ---------- */
+
+html[lang="ur"] input,
+html[lang="ur"] select,
+html[lang="ur"] option,
+html[lang="ur"] label {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+html[lang="ur"] button {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+html[lang="ur"] footer,
+html[lang="ur"] footer * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
