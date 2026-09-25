@@ -3612,3 +3612,102 @@ html[lang="ur"] footer,
 html[lang="ur"] footer * {
     font-family: "Jameel Noori Nastaleeq", serif !important;
 }
+/* =====================================================
+   FINAL JAMEEL NOORI NASTALEEQ
+   ALL URDU CONTENT
+===================================================== */
+
+@font-face {
+    font-family: "Jameel Noori Nastaleeq";
+    src: url("https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff")
+         format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ALL URDU PAGE CONTENT */
+html[lang="ur"] body,
+html[lang="ur"] body * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* QURAN ARABIC MUST STAY AMIRI */
+html[lang="ur"] .arabic,
+html[lang="ur"] .arabic *,
+html[lang="ur"] .hero-arabic,
+html[lang="ur"] .hero-arabic *,
+html[lang="ur"] .brand-title,
+html[lang="ur"] .section-heading h2,
+html[lang="ur"] .footer-title {
+    font-family: "Amiri", serif !important;
+}
+
+
+/* URDU TRANSLATION */
+html[lang="ur"] .urdu,
+html[lang="ur"] .urdu * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* TAFSEER */
+html[lang="ur"] .tafseer,
+html[lang="ur"] .tafseer * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* HEADER */
+html[lang="ur"] .brand-subtitle,
+html[lang="ur"] .main-nav,
+html[lang="ur"] .main-nav *,
+html[lang="ur"] .theme-button {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* HERO URDU */
+html[lang="ur"] .hero-title,
+html[lang="ur"] .hero-description,
+html[lang="ur"] .hero-reference {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* SEARCH / CONTROLS */
+html[lang="ur"] .control-group,
+html[lang="ur"] .control-group *,
+html[lang="ur"] .search-wrapper,
+html[lang="ur"] .search-wrapper *,
+html[lang="ur"] select,
+html[lang="ur"] option,
+html[lang="ur"] input,
+html[lang="ur"] label,
+html[lang="ur"] button {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* AYAH HEADER + NAVIGATION */
+html[lang="ur"] .ayah-header,
+html[lang="ur"] .ayah-header *,
+html[lang="ur"] .ayah-navigation,
+html[lang="ur"] .ayah-navigation * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* FOOTER */
+html[lang="ur"] .site-footer,
+html[lang="ur"] .site-footer * {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
+
+
+/* BACK TO TOP */
+html[lang="ur"] .back-to-top {
+    font-family: "Jameel Noori Nastaleeq", serif !important;
+}
