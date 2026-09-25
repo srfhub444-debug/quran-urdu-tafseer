@@ -1160,7 +1160,22 @@ function loadSurahs() {
 
 }
 
+// =====================================================
+// MULTI-LANGUAGE TRANSLATION HELPER
+// =====================================================
 
+function getAyahTranslation(ayah) {
+
+    if (
+        ayah.translations &&
+        ayah.translations[currentLanguage]
+    ) {
+        return ayah.translations[currentLanguage];
+    }
+
+    // Urdu fallback
+    return ayah.urdu || "";
+                    }
 // =====================================================
 // DISPLAY AYAH
 // =====================================================
@@ -1283,10 +1298,9 @@ function displayAyahs(data) {
                         class="urdu"
                         dir="rtl"
                     >
-
-                        ${escapeHTML(
-                            ayah.urdu
-                        )}
+${escapeHTML(
+    getAyahTranslation(ayah)
+)}
 
                     </div>
 
