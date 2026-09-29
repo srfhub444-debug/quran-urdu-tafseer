@@ -4346,3 +4346,805 @@ function escapeHTML(
 
 
 })();
+/* =====================================================
+   PREMIUM TAFSEER SYSTEM
+   Ibn Kathir • Jalalayn • Mazhari
+   ===================================================== */
+
+(function () {
+    "use strict";
+
+    window.quranTafsirCache =
+        window.quranTafsirCache || {};
+
+    window.selectedTafsir =
+        window.selectedTafsir || "jalalayn";
+
+
+    /* -------------------------------------------------
+       TAFSEER SOURCES
+       ------------------------------------------------- */
+
+    const TAFSIR_SOURCES = {
+
+        jalalayn: {
+            name: "تفسیر الجلالین",
+            edition: "ar.jalalayn"
+        },
+
+        ibnKathir: {
+            name: "تفسیر ابن کثیر",
+
+            /*
+             * Ibn Kathir is handled separately because
+             * a suitable public edition must be verified
+             * before displaying its full text.
+             */
+            type: "external"
+        },
+
+        mazahari: {
+            name: "تفسیر مظہری",
+
+            /*
+             * Same rule: don't fabricate or relabel
+             * another tafsir as Mazhari.
+             */
+            type: "external"
+        }
+    };
+
+
+    /* -------------------------------------------------
+       LOAD JALALAYN
+       ------------------------------------------------- */
+
+    async function loadJalalayn(surahNumber) {
+
+        const key =
+            "jalalayn:" + surahNumber;
+
+        if (
+            window.quranTafsirCache[key]
+        ) {
+            return window.quranTafsirCache[key];
+        }
+
+
+        try {
+
+            const url =
+                "https://api.alquran.cloud/v1/surah/" +
+                surahNumber +
+                "/ar.jalalayn";
+
+
+            const response =
+                await fetch(url);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Jalalayn API error: " +
+                    response.status
+                );
+            }
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !result ||
+                !result.data ||
+                !result.data.ayahs
+            ) {
+
+                throw new Error(
+                    "Invalid Jalalayn response"
+                );
+            }
+
+
+            const data = {};
+
+
+            result.data.ayahs.forEach(
+                function (item) {
+
+                    data[
+                        surahNumber +
+                        ":" +
+                        item.numberInSurah
+                    ] = item.text || "";
+
+                }
+            );
+
+
+            window.quranTafsirCache[key] =
+                data;
+
+
+            return data;
+
+        } catch (error) {
+
+            console.error(
+                "Jalalayn loading error:",
+                error
+            );
+
+            return {};
+        }
+    }
+
+
+    /* -------------------------------------------------
+       LOAD TAFSEER FOR CURRENT SURAH
+       ------------------------------------------------- */
+
+    async function loadSelectedTafsir(
+        surahNumber
+    ) {
+
+        const tafsir =
+            window.selectedTafsir;
+
+
+        if (
+            tafsir === "jalalayn"
+        ) {
+
+            return await loadJalalayn(
+                surahNumber
+            );
+        }
+
+
+        /*
+         * Ibn Kathir and Mazhari:
+         *
+         * Do NOT substitute another tafsir.
+         * Their verified source data will be
+         * connected separately.
+         */
+
+        return {};
+    }
+
+
+    /* -------------------------------------------------
+       GET TAFSEER FOR AYAH
+       ------------------------------------------------- */
+
+    window.getQuranTafsir =
+        function (ayah) {
+
+            if (!ayah) {
+                return "";
+            }
+
+
+            const key =
+                ayah.surah +
+                ":" +
+                ayah.ayah;
+
+
+            const cache =
+                window.quranTafsirCache[
+                    window.selectedTafsir +
+                    ":" +
+                    ayah.surah
+                ];
+
+
+            if (
+                cache &&
+                cache[key]
+            ) {
+
+                return cache[key];
+            }
+
+
+            /*
+             * Existing local tafseer remains
+             * available as fallback.
+             */
+
+            return (
+                ayah.tafseer ||
+                ayah.tafsir ||
+                ""
+            );
+        };
+
+
+    /* -------------------------------------------------
+       CHANGE TAFSEER
+       ------------------------------------------------- */
+
+    window.changeQuranTafsir =
+        async function (tafsir) {
+
+            window.selectedTafsir =
+                tafsir;
+
+
+            const surahSelect =
+                document.getElementById(
+                    "surahSelect"
+                );
+
+
+            const surahNumber =
+                surahSelect
+                    ? Number(
+                        surahSelect.value
+                    )
+                    : 1;
+
+
+            await loadSelectedTafsir(
+                surahNumber
+            );
+
+
+            if (
+                typeof displayAyahs ===
+                "function"
+            ) {
+
+                const currentData =
+                    typeof quranData !==
+                    "undefined"
+                        ? quranData.filter(
+                            function (item) {
+
+                                return Number(
+                                    item.surah
+                                ) ===
+                                surahNumber;
+
+                            }
+                        )
+                        : [];
+
+
+                if (
+                    currentData.length
+                ) {
+
+                    displayAyahs(
+                        currentData
+                    );
+                }
+            }
+        };
+
+
+    /* -------------------------------------------------
+       CREATE TAFSEER SELECTOR
+       ------------------------------------------------- */
+
+    function createTafsirSelector() {
+
+        if (
+            document.getElementById(
+                "quranTafsirSelect"
+            )
+        ) {
+            return;
+        }
+
+
+        const container =
+            document.getElementById(
+                "ayahContainer"
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        const box =
+            document.createElement(
+                "div"
+            );
+
+
+        box.id =
+            "quranTafsirSelectorBox";
+
+
+        box.style.cssText = [
+            "margin:15px auto",
+            "padding:12px 16px",
+            "max-width:900px",
+            "border-radius:14px",
+            "background:rgba(15,61,46,.06)",
+            "text-align:center"
+        ].join(";");
+
+
+        box.innerHTML = `
+
+            <label
+                for="quranTafsirSelect"
+                style="
+                    margin-right:8px;
+                    font-weight:700;
+                "
+            >
+                تفسیر:
+            </label>
+
+            <select
+                id="quranTafsirSelect"
+                style="
+                    padding:8px 14px;
+                    border-radius:10px;
+                    cursor:pointer;
+                "
+            >
+
+                <option value="jalalayn">
+                    تفسیر الجلالین
+                </option>
+
+                <option value="ibnKathir">
+                    تفسیر ابن کثیر
+                </option>
+
+                <option value="mazahari">
+                    تفسیر مظہری
+                </option>
+
+            </select>
+        `;
+
+
+        container.parentNode.insertBefore(
+            box,
+            container
+        );
+
+
+        const selector =
+            document.getElementById(
+                "quranTafsirSelect"
+            );
+
+
+        selector.addEventListener(
+            "change",
+            function () {
+
+                changeQuranTafsir(
+                    this.value
+                );
+
+            }
+        );
+    }
+
+
+    /* -------------------------------------------------
+       INITIALIZE
+       ------------------------------------------------- */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            setTimeout(
+                createTafsirSelector,
+                300
+            );
+
+        }
+    );
+
+})();
+// =====================================================
+// QURAN DATA
+// Complete Surah list + Arabic loader
+// =====================================================
+
+const SURAH_LIST = [
+    [1,"الفاتحة","Al-Fatihah",7],
+    [2,"البقرة","Al-Baqarah",286],
+    [3,"آل عمران","Aal-E-Imran",200],
+    [4,"النساء","An-Nisa",176],
+    [5,"المائدة","Al-Ma'idah",120],
+    [6,"الأنعام","Al-An'am",165],
+    [7,"الأعراف","Al-A'raf",206],
+    [8,"الأنفال","Al-Anfal",75],
+    [9,"التوبة","At-Tawbah",129],
+    [10,"يونس","Yunus",109],
+    [11,"هود","Hud",123],
+    [12,"يوسف","Yusuf",111],
+    [13,"الرعد","Ar-Ra'd",43],
+    [14,"إبراهيم","Ibrahim",52],
+    [15,"الحجر","Al-Hijr",99],
+    [16,"النحل","An-Nahl",128],
+    [17,"الإسراء","Al-Isra",111],
+    [18,"الكهف","Al-Kahf",110],
+    [19,"مريم","Maryam",98],
+    [20,"طه","Ta-Ha",135],
+    [21,"الأنبياء","Al-Anbiya",112],
+    [22,"الحج","Al-Hajj",78],
+    [23,"المؤمنون","Al-Mu'minun",118],
+    [24,"النور","An-Nur",64],
+    [25,"الفرقان","Al-Furqan",77],
+    [26,"الشعراء","Ash-Shu'ara",227],
+    [27,"النمل","An-Naml",93],
+    [28,"القصص","Al-Qasas",88],
+    [29,"العنكبوت","Al-Ankabut",69],
+    [30,"الروم","Ar-Rum",60],
+    [31,"لقمان","Luqman",34],
+    [32,"السجدة","As-Sajdah",30],
+    [33,"الأحزاب","Al-Ahzab",73],
+    [34,"سبأ","Saba",54],
+    [35,"فاطر","Fatir",45],
+    [36,"يس","Ya-Sin",83],
+    [37,"الصافات","As-Saffat",182],
+    [38,"ص","Sad",88],
+    [39,"الزمر","Az-Zumar",75],
+    [40,"غافر","Ghafir",85],
+    [41,"فصلت","Fussilat",54],
+    [42,"الشورى","Ash-Shura",53],
+    [43,"الزخرف","Az-Zukhruf",89],
+    [44,"الدخان","Ad-Dukhan",59],
+    [45,"الجاثية","Al-Jathiyah",37],
+    [46,"الأحقاف","Al-Ahqaf",35],
+    [47,"محمد","Muhammad",38],
+    [48,"الفتح","Al-Fath",29],
+    [49,"الحجرات","Al-Hujurat",18],
+    [50,"ق","Qaf",45],
+    [51,"الذاريات","Adh-Dhariyat",60],
+    [52,"الطور","At-Tur",49],
+    [53,"النجم","An-Najm",62],
+    [54,"القمر","Al-Qamar",55],
+    [55,"الرحمن","Ar-Rahman",78],
+    [56,"الواقعة","Al-Waqi'ah",96],
+    [57,"الحديد","Al-Hadid",29],
+    [58,"المجادلة","Al-Mujadila",22],
+    [59,"الحشر","Al-Hashr",24],
+    [60,"الممتحنة","Al-Mumtahanah",13],
+    [61,"الصف","As-Saff",14],
+    [62,"الجمعة","Al-Jumu'ah",11],
+    [63,"المنافقون","Al-Munafiqun",11],
+    [64,"التغابن","At-Taghabun",18],
+    [65,"الطلاق","At-Talaq",12],
+    [66,"التحريم","At-Tahrim",12],
+    [67,"الملك","Al-Mulk",30],
+    [68,"القلم","Al-Qalam",52],
+    [69,"الحاقة","Al-Haqqah",52],
+    [70,"المعارج","Al-Ma'arij",44],
+    [71,"نوح","Nuh",28],
+    [72,"الجن","Al-Jinn",28],
+    [73,"المزمل","Al-Muzzammil",20],
+    [74,"المدثر","Al-Muddaththir",56],
+    [75,"القيامة","Al-Qiyamah",40],
+    [76,"الإنسان","Al-Insan",31],
+    [77,"المرسلات","Al-Mursalat",50],
+    [78,"النبأ","An-Naba",40],
+    [79,"النازعات","An-Nazi'at",46],
+    [80,"عبس","Abasa",42],
+    [81,"التكوير","At-Takwir",29],
+    [82,"الانفطار","Al-Infitar",19],
+    [83,"المطففين","Al-Mutaffifin",36],
+    [84,"الانشقاق","Al-Inshiqaq",25],
+    [85,"البروج","Al-Buruj",22],
+    [86,"الطارق","At-Tariq",17],
+    [87,"الأعلى","Al-A'la",19],
+    [88,"الغاشية","Al-Ghashiyah",26],
+    [89,"الفجر","Al-Fajr",30],
+    [90,"البلد","Al-Balad",20],
+    [91,"الشمس","Ash-Shams",15],
+    [92,"الليل","Al-Layl",21],
+    [93,"الضحى","Ad-Duha",11],
+    [94,"الشرح","Ash-Sharh",8],
+    [95,"التين","At-Tin",8],
+    [96,"العلق","Al-Alaq",19],
+    [97,"القدر","Al-Qadr",5],
+    [98,"البينة","Al-Bayyinah",8],
+    [99,"الزلزلة","Az-Zalzalah",8],
+    [100,"العاديات","Al-Adiyat",11],
+    [101,"القارعة","Al-Qari'ah",11],
+    [102,"التكاثر","At-Takathur",8],
+    [103,"العصر","Al-Asr",3],
+    [104,"الهمزة","Al-Humazah",9],
+    [105,"الفيل","Al-Fil",5],
+    [106,"قريش","Quraysh",4],
+    [107,"الماعون","Al-Ma'un",7],
+    [108,"الكوثر","Al-Kawthar",3],
+    [109,"الكافرون","Al-Kafirun",6],
+    [110,"النصر","An-Nasr",3],
+    [111,"المسد","Al-Masad",5],
+    [112,"الإخلاص","Al-Ikhlas",4],
+    [113,"الفلق","Al-Falaq",5],
+    [114,"الناس","An-Nas",6]
+];
+
+
+// Existing code expects quranData.
+// Start with an empty array; selected Surah is loaded below.
+let quranData = [];
+
+
+// =====================================================
+// LOAD ONE COMPLETE SURAH
+// =====================================================
+
+async function loadCompleteSurah(surahNumber) {
+
+    const url =
+        "https://api.alquran.cloud/v1/surah/" +
+        surahNumber +
+        "/quran-uthmani";
+
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(
+            "Quran Arabic loading failed: " +
+            response.status
+        );
+    }
+
+    const result =
+        await response.json();
+
+    if (
+        !result ||
+        !result.data ||
+        !result.data.ayahs
+    ) {
+        throw new Error(
+            "Invalid Quran response."
+        );
+    }
+
+    quranData =
+        result.data.ayahs.map(function (ayah) {
+
+            return {
+                surah: surahNumber,
+
+                surahNameArabic:
+                    result.data.name || "",
+
+                ayah:
+                    ayah.numberInSurah,
+
+                arabic:
+                    ayah.text,
+
+                urdu: "",
+
+                tafseer: ""
+            };
+
+        });
+
+    return quranData;
+}
+
+
+// =====================================================
+// LOAD SURAH
+// =====================================================
+
+window.loadQuranSurah =
+    async function (surahNumber) {
+
+        try {
+
+            const data =
+                await loadCompleteSurah(
+                    Number(surahNumber)
+                );
+
+            if (
+                typeof displayAyahs ===
+                "function"
+            ) {
+                displayAyahs(data);
+            }
+
+            return data;
+
+        } catch (error) {
+
+            console.error(
+                "Quran loading error:",
+                error
+            );
+
+            return [];
+        }
+    };
+
+
+// =====================================================
+// EXPORT SURAH LIST
+// =====================================================
+
+window.SURAH_LIST =
+    SURAH_LIST;
+/* =====================================================
+   FULL QURAN SURAH + TRANSLATION CONNECTOR
+   ===================================================== */
+
+(function () {
+    "use strict";
+
+    const originalLoad =
+        window.loadQuranSurah;
+
+    if (
+        typeof originalLoad !== "function"
+    ) {
+        console.error(
+            "loadQuranSurah not found."
+        );
+        return;
+    }
+
+
+    window.loadQuranSurah =
+        async function (surahNumber) {
+
+            const number =
+                Number(surahNumber);
+
+            try {
+
+                /* ---------------------------------
+                   1. Load Arabic Quran
+                   --------------------------------- */
+
+                const arabicData =
+                    await originalLoad(
+                        number
+                    );
+
+
+                if (
+                    !Array.isArray(
+                        arabicData
+                    )
+                ) {
+                    return [];
+                }
+
+
+                /* ---------------------------------
+                   2. Get selected language
+                   --------------------------------- */
+
+                let language = "ur";
+
+                if (
+                    typeof getSelectedLanguage ===
+                    "function"
+                ) {
+                    language =
+                        getSelectedLanguage();
+                }
+
+
+                /* ---------------------------------
+                   3. Urdu already comes from
+                      existing local data
+                   --------------------------------- */
+
+                if (
+                    language === "ur"
+                ) {
+
+                    if (
+                        typeof displayAyahs ===
+                        "function"
+                    ) {
+                        displayAyahs(
+                            arabicData
+                        );
+                    }
+
+                    return arabicData;
+                }
+
+
+                /* ---------------------------------
+                   4. Load selected translation
+                   --------------------------------- */
+
+                if (
+                    typeof fetchSurahTranslation ===
+                    "function"
+                ) {
+
+                    await fetchSurahTranslation(
+                        number,
+                        language
+                    );
+                }
+
+
+                /* ---------------------------------
+                   5. Put translation into
+                      each Ayah
+                   --------------------------------- */
+
+                arabicData.forEach(
+                    function (ayah) {
+
+                        const key =
+                            number +
+                            ":" +
+                            ayah.ayah;
+
+
+                        if (
+                            window.quranMultiTranslations &&
+                            window.quranMultiTranslations[
+                                language
+                            ] &&
+                            window.quranMultiTranslations[
+                                language
+                            ][key]
+                        ) {
+
+                            ayah.urdu =
+                                window
+                                    .quranMultiTranslations[
+                                        language
+                                    ][key];
+
+                        }
+
+                    }
+                );
+
+
+                /* ---------------------------------
+                   6. Display
+                   --------------------------------- */
+
+                if (
+                    typeof displayAyahs ===
+                    "function"
+                ) {
+
+                    displayAyahs(
+                        arabicData
+                    );
+                }
+
+
+                return arabicData;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Full Quran translation error:",
+                    error
+                );
+
+                return [];
+            }
+
+        };
+
+})();
