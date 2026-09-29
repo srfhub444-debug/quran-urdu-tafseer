@@ -527,3 +527,287 @@ window.loadQuranSurah =
         }
 
     };
+// =====================================================
+// FINAL MULTI-LANGUAGE QURAN DATA LOADER
+// =====================================================
+
+const QURAN_API =
+    "https://api.alquran.cloud/v1";
+
+
+// -----------------------------------------------------
+// LANGUAGE EDITIONS
+// -----------------------------------------------------
+
+const QURAN_TRANSLATIONS = {
+
+    ur: "ur.jalandhry",
+
+    en: "en.sahih",
+
+    hi: "hi.hindi",
+
+    bn: "bn.bengali",
+
+    tr: "tr.diyanet",
+
+    id: "id.indonesian",
+
+    ms: "ms.basmeih",
+
+    fr: "fr.hamidullah",
+
+    de: "de.bubenheim",
+
+    es: "es.cortes",
+
+    ru: "ru.kuliev",
+
+    fa: "fa.makarem",
+
+    ar: "ar.muyassar",
+
+    ta: "ta.tamil",
+
+    te: "te.telugu",
+
+    gu: "gu.gujarati"
+
+};
+
+
+// -----------------------------------------------------
+// ARABIC EDITION
+// -----------------------------------------------------
+
+const QURAN_ARABIC_EDITION =
+    "quran-uthmani";
+
+
+// -----------------------------------------------------
+// LOAD SELECTED SURAH
+// -----------------------------------------------------
+
+async function loadCompleteSurah(surahNumber) {
+
+    try {
+
+        const language =
+            localStorage.getItem(
+                "quranLanguage"
+            ) || "ur";
+
+
+        const translationEdition =
+            QURAN_TRANSLATIONS[language] ||
+            QURAN_TRANSLATIONS.ur;
+
+
+        const editions =
+            QURAN_ARABIC_EDITION +
+            "," +
+            translationEdition;
+
+
+        const url =
+            QURAN_API +
+            "/surah/" +
+            surahNumber +
+            "/editions/" +
+            editions;
+
+
+        console.log(
+            "Loading Quran:",
+            url
+        );
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Quran API error: " +
+                response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !result ||
+            !result.data ||
+            result.data.length < 2
+        ) {
+
+            throw new Error(
+                "Quran data unavailable"
+            );
+
+        }
+
+
+        const arabicData =
+            result.data[0];
+
+        const translationData =
+            result.data[1];
+
+
+        const arabicAyahs =
+            arabicData.ayahs || [];
+
+        const translationAyahs =
+            translationData.ayahs || [];
+
+
+        const finalData =
+            arabicAyahs.map(
+                function (ayah, index) {
+
+                    const translation =
+                        translationAyahs[index];
+
+
+                    return {
+
+                        surah:
+                            Number(surahNumber),
+
+                        ayah:
+                            ayah.numberInSurah,
+
+                        arabic:
+                            ayah.text,
+
+                        urdu:
+                            language === "ur"
+                                ? (
+                                    translation
+                                        ? translation.text
+                                        : ""
+                                  )
+                                : "",
+
+                        translation:
+                            translation
+                                ? translation.text
+                                : "",
+
+                        tafseer: "",
+
+                        surahNameArabic:
+                            arabicData.surah.name,
+
+                        surahNameUrdu:
+                            arabicData.surah
+                                .englishName
+
+                    };
+
+                }
+            );
+
+
+        return finalData;
+
+
+    } catch (error) {
+
+        console.error(
+            "Quran loading failed:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+// -----------------------------------------------------
+// CONNECT TO EXISTING WEBSITE
+// -----------------------------------------------------
+
+window.loadQuranSurah =
+    async function (surahNumber) {
+
+        const data =
+            await loadCompleteSurah(
+                surahNumber
+            );
+
+
+        if (
+            typeof displayAyahs ===
+            "function"
+        ) {
+
+            displayAyahs(data);
+
+        }
+
+
+        return data;
+
+    };
+
+
+// -----------------------------------------------------
+// SURAH SELECT
+// -----------------------------------------------------
+
+if (typeof surahSelect !== "undefined") {
+
+    surahSelect.addEventListener(
+        "change",
+        async function () {
+
+            const surahNumber =
+                Number(this.value);
+
+
+            if (!surahNumber) {
+
+                return;
+
+            }
+
+
+            await window.loadQuranSurah(
+                surahNumber
+            );
+
+        }
+    );
+
+}
+
+
+// -----------------------------------------------------
+// FIRST LOAD
+// -----------------------------------------------------
+
+window.addEventListener(
+    "load",
+    async function () {
+
+        const firstSurah =
+            1;
+
+
+        await window.loadQuranSurah(
+            firstSurah
+        );
+
+    }
+);
