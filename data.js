@@ -811,3 +811,403 @@ window.addEventListener(
 
     }
 );
+// =====================================================
+// SURAH 1 — AL-FATIHAH
+// 16 LANGUAGE DATA
+// =====================================================
+
+window.quranData = [];
+
+const FATIHAH_EDITIONS = {
+    ar: "quran-uthmani",
+    ur: "ur.jalandhry",
+    en: "en.sahih",
+    hi: "hi.hindi",
+    bn: "bn.bengali",
+    gu: "gu.gujarati",
+    ta: "ta.tamil",
+    te: "te.telugu",
+    tr: "tr.diyanet",
+    fa: "fa.makarem",
+    id: "id.indonesian",
+    ms: "ms.basmeih",
+    fr: "fr.hamidullah",
+    de: "de.bubenheim",
+    es: "es.cortes",
+    ru: "ru.kuliev"
+};
+
+
+// =====================================================
+// LOAD SURAH 1
+// =====================================================
+
+async function loadFatihaData() {
+
+    try {
+
+        const requests =
+            Object.entries(FATIHAH_EDITIONS)
+            .map(async function ([lang, edition]) {
+
+                const response =
+                    await fetch(
+                        "https://api.alquran.cloud/v1/surah/1/" +
+                        edition
+                    );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Failed: " + edition
+                    );
+                }
+
+                const result =
+                    await response.json();
+
+                return {
+                    lang: lang,
+                    data: result.data
+                };
+
+            });
+
+
+        const results =
+            await Promise.all(requests);
+
+
+        const languages = {};
+
+
+        results.forEach(function (item) {
+
+            languages[item.lang] =
+                item.data;
+
+        });
+
+
+        const arabic =
+            languages.ar;
+
+
+        if (!arabic || !arabic.ayahs) {
+
+            throw new Error(
+                "Arabic Quran data not found."
+            );
+
+        }
+
+
+        window.quranData =
+            arabic.ayahs.map(
+                function (ayah, index) {
+
+                    return {
+
+                        surah: 1,
+
+                        ayah:
+                            ayah.numberInSurah,
+
+                        surahNameArabic:
+                            "سُورَةُ ٱلْفَاتِحَةِ",
+
+                        surahNameUrdu:
+                            "الفاتحہ",
+
+
+                        arabic:
+                            ayah.text,
+
+
+                        translations: {
+
+                            ur:
+                                languages.ur?.ayahs?.[index]?.text || "",
+
+                            en:
+                                languages.en?.ayahs?.[index]?.text || "",
+
+                            hi:
+                                languages.hi?.ayahs?.[index]?.text || "",
+
+                            bn:
+                                languages.bn?.ayahs?.[index]?.text || "",
+
+                            gu:
+                                languages.gu?.ayahs?.[index]?.text || "",
+
+                            ta:
+                                languages.ta?.ayahs?.[index]?.text || "",
+
+                            te:
+                                languages.te?.ayahs?.[index]?.text || "",
+
+                            tr:
+                                languages.tr?.ayahs?.[index]?.text || "",
+
+                            fa:
+                                languages.fa?.ayahs?.[index]?.text || "",
+
+                            id:
+                                languages.id?.ayahs?.[index]?.text || "",
+
+                            ms:
+                                languages.ms?.ayahs?.[index]?.text || "",
+
+                            fr:
+                                languages.fr?.ayahs?.[index]?.text || "",
+
+                            de:
+                                languages.de?.ayahs?.[index]?.text || "",
+
+                            es:
+                                languages.es?.ayahs?.[index]?.text || "",
+
+                            ru:
+                                languages.ru?.ayahs?.[index]?.text || "",
+
+                            ar:
+                                languages.ar?.ayahs?.[index]?.text || ""
+
+                        },
+
+
+                        // Existing system ke liye
+                        urdu:
+                            languages.ur?.ayahs?.[index]?.text || "",
+
+
+                        tafseer: ""
+
+
+                    };
+
+                }
+            );
+
+
+        console.log(
+            "✅ Surah Al-Fatihah loaded:",
+            window.quranData.length,
+            "Ayahs"
+        );
+
+
+        // Existing website ko data dena
+        if (
+            typeof displayAyahs === "function"
+        ) {
+
+            displayAyahs(
+                window.quranData
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Al-Fatihah loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadFatihaData();
+
+    }
+);
+// =====================================================
+// PART 2 — SURAH AL-BAQARAH
+// 286 AYAT
+// =====================================================
+
+async function loadBaqarahData() {
+
+    try {
+
+        const editions = [
+            "quran-uthmani",
+            "ur.jalandhry",
+            "en.sahih",
+            "hi.hindi",
+            "bn.bengali",
+            "tr.diyanet",
+            "id.indonesian",
+            "ms.basmeih",
+            "fr.hamidullah",
+            "de.bubenheim",
+            "es.cortes",
+            "ru.kuliev"
+        ];
+
+        const requests = editions.map(
+            function (edition) {
+
+                return fetch(
+                    "https://api.alquran.cloud/v1/surah/2/" +
+                    edition
+                ).then(
+                    function (response) {
+                        return response.json();
+                    }
+                );
+
+            }
+        );
+
+
+        const results =
+            await Promise.all(requests);
+
+
+        const arabic =
+            results[0].data;
+
+        const urdu =
+            results[1].data;
+
+        const english =
+            results[2].data;
+
+        const hindi =
+            results[3].data;
+
+        const bengali =
+            results[4].data;
+
+        const turkish =
+            results[5].data;
+
+        const indonesian =
+            results[6].data;
+
+        const malay =
+            results[7].data;
+
+        const french =
+            results[8].data;
+
+        const german =
+            results[9].data;
+
+        const spanish =
+            results[10].data;
+
+        const russian =
+            results[11].data;
+
+
+        window.baqarahData =
+            arabic.ayahs.map(
+                function (ayah, index) {
+
+                    return {
+
+                        surah: 2,
+
+                        ayah:
+                            ayah.numberInSurah,
+
+                        surahNameArabic:
+                            arabic.name,
+
+                        surahNameUrdu:
+                            "البقرہ",
+
+                        arabic:
+                            ayah.text,
+
+                        translations: {
+
+                            ur:
+                                urdu.ayahs[index].text,
+
+                            en:
+                                english.ayahs[index].text,
+
+                            hi:
+                                hindi.ayahs[index].text,
+
+                            bn:
+                                bengali.ayahs[index].text,
+
+                            tr:
+                                turkish.ayahs[index].text,
+
+                            id:
+                                indonesian.ayahs[index].text,
+
+                            ms:
+                                malay.ayahs[index].text,
+
+                            fr:
+                                french.ayahs[index].text,
+
+                            de:
+                                german.ayahs[index].text,
+
+                            es:
+                                spanish.ayahs[index].text,
+
+                            ru:
+                                russian.ayahs[index].text
+
+                        },
+
+                        urdu:
+                            urdu.ayahs[index].text,
+
+                        tafseer: ""
+
+                    };
+
+                }
+            );
+
+
+        console.log(
+            "✅ Surah Al-Baqarah loaded:",
+            window.baqarahData.length,
+            "Ayahs"
+        );
+
+
+        if (
+            typeof displayAyahs ===
+            "function"
+        ) {
+
+            displayAyahs(
+                window.baqarahData
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Al-Baqarah loading error:",
+            error
+        );
+
+    }
+
+}
