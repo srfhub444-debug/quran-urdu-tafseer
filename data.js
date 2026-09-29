@@ -227,3 +227,303 @@ window.loadQuranSurah =
 
 window.SURAH_LIST =
     SURAH_LIST;
+// =====================================================
+// URDU TRANSLATION LOADER
+// =====================================================
+
+async function loadUrduTranslation(surahNumber) {
+
+    const url =
+        "https://api.alquran.cloud/v1/surah/" +
+        surahNumber +
+        "/ur.jalandhry";
+
+    try {
+
+        const response =
+            await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(
+                "Urdu translation loading failed"
+            );
+        }
+
+        const result =
+            await response.json();
+
+        if (
+            !result ||
+            !result.data ||
+            !result.data.ayahs
+        ) {
+            throw new Error(
+                "Invalid Urdu translation response"
+            );
+        }
+
+        return result.data.ayahs;
+
+    } catch (error) {
+
+        console.error(
+            "Urdu translation error:",
+            error
+        );
+
+        return [];
+    }
+}
+// =====================================================
+// LOAD URDU + ARABIC TOGETHER
+// =====================================================
+
+async function loadSurahWithUrdu(surahNumber) {
+
+    try {
+
+        // Arabic Quran
+        const arabicResponse =
+            await fetch(
+                "https://api.alquran.cloud/v1/surah/" +
+                surahNumber +
+                "/quran-uthmani"
+            );
+
+        const arabicResult =
+            await arabicResponse.json();
+
+
+        // Urdu Translation
+        const urduAyahs =
+            await loadUrduTranslation(
+                surahNumber
+            );
+
+
+        if (
+            !arabicResult ||
+            !arabicResult.data ||
+            !arabicResult.data.ayahs
+        ) {
+            throw new Error(
+                "Arabic Quran data not found"
+            );
+        }
+
+
+        const arabicAyahs =
+            arabicResult.data.ayahs;
+
+
+        quranData =
+            arabicAyahs.map(
+                function (ayah, index) {
+
+                    return {
+
+                        surah:
+                            surahNumber,
+
+                        surahNameArabic:
+                            arabicResult.data.name,
+
+                        surahNameUrdu:
+                            (
+                                SURAH_LIST.find(
+                                    function (item) {
+                                        return (
+                                            item[0] ===
+                                            surahNumber
+                                        );
+                                    }
+                                ) || []
+                            )[1] || "",
+
+                        ayah:
+                            ayah.numberInSurah,
+
+                        arabic:
+                            ayah.text,
+
+                        urdu:
+                            urduAyahs[index]
+                                ? urduAyahs[index].text
+                                : "",
+
+                        tafseer: ""
+
+                    };
+
+                }
+            );
+
+
+        return quranData;
+
+
+    } catch (error) {
+
+        console.error(
+            "Surah loading error:",
+            error
+        );
+
+        quranData = [];
+
+        return [];
+
+    }
+
+                }
+// =====================================================
+// JALALAYN TAFSEER LOADER
+// =====================================================
+
+async function loadJalalaynTafseer(surahNumber) {
+
+    try {
+
+        const response =
+            await fetch(
+                "https://api.alquran.cloud/v1/surah/" +
+                surahNumber +
+                "/ar.jalalayn"
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Jalalayn Tafseer loading failed"
+            );
+        }
+
+        const result =
+            await response.json();
+
+        if (
+            !result ||
+            !result.data ||
+            !result.data.ayahs
+        ) {
+            throw new Error(
+                "Invalid Tafseer response"
+            );
+        }
+
+        return result.data.ayahs;
+
+    } catch (error) {
+
+        console.error(
+            "Jalalayn Tafseer error:",
+            error
+        );
+
+        return [];
+    }
+            }
+// =====================================================
+// LOAD QURAN + URDU + TAFSEER
+// =====================================================
+
+async function loadCompleteQuranData(surahNumber) {
+
+    try {
+
+        const data =
+            await loadSurahWithUrdu(
+                surahNumber
+            );
+
+        const tafseer =
+            await loadJalalaynTafseer(
+                surahNumber
+            );
+
+        if (!data || data.length === 0) {
+            return [];
+        }
+
+        quranData =
+            data.map(function (ayah, index) {
+
+                return {
+
+                    surah:
+                        ayah.surah,
+
+                    surahNameArabic:
+                        ayah.surahNameArabic,
+
+                    surahNameUrdu:
+                        ayah.surahNameUrdu,
+
+                    ayah:
+                        ayah.ayah,
+
+                    arabic:
+                        ayah.arabic,
+
+                    urdu:
+                        ayah.urdu,
+
+                    tafseer:
+                        tafseer[index]
+                            ? tafseer[index].text
+                            : ""
+
+                };
+
+            });
+
+        return quranData;
+
+    } catch (error) {
+
+        console.error(
+            "Complete Quran data error:",
+            error
+        );
+
+        return [];
+
+    }
+
+                    }
+// =====================================================
+// CONNECT COMPLETE QURAN DATA TO WEBSITE
+// =====================================================
+
+window.loadQuranSurah =
+    async function (surahNumber) {
+
+        try {
+
+            const data =
+                await loadCompleteQuranData(
+                    Number(surahNumber)
+                );
+
+            if (
+                typeof displayAyahs ===
+                "function"
+            ) {
+
+                displayAyahs(data);
+
+            }
+
+            return data;
+
+        } catch (error) {
+
+            console.error(
+                "Complete Quran loading error:",
+                error
+            );
+
+            return [];
+
+        }
+
+    };
