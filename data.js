@@ -124,7 +124,13 @@ const SURAH_LIST = [
 // Existing code expects quranData.
 // Start with an empty array; selected Surah is loaded below.
 let quranData = [];
-
+if (
+    window.quranData &&
+    Array.isArray(window.quranData) &&
+    window.quranData.length > 0
+) {
+    quranData = window.quranData;
+}
 
 // =====================================================
 // LOAD ONE COMPLETE SURAH
