@@ -3,7 +3,6 @@
 // CLEAN MULTILINGUAL SYSTEM
 // =====================================================
 
-
 // =====================================================
 // HTML ELEMENTS
 // =====================================================
@@ -41,8 +40,7 @@ const LANGUAGE_CONFIG = {
         native: "اردو",
         dir: "rtl",
         title: "قرآن کریم • اردو ترجمہ • تفسیر",
-        description:
-            "قرآن کریم، اردو ترجمہ اور تفسیر",
+        description: "قرآن کریم، اردو ترجمہ اور تفسیر",
         home: "ہوم",
         surahs: "سورتیں",
         favorites: "پسندیدہ",
@@ -323,9 +321,9 @@ const LANGUAGE_CONFIG = {
         selectSurah: "సూరాను ఎంచుకోండి",
         searchPlaceholder:
             "ఆయత్, అనువాదం లేదా తఫ్సీర్‌లో వెతకండి...",
-        search: "శోధించండి",
+        search: "శోధన",
         quran: "పవిత్ర ఖుర్ఆన్",
-        readingInfo: "అరబిక్ • తెలుగు • తఫ్సీర్",
+        readingInfo: "అరబీ • తెలుగు • తఫ్సీర్",
         viewTafsir: "తఫ్సీర్ చూడండి",
         closeTafsir: "తఫ్సీర్ మూసివేయండి",
         tafsir: "తఫ్సీర్",
@@ -337,12 +335,12 @@ const LANGUAGE_CONFIG = {
         previous: "మునుపటి ఆయత్",
         next: "తదుపరి ఆయత్",
         ayah: "ఆయత్",
-        noResults: "ఫలితాలు ఏవీ కనబడలేదు.",
+        noResults: "ఫలితాలు కనబడలేదు.",
         firstAyah: "ఇది మొదటి అందుబాటులో ఉన్న ఆయత్.",
         lastAyah: "ఇది చివరి అందుబాటులో ఉన్న ఆయత్.",
         copied: "✓ కాపీ చేయబడింది",
         linkCopied: "✓ లింక్ కాపీ చేయబడింది",
-        copyFailed: "కాపీ చేయడం సాధ్యం కాలేదు.",
+        copyFailed: "కాపీ చేయలేకపోయాము.",
         loading: "అనువాదం లోడ్ అవుతోంది...",
         unavailable:
             "ఈ భాషలో తఫ్సీర్ ఇంకా అందుబాటులో లేదు."
@@ -352,16 +350,16 @@ const LANGUAGE_CONFIG = {
         name: "Turkish",
         native: "Türkçe",
         dir: "ltr",
-        title: "Kur'an-ı Kerim • Meâl ve Tefsir",
+        title: "Kur'an-ı Kerim • Tercüme ve Tefsir",
         description:
-            "Kur'an-ı Kerim'i meâl ve tefsir ile okuyun.",
+            "Kur'an-ı Kerim'i tercüme ve tefsir ile okuyun.",
         home: "Ana Sayfa",
         surahs: "Sureler",
         favorites: "Favoriler",
         searchNav: "Ara",
-        selectSurah: "Sure Seçin",
+        selectSurah: "Sure seçin",
         searchPlaceholder:
-            "Ayet, meal veya tefsirde ara...",
+            "Ayet, tercüme veya tefsirde arayın...",
         search: "Ara",
         quran: "Kur'an-ı Kerim",
         readingInfo: "Arapça • Türkçe • Tefsir",
@@ -382,7 +380,7 @@ const LANGUAGE_CONFIG = {
         copied: "✓ Kopyalandı",
         linkCopied: "✓ Bağlantı kopyalandı",
         copyFailed: "Kopyalanamadı.",
-        loading: "Çeviri yükleniyor...",
+        loading: "Tercüme yükleniyor...",
         unavailable:
             "Bu dilde tefsir henüz mevcut değil."
     },
@@ -393,33 +391,33 @@ const LANGUAGE_CONFIG = {
         dir: "rtl",
         title: "قرآن کریم • ترجمه و تفسیر",
         description:
-            "قرآن کریم را همراه با ترجمه و تفسیر بخوانید.",
+            "قرآن کریم را با ترجمه و تفسیر بخوانید.",
         home: "خانه",
         surahs: "سوره‌ها",
-        favorites: "ذخیره‌شده‌ها",
+        favorites: "علاقه‌مندی‌ها",
         searchNav: "جستجو",
-        selectSurah: "انتخاب سوره",
+        selectSurah: "سوره را انتخاب کنید",
         searchPlaceholder:
             "در آیه، ترجمه یا تفسیر جستجو کنید...",
         search: "جستجو",
         quran: "قرآن کریم",
         readingInfo: "عربی • فارسی • تفسیر",
-        viewTafsir: "مشاهده تفسیر",
+        viewTafsir: "نمایش تفسیر",
         closeTafsir: "بستن تفسیر",
         tafsir: "تفسیر",
         save: "ذخیره",
         saved: "ذخیره شد",
         copy: "کپی",
-        share: "اشتراک‌گذاری",
-        link: "پیوند",
+        share: "اشتراک",
+        link: "لینک",
         previous: "آیه قبلی",
         next: "آیه بعدی",
         ayah: "آیه",
-        noResults: "نتیجه‌ای پیدا نشد.",
+        noResults: "نتیجه‌ای یافت نشد.",
         firstAyah: "این اولین آیه موجود است.",
         lastAyah: "این آخرین آیه موجود است.",
         copied: "✓ کپی شد",
-        linkCopied: "✓ پیوند کپی شد",
+        linkCopied: "✓ لینک کپی شد",
         copyFailed: "کپی انجام نشد.",
         loading: "در حال بارگذاری ترجمه...",
         unavailable:
@@ -455,8 +453,8 @@ const LANGUAGE_CONFIG = {
         next: "Ayat Berikutnya",
         ayah: "Ayat",
         noResults: "Tidak ada hasil.",
-        firstAyah: "Ini adalah ayat pertama yang tersedia.",
-        lastAyah: "Ini adalah ayat terakhir yang tersedia.",
+        firstAyah: "Ini ayat pertama yang tersedia.",
+        lastAyah: "Ini ayat terakhir yang tersedia.",
         copied: "✓ Disalin",
         linkCopied: "✓ Tautan disalin",
         copyFailed: "Tidak dapat menyalin.",
@@ -467,7 +465,7 @@ const LANGUAGE_CONFIG = {
 
     ms: {
         name: "Malay",
-        native: "Bahasa Melayu",
+        native: "Melayu",
         dir: "ltr",
         title: "Al-Quran • Terjemahan dan Tafsir",
         description:
@@ -494,8 +492,8 @@ const LANGUAGE_CONFIG = {
         next: "Ayat Seterusnya",
         ayah: "Ayat",
         noResults: "Tiada hasil ditemui.",
-        firstAyah: "Ini ialah ayat pertama yang tersedia.",
-        lastAyah: "Ini ialah ayat terakhir yang tersedia.",
+        firstAyah: "Ini ayat pertama yang tersedia.",
+        lastAyah: "Ini ayat terakhir yang tersedia.",
         copied: "✓ Disalin",
         linkCopied: "✓ Pautan disalin",
         copyFailed: "Tidak dapat menyalin.",
@@ -556,7 +554,7 @@ const LANGUAGE_CONFIG = {
         searchNav: "Suche",
         selectSurah: "Sure auswählen",
         searchPlaceholder:
-            "Nach Vers, Übersetzung oder Tafsir suchen...",
+            "Nach Ayat, Übersetzung oder Tafsir suchen...",
         search: "Suchen",
         quran: "Der Heilige Koran",
         readingInfo: "Arabisch • Deutsch • Tafsir",
@@ -630,14 +628,14 @@ const LANGUAGE_CONFIG = {
             "Читайте Священный Коран с переводом и тафсиром.",
         home: "Главная",
         surahs: "Суры",
-               favorites: "Избранное",
+        favorites: "Избранное",
         searchNav: "Поиск",
         selectSurah: "Выберите суру",
         searchPlaceholder:
-            "Поиск по аяту, переводу или тафсиру...",
+            "Поиск аята, перевода или тафсира...",
         search: "Поиск",
         quran: "Священный Коран",
-        readingInfo: "Арабский • Перевод • Тафсир",
+        readingInfo: "Арабский • Русский • Тафсир",
         viewTafsir: "Показать тафсир",
         closeTafsir: "Закрыть тафсир",
         tafsir: "Тафсир",
@@ -646,10 +644,10 @@ const LANGUAGE_CONFIG = {
         copy: "Копировать",
         share: "Поделиться",
         link: "Ссылка",
-        previous: "← Предыдущий аят",
-        next: "Следующий аят →",
+        previous: "Предыдущий аят",
+        next: "Следующий аят",
         ayah: "Аят",
-        noResults: "Результатов не найдено.",
+        noResults: "Результаты не найдены.",
         firstAyah: "Это первый доступный аят.",
         lastAyah: "Это последний доступный аят.",
         copied: "✓ Скопировано",
@@ -659,7 +657,6 @@ const LANGUAGE_CONFIG = {
         unavailable:
             "Тафсир на этом языке пока недоступен."
     }
-
 };
 
 
@@ -668,7 +665,40 @@ const LANGUAGE_CONFIG = {
 // =====================================================
 
 let currentLanguage =
-    localStorage.getItem("quranLanguage") || "ur";
+    localStorage.getItem(
+        "quranLanguage"
+    ) || "ur";
+
+
+// =====================================================
+// GENERATED FULL QURAN DATA BRIDGE
+// =====================================================
+
+if (
+    window.generatedQuranData &&
+    Array.isArray(
+        window.generatedQuranData
+    ) &&
+    window.generatedQuranData.length > 0
+) {
+
+    quranData =
+        window.generatedQuranData;
+
+}
+
+else if (
+    window.quranData &&
+    Array.isArray(
+        window.quranData
+    ) &&
+    window.quranData.length > 0
+) {
+
+    quranData =
+        window.quranData;
+
+}
 
 
 // =====================================================
@@ -678,7 +708,9 @@ let currentLanguage =
 function getCurrentLanguage() {
 
     return (
-        LANGUAGE_CONFIG[currentLanguage] ||
+        LANGUAGE_CONFIG[
+            currentLanguage
+        ] ||
         LANGUAGE_CONFIG.ur
     );
 
@@ -689,24 +721,30 @@ function getCurrentLanguage() {
 // APPLY LANGUAGE
 // =====================================================
 
-function applyLanguage(lang) {
+function applyLanguage(
+    lang
+) {
 
-    if (!LANGUAGE_CONFIG[lang]) {
+    if (
+        !LANGUAGE_CONFIG[lang]
+    ) {
         lang = "ur";
     }
 
-    currentLanguage = lang;
+
+    currentLanguage =
+        lang;
+
 
     localStorage.setItem(
         "quranLanguage",
         lang
     );
 
+
     const config =
         LANGUAGE_CONFIG[lang];
 
-
-    // HTML language + direction
 
     document.documentElement.lang =
         lang;
@@ -715,53 +753,29 @@ function applyLanguage(lang) {
         config.dir;
 
 
-    // Page title
-
     document.title =
         config.title;
 
 
-    // =================================================
-    // HEADER
-    // =================================================
-
-    const brand =
-        document.querySelector(".brand");
-
-    if (brand) {
-        brand.textContent =
-            "القرآن الكريم";
-    }
-
-
     const brandSubtitle =
-        document.querySelector(".brand-subtitle");
+        document.querySelector(
+            ".brand-subtitle"
+        );
+
 
     if (brandSubtitle) {
 
-        if (lang === "ur") {
-
-            brandSubtitle.textContent =
-                "قرآن کریم • اردو ترجمہ • تفسیر";
-
-        } else {
-
-            brandSubtitle.textContent =
-                config.description;
-
-        }
+        brandSubtitle.textContent =
+            config.description;
 
     }
 
-
-    // =================================================
-    // MAIN NAVIGATION
-    // =================================================
 
     const navLinks =
         document.querySelectorAll(
             ".main-nav a"
         );
+
 
     if (navLinks.length >= 4) {
 
@@ -780,26 +794,21 @@ function applyLanguage(lang) {
     }
 
 
-    // =================================================
-    // LANGUAGE SELECT
-    // =================================================
-
-    if (languageSelect) {
+    if (
+        languageSelect
+    ) {
 
         languageSelect.value =
-            currentLanguage;
+            lang;
 
     }
 
-
-    // =================================================
-    // HERO
-    // =================================================
 
     const heroTitle =
         document.querySelector(
             ".hero-title"
         );
+
 
     if (heroTitle) {
 
@@ -814,6 +823,7 @@ function applyLanguage(lang) {
             ".hero-description"
         );
 
+
     if (heroDescription) {
 
         heroDescription.textContent =
@@ -822,14 +832,11 @@ function applyLanguage(lang) {
     }
 
 
-    // =================================================
-    // SURAH SELECT LABEL
-    // =================================================
-
     const surahLabel =
         document.querySelector(
             'label[for="surahSelect"]'
         );
+
 
     if (surahLabel) {
 
@@ -839,10 +846,6 @@ function applyLanguage(lang) {
     }
 
 
-    // =================================================
-    // SEARCH INPUT
-    // =================================================
-
     if (searchInput) {
 
         searchInput.placeholder =
@@ -850,10 +853,6 @@ function applyLanguage(lang) {
 
     }
 
-
-    // =================================================
-    // SEARCH BUTTON
-    // =================================================
 
     if (searchButton) {
 
@@ -863,14 +862,11 @@ function applyLanguage(lang) {
     }
 
 
-    // =================================================
-    // SECTION HEADING
-    // =================================================
-
     const sectionKicker =
         document.querySelector(
             ".section-kicker"
         );
+
 
     if (sectionKicker) {
 
@@ -885,6 +881,7 @@ function applyLanguage(lang) {
             ".section-heading h2"
         );
 
+
     if (sectionHeading) {
 
         sectionHeading.textContent =
@@ -898,6 +895,7 @@ function applyLanguage(lang) {
             ".reading-info"
         );
 
+
     if (readingInfo) {
 
         readingInfo.textContent =
@@ -906,94 +904,23 @@ function applyLanguage(lang) {
     }
 
 
-    // =================================================
-    // SURAH DROPDOWN
-    // =================================================
-
     loadSurahs();
 
 
-    // =================================================
-    // FOOTER
-    // =================================================
-
-    const footerTitle =
-        document.querySelector(
-            ".footer-title"
-        );
-
-    if (footerTitle) {
-
-        footerTitle.textContent =
-            "القرآن الكريم";
-
-    }
-
-
-    const footerParagraph =
-        document.querySelector(
-            ".site-footer p"
-        );
-
-    if (footerParagraph) {
-
-        if (lang === "ur") {
-
-            footerParagraph.textContent =
-                "قرآن کریم • اردو ترجمہ • تفسیر";
-
-        } else {
-
-            footerParagraph.textContent =
-                config.title;
-
-        }
-
-    }
-
-
-    const footerSmall =
-        document.querySelector(
-            ".footer-small"
-        );
-
-    if (footerSmall) {
-
-        if (lang === "ur") {
-
-            footerSmall.textContent =
-                "قرآن کے پیغام کو سمجھنے اور عام کرنے کی ایک کوشش";
-
-        } else {
-
-            footerSmall.textContent =
-                config.description;
-
-        }
-
-    }
-
-
-    // =================================================
-    // RE-DRAW AYAT
-    // =================================================
-
-    if (
-        typeof quranData !== "undefined"
-    ) {
-
-        displayAyahs(quranData);
-
-    }
+    displayAyahs(
+        quranData
+    );
 
 }
 
 
 // =====================================================
-// LANGUAGE SELECTOR EVENT
+// LANGUAGE SELECTOR
 // =====================================================
 
-if (languageSelect) {
+if (
+    languageSelect
+) {
 
     languageSelect.addEventListener(
         "change",
@@ -1013,9 +940,11 @@ if (languageSelect) {
 // ARABIC AYAH NUMBER
 // =====================================================
 
-function arabicAyahNumber(number) {
+function arabicAyahNumber(
+    number
+) {
 
-    const arabicDigits = [
+    const digits = [
         "٠",
         "١",
         "٢",
@@ -1028,17 +957,18 @@ function arabicAyahNumber(number) {
         "٩"
     ];
 
+
     return String(number)
         .split("")
-        .map(function (digit) {
+        .map(
+            function (digit) {
 
-            return (
-                arabicDigits[
+                return digits[
                     Number(digit)
-                ] ?? digit
-            );
+                ];
 
-        })
+            }
+        )
         .join("");
 
 }
@@ -1054,7 +984,9 @@ document.addEventListener(
 
         loadSurahs();
 
-        displayAyahs(quranData);
+        displayAyahs(
+            quranData
+        );
 
         loadSavedTheme();
 
@@ -1074,18 +1006,19 @@ document.addEventListener(
 
 function loadSurahs() {
 
-    if (!surahSelect) return;
+    if (!surahSelect) {
+        return;
+    }
+
 
     const config =
         getCurrentLanguage();
 
 
     surahSelect.innerHTML = `
-
         <option value="">
             ${config.selectSurah}
         </option>
-
     `;
 
 
@@ -1101,29 +1034,50 @@ function loadSurahs() {
 
                         return (
                             surah.number ===
-                            ayah.surah
+                            Number(
+                                ayah.surah
+                            )
                         );
 
                     }
                 );
 
 
-            if (!alreadyExists) {
+            if (
+                !alreadyExists
+            ) {
 
                 surahs.push({
 
                     number:
-                        ayah.surah,
+                        Number(
+                            ayah.surah
+                        ),
 
                     arabic:
-                        ayah.surahNameArabic,
+                        ayah.surahNameArabic ||
+                        "",
 
                     urdu:
-                        ayah.surahNameUrdu
+                        ayah.surahNameUrdu ||
+                        ayah.surahNameArabic ||
+                        ""
 
                 });
 
             }
+
+        }
+    );
+
+
+    surahs.sort(
+        function (a, b) {
+
+            return (
+                a.number -
+                b.number
+            );
 
         }
     );
@@ -1160,57 +1114,75 @@ function loadSurahs() {
 
 }
 
+
 // =====================================================
 // MULTI-LANGUAGE TRANSLATION HELPER
 // =====================================================
 
-function getAyahTranslation(ayah) {
+function getAyahTranslation(
+    ayah
+) {
 
     if (
+        ayah &&
         ayah.translations &&
-        ayah.translations[currentLanguage]
+        ayah.translations[
+            currentLanguage
+        ]
     ) {
-        return ayah.translations[currentLanguage];
+
+        return (
+            ayah.translations[
+                currentLanguage
+            ]
+        );
+
     }
 
-    // Urdu fallback
-    return ayah.urdu || "";
-                    }
+
+    if (
+        currentLanguage ===
+        "ur"
+    ) {
+
+        return (
+            ayah.urdu ||
+            ""
+        );
+
+    }
+
+
+    return (
+        ayah.urdu ||
+        ""
+    );
+
+}
+
+
 // =====================================================
 // DISPLAY AYAH
 // =====================================================
 
-function displayAyahs(data) {
+function displayAyahs(
+    data
+) {
 
-    if (!ayahContainer) return;
-
-    ayahContainer.innerHTML = "";
-
-
-    const config =
-        getCurrentLanguage();
+    if (!ayahContainer) {
+        return;
+    }
 
 
     if (
-        !data ||
+        !Array.isArray(data) ||
         data.length === 0
     ) {
 
         ayahContainer.innerHTML = `
-
-            <div class="ayah-card">
-
-                <div
-                    class="urdu"
-                    style="min-height:120px;"
-                >
-
-                    ${config.noResults}
-
-                </div>
-
+            <div class="no-results">
+                ${getCurrentLanguage().noResults}
             </div>
-
         `;
 
         return;
@@ -1218,409 +1190,302 @@ function displayAyahs(data) {
     }
 
 
-    data.forEach(
-        function (ayah) {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
+    const config =
+        getCurrentLanguage();
 
 
-            card.className =
-                "ayah-card";
+    ayahContainer.innerHTML =
+        data.map(
+            function (ayah) {
+
+                const translation =
+                    getAyahTranslation(
+                        ayah
+                    );
 
 
-            card.id =
-                "ayah-" +
-                ayah.surah +
-                "-" +
-                ayah.ayah;
+                const tafsir =
+                    ayah.tafseer ||
+                    ayah.tafsir ||
+                    "";
 
 
-            const isBookmarked =
-                isAyahBookmarked(
-                    ayah
-                );
+                const surahName =
+                    ayah.surahNameArabic ||
+                    "";
 
 
-            card.innerHTML = `
-
-                <!-- Ayah Header -->
-
-                <div class="ayah-header">
-
-                    <div>
-
-                        <strong>
-                            ${escapeHTML(
-                                ayah.surahNameUrdu
-                            )}
-                        </strong>
-
-                        <span>
-                            — ${config.ayah}
-                            ${ayah.ayah}
-                        </span>
-
-                    </div>
-
-                </div>
+                const ayahNumber =
+                    Number(
+                        ayah.ayah ||
+                        ayah.numberInSurah ||
+                        0
+                    );
 
 
-                <!-- Arabic + Urdu -->
+                const bookmarkState =
+                    isAyahBookmarked(
+                        ayah
+                    );
 
-                <div class="ayah-content">
 
+                return `
 
-                    <div
-                        class="arabic"
-                        dir="rtl"
+                    <article
+                        class="ayah-card"
+                        data-surah="${ayah.surah}"
+                        data-ayah="${ayahNumber}"
                     >
 
-                        ${escapeHTML(
-                            ayah.arabic
-                        )}
-
-                        <span
-                            class="ayah-number"
-                            aria-label="${config.ayah} ${arabicAyahNumber(ayah.ayah)}"
+                        <div
+                            class="ayah-header"
                         >
-                            ۝${arabicAyahNumber(
-                                ayah.ayah
+
+                            <span
+                                class="surah-name"
+                            >
+                                ${escapeHTML(
+                                    surahName
+                                )}
+                            </span>
+
+                            <span
+                                class="ayah-number"
+                            >
+                                ${arabicAyahNumber(
+                                    ayahNumber
+                                )}
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="arabic ayah-arabic arabic-text"
+                            dir="rtl"
+                        >
+                            ${escapeHTML(
+                                ayah.arabic ||
+                                ""
                             )}
-                        </span>
+                        </div>
+
+
+                        <div
+                            class="urdu ayah-translation ayah-text"
+                            dir="${config.dir}"
+                        >
+                            ${escapeHTML(
+                                translation
+                            )}
+                        </div>
+
+
+                        <div
+                            class="ayah-actions"
+                        >
+
+                            <button
+                                type="button"
+                                onclick='toggleTafsir(this)'
+                            >
+                                📖
+                                ${config.viewTafsir}
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick='toggleBookmark(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                ${
+                                    bookmarkState
+                                        ? "🔖 " +
+                                          config.saved
+                                        : "🔖 " +
+                                          config.save
+                                }
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick='copyAyah(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                📋 ${config.copy}
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick='shareAyah(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                ↗ ${config.share}
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick='copyAyahLink(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                🔗 ${config.link}
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="tafseer"
+                            style="display:none;"
+                        >
+
+                            <div
+                                class="tafseer-title"
+                            >
+                                ${config.tafsir}
+                            </div>
+
+                            <div
+                                class="tafseer-content"
+                            >
+                                ${escapeHTML(
+                                    tafsir
+                                )}
+                            </div>
 
-                    </div>
+                        </div>
 
 
-                    <div
-                        class="urdu"
-                        dir="rtl"
-                    >
-${escapeHTML(
-    getAyahTranslation(ayah)
-)}
+                        <div
+                            class="ayah-navigation"
+                        >
 
-                    </div>
+                            <button
+                                class="nav-button"
+                                type="button"
+                                onclick='goToPreviousAyah(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                ← ${config.previous}
+                            </button>
 
+                            <button
+                                class="nav-button"
+                                type="button"
+                                onclick='goToNextAyah(
+                                    ${JSON.stringify(
+                                        ayah
+                                    ).replace(
+                                        /'/g,
+                                        "&#39;"
+                                    )}
+                                )'
+                            >
+                                ${config.next} →
+                            </button>
 
-                </div>
+                        </div>
 
+                    </article>
 
-                <!-- ACTION BUTTONS -->
+                `;
 
-                <div class="ayah-actions">
+            }
+        ).join("");
 
+}
 
-                    <button
-                        class="tafseer-button"
-                        type="button"
-                        data-action="tafseer"
-                    >
 
-                        📖 ${config.viewTafsir}
+// =====================================================
+// TAFSEER TOGGLE
+// =====================================================
 
-                    </button>
+function toggleTafsir(
+    button
+) {
 
+    const card =
+        button.closest(
+            ".ayah-card"
+        );
 
-                    <button
-                        class="action-button bookmark-button"
-                        type="button"
-                        data-action="bookmark"
-                    >
 
-                        ${
-                            isBookmarked
-                                ? "🔖 " +
-                                  config.saved
-                                : "🔖 " +
-                                  config.save
-                        }
+    if (!card) {
+        return;
+    }
 
-                    </button>
 
+    const tafsir =
+        card.querySelector(
+            ".tafseer"
+        );
 
-                    <button
-                        class="action-button"
-                        type="button"
-                        data-action="copy"
-                    >
 
-                        📋 ${config.copy}
+    if (!tafsir) {
+        return;
+    }
 
-                    </button>
 
+    const config =
+        getCurrentLanguage();
 
-                    <button
-                        class="action-button"
-                        type="button"
-                        data-action="share"
-                    >
 
-                        📤 ${config.share}
+    if (
+        tafsir.style.display ===
+        "none"
+    ) {
 
-                    </button>
+        tafsir.style.display =
+            "block";
 
 
-                    <button
-                        class="action-button"
-                        type="button"
-                        data-action="link"
-                    >
+        button.innerHTML =
+            "📖 " +
+            config.closeTafsir;
 
-                        🔗 ${config.link}
+    }
 
-                    </button>
+    else {
 
+        tafsir.style.display =
+            "none";
 
-                </div>
 
+        button.innerHTML =
+            "📖 " +
+            config.viewTafsir;
 
-                <!-- TAFSEER -->
-
-                <div class="tafseer">
-
-                    <strong>
-                        📖 ${config.tafsir}
-                    </strong>
-
-                    <p>
-                        ${escapeHTML(
-                            ayah.tafseer
-                        )}
-                    </p>
-
-                </div>
-
-
-                <!-- PREVIOUS / NEXT -->
-
-                <div class="ayah-navigation">
-
-
-                    <button
-                        class="nav-button"
-                        type="button"
-                        data-action="previous"
-                    >
-
-                        ${config.previous}
-
-                    </button>
-
-
-                    <span>
-
-                        ${config.ayah}
-                        ${ayah.ayah}
-
-                    </span>
-
-
-                    <button
-                        class="nav-button"
-                        type="button"
-                        data-action="next"
-                    >
-
-                        ${config.next}
-
-                    </button>
-
-
-                </div>
-
-            `;
-
-
-            // =================================================
-            // TAFSEER
-            // =================================================
-
-            const tafseerButton =
-                card.querySelector(
-                    '[data-action="tafseer"]'
-                );
-
-
-            const tafseer =
-                card.querySelector(
-                    ".tafseer"
-                );
-
-
-            tafseerButton.addEventListener(
-                "click",
-                function () {
-
-                    const isOpen =
-                        tafseer.style.display ===
-                        "block";
-
-
-                    if (isOpen) {
-
-                        tafseer.style.display =
-                            "none";
-
-
-                        tafseerButton.textContent =
-                            "📖 " +
-                            getCurrentLanguage()
-                                .viewTafsir;
-
-                    } else {
-
-                        tafseer.style.display =
-                            "block";
-
-
-                        tafseerButton.textContent =
-                            "📕 " +
-                            getCurrentLanguage()
-                                .closeTafsir;
-
-                    }
-
-                }
-            );
-
-
-            // =================================================
-            // BOOKMARK
-            // =================================================
-
-            card.querySelector(
-                '[data-action="bookmark"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    toggleBookmark(
-                        ayah
-                    );
-
-
-                    const saved =
-                        isAyahBookmarked(
-                            ayah
-                        );
-
-
-                    const language =
-                        getCurrentLanguage();
-
-
-                    this.textContent =
-                        saved
-                            ? "🔖 " +
-                              language.saved
-                            : "🔖 " +
-                              language.save;
-
-                }
-            );
-
-
-            // =================================================
-            // COPY
-            // =================================================
-
-            card.querySelector(
-                '[data-action="copy"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    copyAyah(
-                        ayah,
-                        this
-                    );
-
-                }
-            );
-
-
-            // =================================================
-            // SHARE
-            // =================================================
-
-            card.querySelector(
-                '[data-action="share"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    shareAyah(
-                        ayah
-                    );
-
-                }
-            );
-
-
-            // =================================================
-            // LINK
-            // =================================================
-
-            card.querySelector(
-                '[data-action="link"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    copyAyahLink(
-                        ayah,
-                        this
-                    );
-
-                }
-            );
-
-
-            // =================================================
-            // PREVIOUS
-            // =================================================
-
-            card.querySelector(
-                '[data-action="previous"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    goToPreviousAyah(
-                        ayah
-                    );
-
-                }
-            );
-
-
-            // =================================================
-            // NEXT
-            // =================================================
-
-            card.querySelector(
-                '[data-action="next"]'
-            ).addEventListener(
-                "click",
-                function () {
-
-                    goToNextAyah(
-                        ayah
-                    );
-
-                }
-            );
-
-
-            ayahContainer.appendChild(
-                card
-            );
-
-        }
-    );
+    }
 
 }
 
@@ -1631,16 +1496,20 @@ ${escapeHTML(
 
 function performSearch() {
 
-    if (!searchInput) return;
+    if (!searchInput) {
+        return;
+    }
 
 
     const search =
         searchInput.value
-              .toLowerCase()
-            .trim();
+            .trim()
+            .toLowerCase();
 
 
-    if (search === "") {
+    if (
+        search === ""
+    ) {
 
         displayAyahs(
             quranData
@@ -1655,62 +1524,90 @@ function performSearch() {
         quranData.filter(
             function (ayah) {
 
+                const translation =
+                    getAyahTranslation(
+                        ayah
+                    );
+
+
+                const tafsir =
+                    ayah.tafseer ||
+                    ayah.tafsir ||
+                    "";
+
+
                 return (
 
                     String(
-                        ayah.ayah
-                    ).includes(search)
-
-                    ||
-
-                    String(
-                        ayah.surah
-                    ).includes(search)
-
-                    ||
-
-                    String(
-                        ayah.arabic
+                        ayah.arabic ||
+                        ""
                     )
                     .toLowerCase()
-                    .includes(search)
+                    .includes(
+                        search
+                    )
 
                     ||
 
                     String(
-                        ayah.urdu
+                        translation
                     )
                     .toLowerCase()
-                    .includes(search)
+                    .includes(
+                        search
+                    )
 
                     ||
 
                     String(
-                        ayah.tafseer
+                        tafsir
                     )
                     .toLowerCase()
-                    .includes(search)
+                    .includes(
+                        search
+                    )
 
                     ||
 
                     String(
-                        ayah.surahNameUrdu
+                        ayah.surahNameArabic ||
+                        ""
                     )
                     .toLowerCase()
-                    .includes(search)
+                    .includes(
+                        search
+                    )
 
                     ||
 
                     String(
-                        ayah.surahNameArabic
+                        ayah.surahNameUrdu ||
+                        ""
                     )
                     .toLowerCase()
-                    .includes(search)
+                    .includes(
+                        search
+                    )
 
                 );
 
             }
         );
+
+
+    if (
+        results.length === 0
+    ) {
+
+        ayahContainer.innerHTML = `
+            <div class="no-results">
+                ${getCurrentLanguage().noResults}
+            </div>
+        `;
+
+        return;
+
+    }
 
 
     displayAyahs(
@@ -1724,11 +1621,34 @@ function performSearch() {
 // SEARCH WHILE TYPING
 // =====================================================
 
-if (searchInput) {
+if (
+    searchInput
+) {
 
     searchInput.addEventListener(
         "input",
-        performSearch
+        function () {
+
+            if (
+                this.value.trim()
+                    .length >= 2
+            ) {
+
+                performSearch();
+
+            }
+
+            else if (
+                this.value.trim() === ""
+            ) {
+
+                displayAyahs(
+                    quranData
+                );
+
+            }
+
+        }
     );
 
 }
@@ -1738,7 +1658,9 @@ if (searchInput) {
 // SEARCH BUTTON
 // =====================================================
 
-if (searchButton) {
+if (
+    searchButton
+) {
 
     searchButton.addEventListener(
         "click",
@@ -1752,18 +1674,20 @@ if (searchButton) {
 // SURAH SELECTION
 // =====================================================
 
-if (surahSelect) {
+if (
+    surahSelect
+) {
 
     surahSelect.addEventListener(
         "change",
         function () {
 
-            const selectedSurah =
+            const selected =
                 this.value;
 
 
             if (
-                selectedSurah === ""
+                selected === ""
             ) {
 
                 displayAyahs(
@@ -1780,11 +1704,11 @@ if (surahSelect) {
                     function (ayah) {
 
                         return (
-                            String(
+                            Number(
                                 ayah.surah
                             ) ===
-                            String(
-                                selectedSurah
+                            Number(
+                                selected
                             )
                         );
 
@@ -1797,14 +1721,14 @@ if (surahSelect) {
             );
 
 
-            document
-                .getElementById(
-                    "surahs"
-                )
-                ?.scrollIntoView({
-                    behavior:
-                        "smooth"
-                });
+            window.scrollTo({
+
+                top: 0,
+
+                behavior:
+                    "smooth"
+
+            });
 
         }
     );
@@ -1816,7 +1740,9 @@ if (surahSelect) {
 // DARK MODE
 // =====================================================
 
-if (themeButton) {
+if (
+    themeButton
+) {
 
     themeButton.addEventListener(
         "click",
@@ -1852,14 +1778,14 @@ if (themeButton) {
 
 function loadSavedTheme() {
 
-    const savedTheme =
+    const theme =
         localStorage.getItem(
             "quranTheme"
         );
 
 
     if (
-        savedTheme === "dark"
+        theme === "dark"
     ) {
 
         document.body.classList.add(
@@ -1880,8 +1806,9 @@ function getBookmarkKey(
 ) {
 
     return (
+        "bookmark-" +
         ayah.surah +
-        ":" +
+        "-" +
         ayah.ayah
     );
 
@@ -1895,10 +1822,14 @@ function getBookmarks() {
         return JSON.parse(
             localStorage.getItem(
                 "quranBookmarks"
-            )
-        ) || [];
+            ) || "[]"
+        );
 
-    } catch (error) {
+    }
+
+    catch (
+        error
+    ) {
 
         return [];
 
@@ -1929,10 +1860,18 @@ function isAyahBookmarked(
         getBookmarks();
 
 
-    return bookmarks.includes(
-        getBookmarkKey(
-            ayah
-        )
+    return bookmarks.some(
+        function (item) {
+
+            return (
+                Number(item.surah) ===
+                    Number(ayah.surah) &&
+
+                Number(item.ayah) ===
+                    Number(ayah.ayah)
+            );
+
+        }
     );
 
 }
@@ -1942,34 +1881,60 @@ function toggleBookmark(
     ayah
 ) {
 
-    const bookmarks =
+    let bookmarks =
         getBookmarks();
 
 
-    const key =
-        getBookmarkKey(
-            ayah
+    const exists =
+        bookmarks.some(
+            function (item) {
+
+                return (
+                    Number(item.surah) ===
+                        Number(ayah.surah) &&
+
+                    Number(item.ayah) ===
+                        Number(ayah.ayah)
+                );
+
+            }
         );
 
 
-    const index =
-        bookmarks.indexOf(
-            key
-        );
+    if (exists) {
 
+        bookmarks =
+            bookmarks.filter(
+                function (item) {
 
-    if (index === -1) {
+                    return !(
+                        Number(item.surah) ===
+                            Number(ayah.surah) &&
 
-        bookmarks.push(
-            key
-        );
+                        Number(item.ayah) ===
+                            Number(ayah.ayah)
+                    );
 
-    } else {
+                }
+            );
 
-        bookmarks.splice(
-            index,
-            1
-        );
+    }
+
+    else {
+
+        bookmarks.push({
+
+            surah:
+                Number(
+                    ayah.surah
+                ),
+
+            ayah:
+                Number(
+                    ayah.ayah
+                )
+
+        });
 
     }
 
@@ -1977,6 +1942,48 @@ function toggleBookmark(
     saveBookmarks(
         bookmarks
     );
+
+
+    const selected =
+        surahSelect
+            ? surahSelect.value
+            : "";
+
+
+    if (
+        selected
+    ) {
+
+        const filtered =
+            quranData.filter(
+                function (item) {
+
+                    return (
+                        Number(
+                            item.surah
+                        ) ===
+                        Number(
+                            selected
+                        )
+                    );
+
+                }
+            );
+
+
+        displayAyahs(
+            filtered
+        );
+
+    }
+
+    else {
+
+        displayAyahs(
+            quranData
+        );
+
+    }
 
 }
 
@@ -1986,57 +1993,35 @@ function toggleBookmark(
 // =====================================================
 
 function copyAyah(
-    ayah,
-    button
+    ayah
 ) {
 
+    const config =
+        getCurrentLanguage();
+
+
     const text =
-        ayah.arabic +
-        " ۝" +
-        arabicAyahNumber(
-            ayah.ayah
+        (
+            ayah.arabic ||
+            ""
         ) +
         "\n\n" +
-        ayah.urdu;
-
-
-    navigator.clipboard
-        .writeText(text)
-        .then(
-            function () {
-
-                const oldText =
-                    button.textContent;
-
-
-                button.textContent =
-                    "✓ " +
-                    getCurrentLanguage()
-                        .copied;
-
-
-                setTimeout(
-                    function () {
-
-                        button.textContent =
-                            oldText;
-
-                    },
-                    1800
-                );
-
-            }
-        )
-        .catch(
-            function () {
-
-                alert(
-                    getCurrentLanguage()
-                        .copyFailed
-                );
-
-            }
+        (
+            getAyahTranslation(
+                ayah
+            ) ||
+            ""
         );
+
+
+    copyText(
+        text
+    );
+
+
+    alert(
+        config.copied
+    );
 
 }
 
@@ -2045,58 +2030,66 @@ function copyAyah(
 // SHARE AYAH
 // =====================================================
 
-function shareAyah(
+async function shareAyah(
     ayah
 ) {
 
-    const url =
-        createAyahURL(
-            ayah
-        );
-
-
     const text =
-        ayah.arabic +
-        " ۝" +
-        arabicAyahNumber(
-            ayah.ayah
+        (
+            ayah.arabic ||
+            ""
         ) +
         "\n\n" +
-        ayah.urdu;
+        (
+            getAyahTranslation(
+                ayah
+            ) ||
+            ""
+        );
 
 
     if (
         navigator.share
     ) {
 
-        navigator.share({
+        try {
 
-            title:
-                getCurrentLanguage()
-                    .quran,
+            await navigator.share({
 
-            text:
-                text,
+                title:
+                    ayah.surahNameArabic ||
+                    "Quran",
 
-            url:
-                url
+                text:
+                    text
 
-        }).catch(
-            function () {}
-        );
+            });
 
-    } else {
+        }
 
-        copyText(
-            url
-        );
+        catch (
+            error
+        ) {
 
-        alert(
-            getCurrentLanguage()
-                .linkCopied
-        );
+            console.log(
+                "Share cancelled."
+            );
+
+        }
+
+        return;
 
     }
+
+
+    copyText(
+        text
+    );
+
+
+    alert(
+        getCurrentLanguage().copied
+    );
 
 }
 
@@ -2109,18 +2102,25 @@ function createAyahURL(
     ayah
 ) {
 
-    const baseURL =
-        window.location.origin +
-        window.location.pathname;
+    const url =
+        new URL(
+            window.location.href
+        );
 
 
-    return (
-        baseURL +
-        "#ayah-" +
-        ayah.surah +
-        "-" +
+    url.searchParams.set(
+        "surah",
+        ayah.surah
+    );
+
+
+    url.searchParams.set(
+        "ayah",
         ayah.ayah
     );
+
+
+    return url.toString();
 
 }
 
@@ -2130,39 +2130,18 @@ function createAyahURL(
 // =====================================================
 
 function copyAyahLink(
-    ayah,
-    button
+    ayah
 ) {
 
-    const url =
+    copyText(
         createAyahURL(
             ayah
-        );
-
-
-    copyText(
-        url
+        )
     );
 
 
-    const oldText =
-        button.textContent;
-
-
-    button.textContent =
-        "✓ " +
-        getCurrentLanguage()
-            .linkCopied;
-
-
-    setTimeout(
-        function () {
-
-            button.textContent =
-                oldText;
-
-        },
-        1800
+    alert(
+        getCurrentLanguage().linkCopied
     );
 
 }
@@ -2174,14 +2153,27 @@ function copyAyahLink(
 
 function openAyahFromURL() {
 
-    const hash =
-        window.location.hash;
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const surah =
+        params.get(
+            "surah"
+        );
+
+
+    const ayah =
+        params.get(
+            "ayah"
+        );
 
 
     if (
-        !hash.startsWith(
-            "#ayah-"
-        )
+        !surah ||
+        !ayah
     ) {
 
         return;
@@ -2189,18 +2181,56 @@ function openAyahFromURL() {
     }
 
 
+    const target =
+        quranData.find(
+            function (item) {
+
+                return (
+
+                    Number(
+                        item.surah
+                    ) ===
+                    Number(
+                        surah
+                    )
+
+                    &&
+
+                    Number(
+                        item.ayah
+                    ) ===
+                    Number(
+                        ayah
+                    )
+
+                );
+
+            }
+        );
+
+
+    if (!target) {
+        return;
+    }
+
+
     setTimeout(
         function () {
 
-            const element =
+            displayAyahs(
+                [target]
+            );
+
+
+            const card =
                 document.querySelector(
-                    hash
+                    ".ayah-card"
                 );
 
 
-            if (element) {
+            if (card) {
 
-                element.scrollIntoView({
+                card.scrollIntoView({
 
                     behavior:
                         "smooth",
@@ -2209,21 +2239,6 @@ function openAyahFromURL() {
                         "center"
 
                 });
-
-
-                element.style.outline =
-                    "3px solid rgba(181, 138, 58, 0.45)";
-
-
-                setTimeout(
-                    function () {
-
-                        element.style.outline =
-                            "";
-
-                    },
-                    2500
-                );
 
             }
 
@@ -2248,13 +2263,21 @@ function goToPreviousAyah(
 
                 return (
 
-                    item.surah ===
+                    Number(
+                        item.surah
+                    ) ===
+                    Number(
                         ayah.surah
+                    )
 
                     &&
 
-                    item.ayah ===
+                    Number(
+                        item.ayah
+                    ) ===
+                    Number(
                         ayah.ayah
+                    )
 
                 );
 
@@ -2283,39 +2306,18 @@ function goToPreviousAyah(
 
 
     displayAyahs(
-        quranData
+        [previous]
     );
 
 
-    setTimeout(
-        function () {
+    window.scrollTo({
 
-            const element =
-                document.getElementById(
-                    "ayah-" +
-                    previous.surah +
-                    "-" +
-                    previous.ayah
-                );
+        top: 0,
 
+        behavior:
+            "smooth"
 
-            if (element) {
-
-                element.scrollIntoView({
-
-                    behavior:
-                        "smooth",
-
-                    block:
-                        "center"
-
-                });
-
-            }
-
-        },
-        100
-    );
+    });
 
 }
 
@@ -2334,13 +2336,21 @@ function goToNextAyah(
 
                 return (
 
-                    item.surah ===
+                    Number(
+                        item.surah
+                    ) ===
+                    Number(
                         ayah.surah
+                    )
 
                     &&
 
-                    item.ayah ===
+                    Number(
+                        item.ayah
+                    ) ===
+                    Number(
                         ayah.ayah
+                    )
 
                 );
 
@@ -2371,39 +2381,18 @@ function goToNextAyah(
 
 
     displayAyahs(
-        quranData
+        [next]
     );
 
 
-    setTimeout(
-        function () {
+    window.scrollTo({
 
-            const element =
-                document.getElementById(
-                    "ayah-" +
-                    next.surah +
-                    "-" +
-                    next.ayah
-                );
+        top: 0,
 
+        behavior:
+            "smooth"
 
-            if (element) {
-
-                element.scrollIntoView({
-
-                    behavior:
-                        "smooth",
-
-                    block:
-                        "center"
-
-                });
-
-            }
-
-        },
-        100
-    );
+    });
 
 }
 
@@ -2412,7 +2401,9 @@ function goToNextAyah(
 // BACK TO TOP
 // =====================================================
 
-if (backToTop) {
+if (
+    backToTop
+) {
 
     backToTop.addEventListener(
         "click",
@@ -2518,1938 +2509,81 @@ function escapeHTML(
             "&#039;"
         );
 
-        }
+}
+
+
 // =====================================================
-// 🌐 MULTI-LANGUAGE QURAN TRANSLATION ENGINE
-// ADD THIS CODE AT THE VERY END OF script.js
+// TAFSEER SYSTEM
 // =====================================================
 
-(function () {
+window.quranTafsirCache =
+    window.quranTafsirCache || {};
 
-    "use strict";
+window.selectedTafsir =
+    window.selectedTafsir ||
+    "jalalayn";
 
-    // -------------------------------------------------
-    // Translation sources
-    // -------------------------------------------------
 
-    const MULTI_LANGUAGE_SOURCES = {
+async function loadJalalayn(
+    surahNumber
+) {
 
-        ur: {
-            type: "local"
-        },
+    const key =
+        "jalalayn:" +
+        surahNumber;
 
-        en: {
-            type: "alquran",
-            edition: "en.sahih"
-        },
-
-        hi: {
-            type: "alquran",
-            edition: "hi.hindi"
-        },
-
-        ar: {
-            type: "arabic"
-        },
-
-        bn: {
-            type: "alquran",
-            edition: "bn.bengali"
-        },
-
-        gu: {
-            type: "quranenc",
-            key: "gujarati_omari"
-        },
-
-        ta: {
-            type: "alquran",
-            edition: "ta.tamil"
-        },
-
-        te: {
-            type: "quranenc",
-            key: "telugu_muhammad"
-        },
-
-        tr: {
-            type: "alquran",
-            edition: "tr.diyanet"
-        },
-
-        fa: {
-            type: "alquran",
-            edition: "fa.ayati"
-        },
-
-        id: {
-            type: "alquran",
-            edition: "id.indonesian"
-        },
-
-        ms: {
-            type: "alquran",
-            edition: "ms.basmeih"
-        },
-
-        fr: {
-            type: "alquran",
-            edition: "fr.hamidullah"
-        },
-
-        de: {
-            type: "alquran",
-            edition: "de.bubenheim"
-        },
-
-        es: {
-            type: "alquran",
-            edition: "es.cortes"
-        },
-
-        ru: {
-            type: "alquran",
-            edition: "ru.kuliev"
-        }
-
-    };
-
-
-    // -------------------------------------------------
-    // Store translations
-    // -------------------------------------------------
-
-    window.quranMultiTranslations =
-        window.quranMultiTranslations || {};
-
-
-    // -------------------------------------------------
-    // Get current translation
-    // -------------------------------------------------
-
-    function getMultiTranslation(ayah) {
-
-        const lang =
-            typeof currentLanguage !== "undefined"
-                ? currentLanguage
-                : "ur";
-
-
-        // Arabic
-        if (lang === "ar") {
-
-            return ayah.arabic || "";
-
-        }
-
-
-        // Urdu
-        if (lang === "ur") {
-
-            return ayah.urdu || "";
-
-        }
-
-
-        // Loaded translation
-        if (
-            window.quranMultiTranslations[lang] &&
-            window.quranMultiTranslations[lang][
-                ayah.surah + ":" + ayah.ayah
-            ]
-        ) {
-
-            return window.quranMultiTranslations[lang][
-                ayah.surah + ":" + ayah.ayah
-            ];
-
-        }
-
-
-        // Fallback
-        return ayah.urdu || "";
-
-    }
-
-
-    // -------------------------------------------------
-    // Fetch one Surah
-    // -------------------------------------------------
-
-    async function fetchSurahTranslation(
-        surahNumber,
-        lang
-    ) {
-
-        const source =
-            MULTI_LANGUAGE_SOURCES[lang];
-
-
-        if (!source) return;
-
-
-        // Arabic
-        if (source.type === "arabic") {
-
-            return;
-
-        }
-
-
-        // Urdu is already inside data.js
-        if (source.type === "local") {
-
-            return;
-
-        }
-
-
-        // ---------------------------------------------
-        // Al Quran Cloud
-        // ---------------------------------------------
-
-        if (source.type === "alquran") {
-
-            const url =
-                "https://api.alquran.cloud/v1/surah/" +
-                surahNumber +
-                "/" +
-                source.edition;
-
-
-            const response =
-                await fetch(url);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Translation API error: " +
-                    response.status
-                );
-
-            }
-
-
-            const result =
-                await response.json();
-
-
-            if (
-                !result ||
-                !result.data ||
-                !result.data.ayahs
-            ) {
-
-                throw new Error(
-                    "Invalid translation response"
-                );
-
-            }
-
-
-            if (
-                !window.quranMultiTranslations[lang]
-            ) {
-
-                window.quranMultiTranslations[lang] = {};
-
-            }
-
-
-            result.data.ayahs.forEach(
-                function (item) {
-
-                    const key =
-                        surahNumber +
-                        ":" +
-                        item.numberInSurah;
-
-
-                    window.quranMultiTranslations[
-                        lang
-                    ][key] = item.text || "";
-
-                }
-            );
-
-
-            return;
-
-        }
-
-
-        // ---------------------------------------------
-        // QuranEnc
-        // ---------------------------------------------
-
-        if (source.type === "quranenc") {
-
-            const url =
-                "https://quranenc.com/api/v1/translation/sura/" +
-                source.key +
-                "/" +
-                surahNumber;
-
-
-            const response =
-                await fetch(url);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "QuranEnc API error: " +
-                    response.status
-                );
-
-            }
-
-
-            const result =
-                await response.json();
-
-
-            const items =
-                Array.isArray(result)
-                    ? result
-                    : (
-                        result.result ||
-                        result.data ||
-                        []
-                    );
-
-
-            if (
-                !window.quranMultiTranslations[lang]
-            ) {
-
-                window.quranMultiTranslations[lang] = {};
-
-            }
-
-
-            items.forEach(
-                function (item) {
-
-                    const ayahNumber =
-                        item.aya ||
-                        item.ayah ||
-                        item.numberInSurah;
-
-
-                    if (!ayahNumber) return;
-
-
-                    const text =
-                        item.translation ||
-                        item.text ||
-                        "";
-
-
-                    const key =
-                        surahNumber +
-                        ":" +
-                        ayahNumber;
-
-
-                    window.quranMultiTranslations[
-                        lang
-                    ][key] = text;
-
-                }
-            );
-
-        }
-
-    }
-
-
-    // -------------------------------------------------
-    // Load all Surahs currently present in data.js
-    // -------------------------------------------------
-
-    async function loadMultiLanguage(lang) {
-
-        if (!MULTI_LANGUAGE_SOURCES[lang]) {
-            return;
-        }
-
-
-        if (
-            lang === "ur" ||
-            lang === "ar"
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            window.quranMultiTranslations[lang] &&
-            Object.keys(
-                window.quranMultiTranslations[lang]
-            ).length > 0
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            typeof quranData === "undefined" ||
-            !Array.isArray(quranData)
-        ) {
-
-            return;
-
-        }
-
-
-        const surahs = [];
-
-
-        quranData.forEach(
-            function (ayah) {
-
-                if (
-                    !surahs.includes(
-                        ayah.surah
-                    )
-                ) {
-
-                    surahs.push(
-                        ayah.surah
-                    );
-
-                }
-
-            }
-        );
-
-
-        if (surahs.length === 0) {
-            return;
-        }
-
-
-        // Loading text
-        showTranslationLoading(lang);
-
-
-        try {
-
-            await Promise.all(
-                surahs.map(
-                    function (surahNumber) {
-
-                        return fetchSurahTranslation(
-                            surahNumber,
-                            lang
-                        );
-
-                    }
-                )
-            );
-
-
-            console.log(
-                "✅ Translation loaded:",
-                lang
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "❌ Translation loading failed:",
-                lang,
-                error
-            );
-
-        }
-
-
-        // Redraw
-        if (
-            typeof displayAyahs ===
-            "function"
-        ) {
-
-            displayAyahs(
-                quranData
-            );
-
-        }
-
-    }
-
-
-    // -------------------------------------------------
-    // Temporary loading message
-    // -------------------------------------------------
-
-    function showTranslationLoading(lang) {
-
-        if (!ayahContainer) return;
-
-
-        const config =
-            typeof getCurrentLanguage ===
-            "function"
-                ? getCurrentLanguage()
-                : null;
-
-
-        const loadingText =
-            config &&
-            config.loading
-                ? config.loading
-                : "Loading translation...";
-
-
-        const cards =
-            ayahContainer.querySelectorAll(
-                ".ayah-card"
-            );
-
-
-        cards.forEach(
-            function (card) {
-
-                const translation =
-                    card.querySelector(
-                        ".urdu"
-                    );
-
-
-                if (translation) {
-
-                    translation.style.opacity =
-                        "0.55";
-
-                }
-
-            }
-        );
-
-
-        console.log(
-            "🌐 Loading:",
-            lang,
-            loadingText
-        );
-
-    }
-
-
-    // -------------------------------------------------
-    // Replace translation after normal rendering
-    // -------------------------------------------------
-
-    function applyLoadedTranslations() {
-
-        if (!ayahContainer) return;
-
-
-        const cards =
-            ayahContainer.querySelectorAll(
-                ".ayah-card"
-            );
-
-
-        cards.forEach(
-            function (card) {
-
-                const id =
-                    card.id || "";
-
-
-                const parts =
-                    id.split("-");
-
-
-                if (parts.length < 3) {
-                    return;
-                }
-
-
-                const surah =
-                    Number(parts[1]);
-
-
-                const ayahNumber =
-                    Number(parts[2]);
-
-
-                if (
-                    !surah ||
-                    !ayahNumber
-                ) {
-
-                    return;
-
-                }
-
-
-                const ayah =
-                    quranData.find(
-                        function (item) {
-
-                            return (
-                                Number(item.surah) ===
-                                    surah
-                                &&
-                                Number(item.ayah) ===
-                                    ayahNumber
-                            );
-
-                        }
-                    );
-
-
-                if (!ayah) return;
-
-
-                const translation =
-                    card.querySelector(
-                        ".urdu"
-                    );
-
-
-                if (!translation) return;
-
-
-                translation.textContent =
-                    getMultiTranslation(
-                        ayah
-                    );
-
-
-                translation.style.opacity =
-                    "1";
-
-
-                // Direction according to language
-                const lang =
-                    typeof currentLanguage !==
-                    "undefined"
-                        ? currentLanguage
-                        : "ur";
-
-
-                if (
-                    lang === "ur" ||
-                    lang === "ar" ||
-                    lang === "fa"
-                ) {
-
-                    translation.dir =
-                        "rtl";
-
-                } else {
-
-                    translation.dir =
-                        "ltr";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // -------------------------------------------------
-    // Wrap existing displayAyahs
-    // -------------------------------------------------
-
-    const originalDisplayAyahs =
-        displayAyahs;
-
-
-    displayAyahs =
-        function (data) {
-
-            originalDisplayAyahs(
-                data
-            );
-
-
-            setTimeout(
-                function () {
-
-                    applyLoadedTranslations();
-
-                },
-                0
-            );
-
-        };
-
-
-    // -------------------------------------------------
-    // Language selector
-    // -------------------------------------------------
-
-    if (languageSelect) {
-
-        languageSelect.addEventListener(
-            "change",
-            function () {
-
-                const selectedLanguage =
-                    this.value;
-
-
-                setTimeout(
-                    function () {
-
-                        loadMultiLanguage(
-                            selectedLanguage
-                        );
-
-                    },
-                    50
-                );
-
-            }
-        );
-
-    }
-
-
-    // -------------------------------------------------
-    // Initial language
-    // -------------------------------------------------
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            setTimeout(
-                function () {
-
-                    const lang =
-                        typeof currentLanguage !==
-                        "undefined"
-                            ? currentLanguage
-                            : "ur";
-
-
-                    if (
-                        lang !== "ur" &&
-                        lang !== "ar"
-                    ) {
-
-                        loadMultiLanguage(
-                            lang
-                        );
-
-                    }
-
-                },
-                500
-            );
-
-        }
-    );
-
-
-    // -------------------------------------------------
-    // Search selected language
-    // -------------------------------------------------
-
-    const originalPerformSearch =
-        typeof performSearch ===
-        "function"
-            ? performSearch
-            : null;
-
-
-    if (originalPerformSearch) {
-
-        console.log(
-            "🌐 Multilingual translation system ready."
-        );
-
-    }
-
-})();
-/* =========================================================
-   FINAL MULTI-LANGUAGE QURAN TRANSLATION ENGINE
-   QuranEnc API
-   ========================================================= */
-
-(function () {
-
-    "use strict";
-
-
-    /* =====================================================
-       SETTINGS
-       ===================================================== */
-
-    const QURAN_ENC_API =
-        "https://quranenc.com/api/v1";
-
-    const TRANSLATION_CACHE = {};
-
-    let activeTranslationKey = "";
-
-    let activeTranslationInfo = null;
-
-    let translationRequestId = 0;
-
-
-    /* =====================================================
-       LANGUAGE MAP
-       ===================================================== */
-
-    const QURAN_LANGUAGE_CODES = {
-
-        ur: "ur",
-        en: "en",
-        hi: "hi",
-        ar: "ar",
-        bn: "bn",
-        gu: "gu",
-        ta: "ta",
-        te: "te",
-        tr: "tr",
-        fa: "fa",
-        id: "id",
-        ms: "ms",
-        fr: "fr",
-        de: "de",
-        es: "es",
-        ru: "ru"
-
-    };
-
-
-    /* =====================================================
-       RTL LANGUAGES
-       ===================================================== */
-
-    const RTL_LANGUAGES = {
-
-        ur: true,
-        ar: true,
-        fa: true
-
-    };
-
-
-    /* =====================================================
-       GET SELECTED LANGUAGE
-       ===================================================== */
-
-    function getSelectedLanguage() {
-
-        return (
-            currentLanguage ||
-            localStorage.getItem(
-                "quranLanguage"
-            ) ||
-            "ur"
-        );
-
-    }
-
-
-    /* =====================================================
-       CREATE CACHE KEY
-       ===================================================== */
-
-    function createCacheKey(
-        language,
-        surah
-    ) {
-
-        return (
-            "quranenc_" +
-            language +
-            "_" +
-            surah
-        );
-
-    }
-
-
-    /* =====================================================
-       GET CACHED SURAH
-       ===================================================== */
-
-    function getCachedSurah(
-        language,
-        surah
-    ) {
-
-        const key =
-            createCacheKey(
-                language,
-                surah
-            );
-
-        return TRANSLATION_CACHE[key] || null;
-
-    }
-
-
-    /* =====================================================
-       SAVE SURAH CACHE
-       ===================================================== */
-
-    function saveCachedSurah(
-        language,
-        surah,
-        data
-    ) {
-
-        const key =
-            createCacheKey(
-                language,
-                surah
-            );
-
-        TRANSLATION_CACHE[key] = data;
-
-    }
-
-
-    /* =====================================================
-       FETCH AVAILABLE TRANSLATION
-       ===================================================== */
-
-    async function findTranslation(
-        language
-    ) {
-
-        const languageCode =
-            QURAN_LANGUAGE_CODES[
-                language
-            ];
-
-        if (!languageCode) {
-
-            throw new Error(
-                "Unsupported language: " +
-                language
-            );
-
-        }
-
-
-        const url =
-            QURAN_ENC_API +
-            "/translations/list/" +
-            languageCode +
-            "/?localization=" +
-            languageCode;
-
-
-        const response =
-            await fetch(url, {
-                method: "GET",
-                cache: "no-cache"
-            });
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Translation list request failed: " +
-                response.status
-            );
-
-        }
-
-
-        const translations =
-            await response.json();
-
-
-        if (
-            !Array.isArray(
-                translations
-            ) ||
-            translations.length === 0
-        ) {
-
-            throw new Error(
-                "No Quran translation found for " +
-                language
-            );
-
-        }
-
-
-        /*
-         * Prefer a complete translation.
-         * QuranEnc may have multiple translations
-         * for the same language.
-         */
-
-        let selected =
-            translations.find(
-                function (item) {
-
-                    return (
-                        item &&
-                        item.key
-                    );
-
-                }
-            );
-
-
-        if (!selected) {
-
-            throw new Error(
-                "No valid translation key found."
-            );
-
-        }
-
-
-        return selected;
-
-    }
-
-
-    /* =====================================================
-       FETCH ONE SURAH
-       ===================================================== */
-
-    async function fetchSurahTranslation(
-        translationKey,
-        surah
-    ) {
-
-        const url =
-            QURAN_ENC_API +
-            "/translation/sura/" +
-            encodeURIComponent(
-                translationKey
-            ) +
-            "/" +
-            surah;
-
-
-        const response =
-            await fetch(url, {
-                method: "GET",
-                cache: "default"
-            });
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Surah " +
-                surah +
-                " request failed: " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !Array.isArray(data)
-        ) {
-
-            throw new Error(
-                "Invalid translation data."
-            );
-
-        }
-
-
-        return data;
-
-    }
-
-
-    /* =====================================================
-       GET ALL SURAH NUMBERS USED BY YOUR DATA
-       ===================================================== */
-
-    function getAvailableSurahs() {
-
-        const numbers = [];
-
-
-        if (
-            typeof quranData ===
-            "undefined" ||
-            !Array.isArray(quranData)
-        ) {
-
-            return numbers;
-
-        }
-
-
-        quranData.forEach(
-            function (ayah) {
-
-                const number =
-                    Number(
-                        ayah.surah
-                    );
-
-
-                if (
-                    number >= 1 &&
-                    number <= 114 &&
-                    !numbers.includes(
-                        number
-                    )
-                ) {
-
-                    numbers.push(
-                        number
-                    );
-
-                }
-
-            }
-        );
-
-
-        numbers.sort(
-            function (a, b) {
-                return a - b;
-            }
-        );
-
-
-        return numbers;
-
-    }
-
-
-    /* =====================================================
-       FIND TRANSLATION FOR ONE AYAH
-       ===================================================== */
-
-    function getOnlineTranslation(
-        ayah
-    ) {
-
-        const language =
-            getSelectedLanguage();
-
-
-        /*
-         * Urdu continues using your
-         * existing local data.js translation.
-         */
-
-        if (
-            language === "ur"
-        ) {
-
-            return (
-                ayah.urdu ||
-                ""
-            );
-
-        }
-
-
-        const surah =
-            Number(
-                ayah.surah
-            );
-
-        const aya =
-            Number(
-                ayah.ayah
-            );
-
-
-        const cached =
-            getCachedSurah(
-                language,
-                surah
-            );
-
-
-        if (
-            !cached ||
-            !Array.isArray(cached)
-        ) {
-
-            return (
-                ayah.urdu ||
-                ""
-            );
-
-        }
-
-
-        const item =
-            cached.find(
-                function (entry) {
-
-                    return (
-                        Number(
-                            entry.aya
-                        ) === aya
-                    );
-
-                }
-            );
-
-
-        if (
-            !item
-        ) {
-
-            return (
-                ayah.urdu ||
-                ""
-            );
-
-        }
-
-
-        return (
-            item.translation ||
-            ayah.urdu ||
-            ""
-        );
-
-    }
-
-
-    /* =====================================================
-       UPDATE TRANSLATION TEXT
-       WITHOUT REBUILDING THE CARDS
-       ===================================================== */
-
-    function updateRenderedTranslations() {
-
-        if (
-            typeof quranData ===
-            "undefined"
-        ) {
-
-            return;
-
-        }
-
-
-        const cards =
-            document.querySelectorAll(
-                ".ayah-card"
-            );
-
-
-        cards.forEach(
-            function (card) {
-
-                const id =
-                    card.id || "";
-
-
-                const match =
-                    id.match(
-                        /^ayah-(\d+)-(\d+)$/
-                    );
-
-
-                if (!match) {
-                    return;
-                }
-
-
-                const surah =
-                    Number(
-                        match[1]
-                    );
-
-                const aya =
-                    Number(
-                        match[2]
-                    );
-
-
-                const ayah =
-                    quranData.find(
-                        function (item) {
-
-                            return (
-                                Number(
-                                    item.surah
-                                ) === surah &&
-                                Number(
-                                    item.ayah
-                                ) === aya
-                            );
-
-                        }
-                    );
-
-
-                if (!ayah) {
-                    return;
-                }
-
-
-                const translation =
-                    getOnlineTranslation(
-                        ayah
-                    );
-
-
-                const element =
-                    card.querySelector(
-                        ".urdu"
-                    );
-
-
-                if (!element) {
-                    return;
-                }
-
-
-                element.textContent =
-                    translation;
-
-                element.setAttribute(
-                    "dir",
-                    RTL_LANGUAGES[
-                        getSelectedLanguage()
-                    ]
-                        ? "rtl"
-                        : "ltr"
-                );
-
-
-                element.classList.add(
-                    "multilingual-translation"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       LOADING MESSAGE
-       ===================================================== */
-
-    function showTranslationLoading() {
-
-        const language =
-            getSelectedLanguage();
-
-
-        if (
-            language === "ur"
-        ) {
-
-            return;
-
-        }
-
-
-        const config =
-            getCurrentLanguage();
-
-
-        const cards =
-            document.querySelectorAll(
-                ".ayah-card .urdu"
-            );
-
-
-        cards.forEach(
-            function (element) {
-
-                element.textContent =
-                    config.loading ||
-                    "Translation loading...";
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SOURCE INFORMATION
-       ===================================================== */
-
-    function updateTranslationSource() {
-
-        const language =
-            getSelectedLanguage();
-
-
-        let notice =
-            document.getElementById(
-                "quranTranslationSource"
-            );
-
-
-        if (!notice) {
-
-            notice =
-                document.createElement(
-                    "div"
-                );
-
-            notice.id =
-                "quranTranslationSource";
-
-
-            notice.style.cssText =
-                [
-                    "margin:12px auto",
-                    "padding:10px 14px",
-                    "max-width:900px",
-                    "border-radius:10px",
-                    "font-size:12px",
-                    "line-height:1.7",
-                    "text-align:center",
-                    "background:rgba(15,61,46,.06)",
-                    "color:#555"
-                ].join(";");
-
-
-            const container =
-                document.getElementById(
-                    "ayahContainer"
-                );
-
-
-            if (container) {
-
-                container.parentNode.insertBefore(
-                    notice,
-                    container
-                );
-
-            }
-
-        }
-
-
-        if (
-            language === "ur"
-        ) {
-
-            notice.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        notice.style.display =
-            "block";
-
-
-        if (
-            activeTranslationInfo
-        ) {
-
-            const title =
-                activeTranslationInfo.title ||
-                "Quran translation";
-
-
-            const version =
-                activeTranslationInfo.version ||
-                "";
-
-
-            notice.textContent =
-                "Translation source: QuranEnc.com • " +
-                title +
-                (
-                    version
-                        ? " • Version " +
-                          version
-                        : ""
-                );
-
-        } else {
-
-            notice.textContent =
-                "Translation source: QuranEnc.com";
-
-        }
-
-    }
-
-
-    /* =====================================================
-       LOAD SELECTED LANGUAGE
-       ===================================================== */
-
-    async function loadSelectedLanguageTranslation() {
-
-        const requestId =
-            ++translationRequestId;
-
-
-        const language =
-            getSelectedLanguage();
-
-
-        /*
-         * Urdu uses the translation already
-         * stored in data.js.
-         */
-
-        if (
-            language === "ur"
-        ) {
-
-            activeTranslationKey =
-                "";
-
-            activeTranslationInfo =
-                null;
-
-            updateTranslationSource();
-
-            updateRenderedTranslations();
-
-            return;
-
-        }
-
-
-        showTranslationLoading();
-
-
-        try {
-
-            /*
-             * Find the correct translation
-             * automatically from QuranEnc.
-             */
-
-            const translation =
-                await findTranslation(
-                    language
-                );
-
-
-            /*
-             * User may have changed language
-             * while the request was running.
-             */
-
-            if (
-                requestId !==
-                translationRequestId
-            ) {
-
-                return;
-
-            }
-
-
-            activeTranslationKey =
-                translation.key;
-
-
-            activeTranslationInfo =
-                translation;
-
-
-            updateTranslationSource();
-
-
-            const surahs =
-                getAvailableSurahs();
-
-
-            /*
-             * Load only the Surahs that actually
-             * exist in your data.js.
-             *
-             * This avoids unnecessary API requests.
-             */
-
-            const pending =
-                [];
-
-
-            surahs.forEach(
-                function (surah) {
-
-                    const cached =
-                        getCachedSurah(
-                            language,
-                            surah
-                        );
-
-
-                    if (!cached) {
-
-                        pending.push(
-                            surah
-                        );
-
-                    }
-
-                }
-            );
-
-
-            /*
-             * Load 4 Surahs at a time.
-             * This is much lighter for mobile.
-             */
-
-            const batchSize =
-                4;
-
-
-            for (
-                let i = 0;
-                i < pending.length;
-                i += batchSize
-            ) {
-
-                if (
-                    requestId !==
-                    translationRequestId
-                ) {
-
-                    return;
-
-                }
-
-
-                const batch =
-                    pending.slice(
-                        i,
-                        i + batchSize
-                    );
-
-
-                await Promise.all(
-                    batch.map(
-                        async function (
-                            surah
-                        ) {
-
-                            try {
-
-                                const data =
-                                    await fetchSurahTranslation(
-                                        activeTranslationKey,
-                                        surah
-                                    );
-
-
-                                saveCachedSurah(
-                                    language,
-                                    surah,
-                                    data
-                                );
-
-                            } catch (
-                                error
-                            ) {
-
-                                console.warn(
-                                    "QuranEnc Surah " +
-                                    surah +
-                                    " failed:",
-                                    error
-                                );
-
-                            }
-
-                        }
-                    )
-                );
-
-
-                /*
-                 * Show translations as they
-                 * become available.
-                 */
-
-                updateRenderedTranslations();
-
-            }
-
-
-            /*
-             * Final update.
-             */
-
-            if (
-                requestId ===
-                translationRequestId
-            ) {
-
-                updateRenderedTranslations();
-
-            }
-
-        } catch (
-            error
-        ) {
-
-            console.error(
-                "Quran translation error:",
-                error
-            );
-
-
-            if (
-                requestId !==
-                translationRequestId
-            ) {
-
-                return;
-
-            }
-
-
-            /*
-             * If online translation fails,
-             * keep the existing Urdu translation
-             * instead of breaking the website.
-             */
-
-            updateRenderedTranslations();
-
-
-            const notice =
-                document.getElementById(
-                    "quranTranslationSource"
-                );
-
-
-            if (notice) {
-
-                notice.style.display =
-                    "block";
-
-
-                notice.textContent =
-                    "Selected language translation could not be loaded. Please try again.";
-
-            }
-
-        }
-
-    }
-
-
-    /* =====================================================
-       OVERRIDE DISPLAY AYAH
-       ===================================================== */
-
-    const originalDisplayAyahs =
-        displayAyahs;
-
-
-    displayAyahs =
-        function (data) {
-
-            /*
-             * Keep your existing card design,
-             * buttons, Tafseer, bookmark,
-             * copy and share functionality.
-             */
-
-            originalDisplayAyahs(
-                data
-            );
-
-
-            /*
-             * Immediately apply whatever
-             * online translation is already cached.
-             */
-
-            updateRenderedTranslations();
-
-        };
-
-
-    /* =====================================================
-       LANGUAGE CHANGE
-       ===================================================== */
 
     if (
-        languageSelect
+        window.quranTafsirCache[
+            key
+        ]
     ) {
 
-        languageSelect.addEventListener(
-            "change",
-            function () {
-
-                /*
-                 * Give the existing language
-                   * system a moment to update
-                 * currentLanguage.
-                 */
-
-                setTimeout(
-                    function () {
-
-                        loadSelectedLanguageTranslation();
-
-                    },
-                    50
-                );
-
-            }
+        return (
+            window.quranTafsirCache[
+                key
+            ]
         );
 
     }
 
 
-    /* =====================================================
-       INITIAL LOAD
-       ===================================================== */
+    try {
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+        const response =
+            await fetch(
+                "https://api.alquran.cloud/v1/surah/" +
+                surahNumber +
+                "/ar.jalalayn"
+            );
 
-            setTimeout(
-                function () {
 
-                    loadSelectedLanguageTranslation();
+        if (
+            !response.ok
+        ) {
 
-                },
-                150
+            throw new Error(
+                "Jalalayn HTTP " +
+                response.status
             );
 
         }
-    );
 
 
-})();
-/* =====================================================
-   PREMIUM TAFSEER SYSTEM
-   Ibn Kathir • Jalalayn • Mazhari
-   ===================================================== */
-
-(function () {
-    "use strict";
-
-    window.quranTafsirCache =
-        window.quranTafsirCache || {};
-
-    window.selectedTafsir =
-        window.selectedTafsir || "jalalayn";
+        const result =
+            await response.json();
 
 
-    /* -------------------------------------------------
-       TAFSEER SOURCES
-       ------------------------------------------------- */
+        const data = {};
 
-    const TAFSIR_SOURCES = {
-
-        jalalayn: {
-            name: "تفسیر الجلالین",
-            edition: "ar.jalalayn"
-        },
-
-        ibnKathir: {
-            name: "تفسیر ابن کثیر",
-
-            /*
-             * Ibn Kathir is handled separately because
-             * a suitable public edition must be verified
-             * before displaying its full text.
-             */
-            type: "external"
-        },
-
-        mazahari: {
-            name: "تفسیر مظہری",
-
-            /*
-             * Same rule: don't fabricate or relabel
-             * another tafsir as Mazhari.
-             */
-            type: "external"
-        }
-    };
-
-
-    /* -------------------------------------------------
-       LOAD JALALAYN
-       ------------------------------------------------- */
-
-    async function loadJalalayn(surahNumber) {
-
-        const key =
-            "jalalayn:" + surahNumber;
 
         if (
-            window.quranTafsirCache[key]
+            result &&
+            result.data &&
+            Array.isArray(
+                result.data.ayahs
+            )
         ) {
-            return window.quranTafsirCache[key];
-        }
-
-
-        try {
-
-            const url =
-                "https://api.alquran.cloud/v1/surah/" +
-                surahNumber +
-                "/ar.jalalayn";
-
-
-            const response =
-                await fetch(url);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Jalalayn API error: " +
-                    response.status
-                );
-            }
-
-
-            const result =
-                await response.json();
-
-
-            if (
-                !result ||
-                !result.data ||
-                !result.data.ayahs
-            ) {
-
-                throw new Error(
-                    "Invalid Jalalayn response"
-                );
-            }
-
-
-            const data = {};
-
 
             result.data.ayahs.forEach(
                 function (item) {
@@ -4458,465 +2592,115 @@ function escapeHTML(
                         surahNumber +
                         ":" +
                         item.numberInSurah
-                    ] = item.text || "";
+                    ] =
+                        item.text ||
+                        "";
 
                 }
             );
 
-
-            window.quranTafsirCache[key] =
-                data;
-
-
-            return data;
-
-        } catch (error) {
-
-            console.error(
-                "Jalalayn loading error:",
-                error
-            );
-
-            return {};
         }
+
+
+        window.quranTafsirCache[
+            key
+        ] =
+            data;
+
+
+        return data;
+
     }
 
-
-    /* -------------------------------------------------
-       LOAD TAFSEER FOR CURRENT SURAH
-       ------------------------------------------------- */
-
-    async function loadSelectedTafsir(
-        surahNumber
+    catch (
+        error
     ) {
 
-        const tafsir =
-            window.selectedTafsir;
+        console.error(
+            "Jalalayn error:",
+            error
+        );
 
-
-        if (
-            tafsir === "jalalayn"
-        ) {
-
-            return await loadJalalayn(
-                surahNumber
-            );
-        }
-
-
-        /*
-         * Ibn Kathir and Mazhari:
-         *
-         * Do NOT substitute another tafsir.
-         * Their verified source data will be
-         * connected separately.
-         */
 
         return {};
+
     }
 
-
-    /* -------------------------------------------------
-       GET TAFSEER FOR AYAH
-       ------------------------------------------------- */
-
-    window.getQuranTafsir =
-        function (ayah) {
-
-            if (!ayah) {
-                return "";
-            }
+}
 
 
-            const key =
-                ayah.surah +
-                ":" +
-                ayah.ayah;
+window.getQuranTafsir =
+    function (
+        ayah
+    ) {
+
+        if (!ayah) {
+            return "";
+        }
 
 
-            const cache =
-                window.quranTafsirCache[
-                    window.selectedTafsir +
-                    ":" +
-                    ayah.surah
-                ];
+        const key =
+            ayah.surah +
+            ":" +
+            ayah.ayah;
 
 
-            if (
-                cache &&
-                cache[key]
-            ) {
+        const cache =
+            window.quranTafsirCache[
+                "jalalayn:" +
+                ayah.surah
+            ];
 
-                return cache[key];
-            }
-
-
-            /*
-             * Existing local tafseer remains
-             * available as fallback.
-             */
-
-            return (
-                ayah.tafseer ||
-                ayah.tafsir ||
-                ""
-            );
-        };
-
-
-    /* -------------------------------------------------
-       CHANGE TAFSEER
-       ------------------------------------------------- */
-
-    window.changeQuranTafsir =
-        async function (tafsir) {
-
-            window.selectedTafsir =
-                tafsir;
-
-
-            const surahSelect =
-                document.getElementById(
-                    "surahSelect"
-                );
-
-
-            const surahNumber =
-                surahSelect
-                    ? Number(
-                        surahSelect.value
-                    )
-                    : 1;
-
-
-            await loadSelectedTafsir(
-                surahNumber
-            );
-
-
-            if (
-                typeof displayAyahs ===
-                "function"
-            ) {
-
-                const currentData =
-                    typeof quranData !==
-                    "undefined"
-                        ? quranData.filter(
-                            function (item) {
-
-                                return Number(
-                                    item.surah
-                                ) ===
-                                surahNumber;
-
-                            }
-                        )
-                        : [];
-
-
-                if (
-                    currentData.length
-                ) {
-
-                    displayAyahs(
-                        currentData
-                    );
-                }
-            }
-        };
-
-
-    /* -------------------------------------------------
-       CREATE TAFSEER SELECTOR
-       ------------------------------------------------- */
-
-    function createTafsirSelector() {
 
         if (
-            document.getElementById(
-                "quranTafsirSelect"
-            )
+            cache &&
+            cache[key]
         ) {
-            return;
+
+            return cache[key];
+
         }
 
 
-        const container =
-            document.getElementById(
-                "ayahContainer"
-            );
-
-
-        if (!container) {
-            return;
-        }
-
-
-        const box =
-            document.createElement(
-                "div"
-            );
-
-
-        box.id =
-            "quranTafsirSelectorBox";
-
-
-        box.style.cssText = [
-            "margin:15px auto",
-            "padding:12px 16px",
-            "max-width:900px",
-            "border-radius:14px",
-            "background:rgba(15,61,46,.06)",
-            "text-align:center"
-        ].join(";");
-
-
-        box.innerHTML = `
-
-            <label
-                for="quranTafsirSelect"
-                style="
-                    margin-right:8px;
-                    font-weight:700;
-                "
-            >
-                تفسیر:
-            </label>
-
-            <select
-                id="quranTafsirSelect"
-                style="
-                    padding:8px 14px;
-                    border-radius:10px;
-                    cursor:pointer;
-                "
-            >
-
-                <option value="jalalayn">
-                    تفسیر الجلالین
-                </option>
-
-                <option value="ibnKathir">
-                    تفسیر ابن کثیر
-                </option>
-
-                <option value="mazahari">
-                    تفسیر مظہری
-                </option>
-
-            </select>
-        `;
-
-
-        container.parentNode.insertBefore(
-            box,
-            container
+        return (
+            ayah.tafseer ||
+            ayah.tafsir ||
+            ""
         );
 
-
-        const selector =
-            document.getElementById(
-                "quranTafsirSelect"
-            );
+    };
 
 
-        selector.addEventListener(
-            "change",
-            function () {
+// =====================================================
+// INITIAL TAFSEER LOAD
+// =====================================================
 
-                changeQuranTafsir(
-                    this.value
-                );
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-            }
+        setTimeout(
+            async function () {
+
+                const selected =
+                    surahSelect
+                        ? surahSelect.value
+                        : "";
+
+
+                if (selected) {
+
+                    await loadJalalayn(
+                        Number(
+                            selected
+                        )
+                    );
+
+                }
+
+            },
+            500
         );
+
     }
-
-
-    /* -------------------------------------------------
-       INITIALIZE
-       ------------------------------------------------- */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            setTimeout(
-                createTafsirSelector,
-                300
-            );
-
-        }
-    );
-
-})();
-
-/* =====================================================
-   FULL QURAN SURAH + TRANSLATION CONNECTOR
-   ===================================================== */
-
-(function () {
-    "use strict";
-
-    const originalLoad =
-        window.loadQuranSurah;
-
-    if (
-        typeof originalLoad !== "function"
-    ) {
-        console.error(
-            "loadQuranSurah not found."
-        );
-        return;
-    }
-
-
-    window.loadQuranSurah =
-        async function (surahNumber) {
-
-            const number =
-                Number(surahNumber);
-
-            try {
-
-                /* ---------------------------------
-                   1. Load Arabic Quran
-                   --------------------------------- */
-
-                const arabicData =
-                    await originalLoad(
-                        number
-                    );
-
-
-                if (
-                    !Array.isArray(
-                        arabicData
-                    )
-                ) {
-                    return [];
-                }
-
-
-                /* ---------------------------------
-                   2. Get selected language
-                   --------------------------------- */
-
-                let language = "ur";
-
-                if (
-                    typeof getSelectedLanguage ===
-                    "function"
-                ) {
-                    language =
-                        getSelectedLanguage();
-                }
-
-
-                /* ---------------------------------
-                   3. Urdu already comes from
-                      existing local data
-                   --------------------------------- */
-
-                if (
-                    language === "ur"
-                ) {
-
-                    if (
-                        typeof displayAyahs ===
-                        "function"
-                    ) {
-                        displayAyahs(
-                            arabicData
-                        );
-                    }
-
-                    return arabicData;
-                }
-
-
-                /* ---------------------------------
-                   4. Load selected translation
-                   --------------------------------- */
-
-                if (
-                    typeof fetchSurahTranslation ===
-                    "function"
-                ) {
-
-                    await fetchSurahTranslation(
-                        number,
-                        language
-                    );
-                }
-
-
-                /* ---------------------------------
-                   5. Put translation into
-                      each Ayah
-                   --------------------------------- */
-
-                arabicData.forEach(
-                    function (ayah) {
-
-                        const key =
-                            number +
-                            ":" +
-                            ayah.ayah;
-
-
-                        if (
-                            window.quranMultiTranslations &&
-                            window.quranMultiTranslations[
-                                language
-                            ] &&
-                            window.quranMultiTranslations[
-                                language
-                            ][key]
-                        ) {
-
-                            ayah.urdu =
-                                window
-                                    .quranMultiTranslations[
-                                        language
-                                    ][key];
-
-                        }
-
-                    }
-                );
-
-
-                /* ---------------------------------
-                   6. Display
-                   --------------------------------- */
-
-                if (
-                    typeof displayAyahs ===
-                    "function"
-                ) {
-
-                    displayAyahs(
-                        arabicData
-                    );
-                }
-
-
-                return arabicData;
-
-
-            } catch (error) {
-
-                console.error(
-                    "Full Quran translation error:",
-                    error
-                );
-
-                return [];
-            }
-
-        };
-
-})();
+);
