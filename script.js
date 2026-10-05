@@ -2704,3 +2704,884 @@ document.addEventListener(
 
     }
 );
+// =====================================================
+// LINK
+// =====================================================
+
+card.querySelector(
+    '[data-action="link"]'
+).addEventListener(
+    "click",
+    function () {
+
+        copyAyahLink(
+            ayah,
+            this
+        );
+
+    }
+);
+
+
+// =====================================================
+// PREVIOUS
+// =====================================================
+
+card.querySelector(
+    '[data-action="previous"]'
+).addEventListener(
+    "click",
+    function () {
+
+        goToPreviousAyah(
+            ayah
+        );
+
+    }
+);
+
+
+// =====================================================
+// NEXT
+// =====================================================
+
+card.querySelector(
+    '[data-action="next"]'
+).addEventListener(
+    "click",
+    function () {
+
+        goToNextAyah(
+            ayah
+        );
+
+    }
+);
+
+
+ayahContainer.appendChild(
+    card
+);
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// SEARCH
+// =====================================================
+
+function performSearch() {
+
+    if (!searchInput) return;
+
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    if (search === "") {
+
+        displayAyahs(
+            quranData
+        );
+
+        return;
+
+    }
+
+
+    const results =
+        quranData.filter(
+            function (ayah) {
+
+                return (
+
+                    String(
+                        ayah.ayah
+                    ).includes(search)
+
+                    ||
+
+                    String(
+                        ayah.surah
+                    ).includes(search)
+
+                    ||
+
+                    String(
+                        ayah.arabic
+                    )
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    String(
+                        ayah.urdu
+                    )
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    String(
+                        ayah.tafseer
+                    )
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    String(
+                        ayah.surahNameUrdu
+                    )
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    String(
+                        ayah.surahNameArabic
+                    )
+                        .toLowerCase()
+                        .includes(search)
+
+                );
+
+            }
+        );
+
+
+    displayAyahs(
+        results
+    );
+
+}
+
+
+// =====================================================
+// SEARCH WHILE TYPING
+// =====================================================
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        performSearch
+    );
+
+}
+
+
+// =====================================================
+// SEARCH BUTTON
+// =====================================================
+
+if (searchButton) {
+
+    searchButton.addEventListener(
+        "click",
+        performSearch
+    );
+
+}
+
+
+// =====================================================
+// SURAH SELECTION
+// =====================================================
+
+if (surahSelect) {
+
+    surahSelect.addEventListener(
+        "change",
+        function () {
+
+            const selectedSurah =
+                this.value;
+
+
+            if (
+                selectedSurah === ""
+            ) {
+
+                displayAyahs(
+                    quranData
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                quranData.filter(
+                    function (ayah) {
+
+                        return (
+                            String(
+                                ayah.surah
+                            ) ===
+                            String(
+                                selectedSurah
+                            )
+                        );
+
+                    }
+                );
+
+
+            displayAyahs(
+                filtered
+            );
+
+
+            document
+                .getElementById(
+                    "surahs"
+                )
+                ?.scrollIntoView({
+                    behavior:
+                        "smooth"
+                });
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// DARK MODE
+// =====================================================
+
+if (themeButton) {
+
+    themeButton.addEventListener(
+        "click",
+        function () {
+
+            document.body.classList.toggle(
+                "dark-mode"
+            );
+
+
+            const dark =
+                document.body.classList.contains(
+                    "dark-mode"
+                );
+
+
+            localStorage.setItem(
+                "quranTheme",
+                dark
+                    ? "dark"
+                    : "light"
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// LOAD SAVED THEME
+// =====================================================
+
+function loadSavedTheme() {
+
+    const savedTheme =
+        localStorage.getItem(
+            "quranTheme"
+        );
+
+
+    if (
+        savedTheme === "dark"
+    ) {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// BOOKMARK SYSTEM
+// =====================================================
+
+function getBookmarkKey(
+    ayah
+) {
+
+    return (
+        ayah.surah +
+        ":" +
+        ayah.ayah
+    );
+
+}
+
+
+function getBookmarks() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "quranBookmarks"
+            )
+        ) || [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+function saveBookmarks(
+    bookmarks
+) {
+
+    localStorage.setItem(
+        "quranBookmarks",
+        JSON.stringify(
+            bookmarks
+        )
+    );
+
+}
+
+
+function isAyahBookmarked(
+    ayah
+) {
+
+    const bookmarks =
+        getBookmarks();
+
+
+    return bookmarks.includes(
+        getBookmarkKey(
+            ayah
+        )
+    );
+
+}
+
+
+function toggleBookmark(
+    ayah
+) {
+
+    const bookmarks =
+        getBookmarks();
+
+
+    const key =
+        getBookmarkKey(
+            ayah
+        );
+
+
+    const index =
+        bookmarks.indexOf(
+            key
+        );
+
+
+    if (index === -1) {
+
+        bookmarks.push(
+            key
+        );
+
+    } else {
+
+        bookmarks.splice(
+            index,
+            1
+        );
+
+    }
+
+
+    saveBookmarks(
+        bookmarks
+    );
+
+}
+
+
+// =====================================================
+// COPY AYAH
+// =====================================================
+
+function copyAyah(
+    ayah,
+    button
+) {
+
+    const text =
+        ayah.arabic +
+        " ۝" +
+        arabicAyahNumber(
+            ayah.ayah
+        ) +
+        "\n\n" +
+        ayah.urdu;
+
+
+    navigator.clipboard
+        .writeText(text)
+        .then(
+            function () {
+
+                const oldText =
+                    button.textContent;
+
+
+                button.textContent =
+                    "✓ " +
+                    getCurrentLanguage()
+                        .copied;
+
+
+                setTimeout(
+                    function () {
+
+                        button.textContent =
+                            oldText;
+
+                    },
+                    1800
+                );
+
+            }
+        )
+        .catch(
+            function () {
+
+                alert(
+                    getCurrentLanguage()
+                        .copyFailed
+                );
+
+            }
+        );
+
+}
+
+
+// =====================================================
+// SHARE AYAH
+// =====================================================
+
+function shareAyah(
+    ayah
+) {
+
+    const url =
+        createAyahURL(
+            ayah
+        );
+
+
+    const text =
+        ayah.arabic +
+        " ۝" +
+        arabicAyahNumber(
+            ayah.ayah
+        ) +
+        "\n\n" +
+        ayah.urdu;
+
+
+    if (
+        navigator.share
+    ) {
+
+        navigator.share({
+
+            title:
+                getCurrentLanguage()
+                    .quran,
+
+            text:
+                text,
+
+            url:
+                url
+
+        }).catch(
+            function () {}
+        );
+
+    } else {
+
+        copyText(
+            url
+        );
+
+        alert(
+            getCurrentLanguage()
+                .linkCopied
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// CREATE AYAH URL
+// =====================================================
+
+function createAyahURL(
+    ayah
+) {
+
+    const baseURL =
+        window.location.origin +
+        window.location.pathname;
+
+
+    return (
+        baseURL +
+        "#ayah-" +
+        ayah.surah +
+        "-" +
+        ayah.ayah
+    );
+
+}
+
+
+// =====================================================
+// COPY AYAH LINK
+// =====================================================
+
+function copyAyahLink(
+    ayah,
+    button
+) {
+
+    const url =
+        createAyahURL(
+            ayah
+        );
+
+
+    copyText(
+        url
+    );
+
+
+    const oldText =
+        button.textContent;
+
+
+    button.textContent =
+        "✓ " +
+        getCurrentLanguage()
+            .linkCopied;
+
+
+    setTimeout(
+        function () {
+
+            button.textContent =
+                oldText;
+
+        },
+        1800
+    );
+
+}
+
+
+// =====================================================
+// OPEN AYAH FROM URL
+// =====================================================
+
+function openAyahFromURL() {
+
+    const hash =
+        window.location.hash;
+
+
+    if (
+        !hash.startsWith(
+            "#ayah-"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    setTimeout(
+        function () {
+
+            const element =
+                document.querySelector(
+                    hash
+                );
+
+
+            if (element) {
+
+                element.scrollIntoView({
+
+                    behavior:
+                        "smooth",
+
+                    block:
+                        "center"
+
+                });
+
+
+                element.style.outline =
+                    "3px solid rgba(181, 138, 58, 0.45)";
+
+
+                setTimeout(
+                    function () {
+
+                        element.style.outline =
+                            "";
+
+                    },
+                    2500
+                );
+
+            }
+
+        },
+        300
+    );
+
+}
+
+
+// =====================================================
+// PREVIOUS AYAH
+// =====================================================
+
+function goToPreviousAyah(
+    ayah
+) {
+
+    const currentIndex =
+        quranData.findIndex(
+            function (item) {
+
+                return (
+
+                    item.surah ===
+                        ayah.surah
+
+                    &&
+
+                    item.ayah ===
+                        ayah.ayah
+
+                );
+
+            }
+        );
+
+
+    if (
+        currentIndex <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    const previousAyah =
+        quranData[
+            currentIndex - 1
+        ];
+
+
+    displayAyahs([
+        previousAyah
+    ]);
+
+
+    setTimeout(
+        function () {
+
+            const element =
+                document.getElementById(
+                    "ayah-" +
+                    previousAyah.surah +
+                    "-" +
+                    previousAyah.ayah
+                );
+
+
+            if (element) {
+
+                element.scrollIntoView({
+                    behavior:
+                        "smooth",
+                    block:
+                        "center"
+                });
+
+            }
+
+        },
+        100
+    );
+
+}
+
+
+// =====================================================
+// NEXT AYAH
+// =====================================================
+
+function goToNextAyah(
+    ayah
+) {
+
+    const currentIndex =
+        quranData.findIndex(
+            function (item) {
+
+                return (
+
+                    item.surah ===
+                        ayah.surah
+
+                    &&
+
+                    item.ayah ===
+                        ayah.ayah
+
+                );
+
+            }
+        );
+
+
+    if (
+        currentIndex === -1 ||
+        currentIndex >=
+            quranData.length - 1
+    ) {
+
+        return;
+
+    }
+
+
+    const nextAyah =
+        quranData[
+            currentIndex + 1
+        ];
+
+
+    displayAyahs([
+        nextAyah
+    ]);
+
+
+    setTimeout(
+        function () {
+
+            const element =
+                document.getElementById(
+                    "ayah-" +
+                    nextAyah.surah +
+                    "-" +
+                    nextAyah.ayah
+                );
+
+
+            if (element) {
+
+                element.scrollIntoView({
+                    behavior:
+                        "smooth",
+                    block:
+                        "center"
+                });
+
+            }
+
+        },
+        100
+    );
+
+}
+
+
+// =====================================================
+// BACK TO TOP
+// =====================================================
+
+if (backToTop) {
+
+    window.addEventListener(
+        "scroll",
+        function () {
+
+            if (
+                window.scrollY >
+                500
+            ) {
+
+                backToTop.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                backToTop.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    backToTop.addEventListener(
+        "click",
+        function () {
+
+            window.scrollTo({
+
+                top:
+                    0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+    );
+
+}
