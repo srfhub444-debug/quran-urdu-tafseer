@@ -3585,3 +3585,524 @@ if (backToTop) {
     );
 
 }
+// =====================================================
+// FULL QURAN SURAH + TRANSLATION CONNECTOR
+// =====================================================
+
+(function () {
+    "use strict";
+
+
+    // -------------------------------------------------
+    // MAKE SURE QURAN DATA IS AVAILABLE
+    // -------------------------------------------------
+
+    function getQuranData() {
+
+        if (
+            Array.isArray(
+                window.generatedQuranData
+            )
+        ) {
+
+            return window.generatedQuranData;
+
+        }
+
+
+        if (
+            Array.isArray(
+                window.quranData
+            )
+        ) {
+
+            return window.quranData;
+
+        }
+
+
+        return [];
+
+    }
+
+
+    // -------------------------------------------------
+    // GET SURAH DATA
+    // -------------------------------------------------
+
+    window.getSurahData =
+        function (surahNumber) {
+
+            const data =
+                getQuranData();
+
+
+            return data.filter(
+                function (ayah) {
+
+                    return (
+                        Number(
+                            ayah.surah
+                        ) ===
+                        Number(
+                            surahNumber
+                        )
+                    );
+
+                }
+            );
+
+        };
+
+
+    // -------------------------------------------------
+    // GET TRANSLATION
+    // -------------------------------------------------
+
+    window.getTranslation =
+        function (ayah) {
+
+            if (!ayah) {
+                return "";
+            }
+
+
+            const language =
+                window.currentLanguage ||
+                "ur";
+
+
+            if (
+                ayah.translations &&
+                ayah.translations[
+                    language
+                ]
+            ) {
+
+                return ayah.translations[
+                    language
+                ];
+
+            }
+
+
+            if (
+                language === "ur" &&
+                ayah.urdu
+            ) {
+
+                return ayah.urdu;
+
+            }
+
+
+            return (
+                ayah.urdu ||
+                ""
+            );
+
+        };
+
+
+    // -------------------------------------------------
+    // GET TAFSEER
+    // -------------------------------------------------
+
+    window.getTafseer =
+        function (ayah) {
+
+            if (!ayah) {
+                return "";
+            }
+
+
+            if (
+                typeof window.getQuranTafsir ===
+                "function"
+            ) {
+
+                const tafsir =
+                    window.getQuranTafsir(
+                        ayah
+                    );
+
+
+                if (tafsir) {
+                    return tafsir;
+                }
+
+            }
+
+
+            return (
+                ayah.tafseer ||
+                ayah.tafsir ||
+                ""
+            );
+
+        };
+
+
+    // -------------------------------------------------
+    // REFRESH CURRENT SURAH
+    // -------------------------------------------------
+
+    window.refreshCurrentSurah =
+        function () {
+
+            const select =
+                document.getElementById(
+                    "surahSelect"
+                );
+
+
+            if (!select) {
+                return;
+            }
+
+
+            const value =
+                select.value;
+
+
+            if (!value) {
+
+                if (
+                    typeof displayAyahs ===
+                    "function"
+                ) {
+
+                    displayAyahs(
+                        getQuranData()
+                    );
+
+                }
+
+                return;
+            }
+
+
+            const surahData =
+                window.getSurahData(
+                    value
+                );
+
+
+            if (
+                typeof displayAyahs ===
+                "function"
+            ) {
+
+                displayAyahs(
+                    surahData
+                );
+
+            }
+
+        };
+
+
+    // -------------------------------------------------
+    // LANGUAGE CHANGE
+    // -------------------------------------------------
+
+    window.reloadQuranLanguage =
+        function (language) {
+
+            if (!language) {
+                language = "ur";
+            }
+
+
+            window.currentLanguage =
+                language;
+
+
+            if (
+                typeof applyLanguage ===
+                "function"
+            ) {
+
+                applyLanguage(
+                    language
+                );
+
+            }
+
+
+            window.refreshCurrentSurah();
+
+        };
+
+
+})();
+
+
+// =====================================================
+// INITIAL PAGE LOAD
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadSavedTheme();
+
+
+        setTimeout(
+            function () {
+
+                if (
+                    typeof loadSurahs ===
+                    "function"
+                ) {
+
+                    loadSurahs();
+
+                }
+
+
+                if (
+                    typeof displayAyahs ===
+                    "function"
+                ) {
+
+                    const data =
+                        Array.isArray(
+                            window.generatedQuranData
+                        )
+                            ? window.generatedQuranData
+                            : (
+                                Array.isArray(
+                                    window.quranData
+                                )
+                                    ? window.quranData
+                                    : []
+                            );
+
+
+                    if (
+                        data.length > 0
+                    ) {
+
+                        displayAyahs(
+                            data
+                        );
+
+                    } else {
+
+                        console.error(
+                            "Quran data not found."
+                        );
+
+
+                        if (ayahContainer) {
+
+                            ayahContainer.innerHTML = `
+
+                                <div
+                                    style="
+                                        padding:30px;
+                                        text-align:center;
+                                        color:#a33;
+                                        font-weight:700;
+                                    "
+                                >
+                                    قرآن ڈیٹا لوڈ نہیں ہوا۔
+                                    <br><br>
+                                    براہِ کرم quran-data.js
+                                    فائل چیک کریں۔
+                                </div>
+
+                            `;
+
+                        }
+
+                    }
+
+
+                    openAyahFromURL();
+
+                }
+
+            },
+            400
+        );
+
+    }
+);
+
+
+// =====================================================
+// WINDOW HASH CHANGE
+// =====================================================
+
+window.addEventListener(
+    "hashchange",
+    function () {
+
+        openAyahFromURL();
+
+    }
+);
+
+
+// =====================================================
+// MOBILE MENU SAFETY
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const navLinks =
+            document.querySelectorAll(
+                ".top-nav a"
+            );
+
+
+        navLinks.forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        document.body.classList.remove(
+                            "menu-open"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+// =====================================================
+// PREVENT EMPTY SELECT PROBLEMS
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const select =
+            document.getElementById(
+                "surahSelect"
+            );
+
+
+        if (!select) {
+            return;
+        }
+
+
+        if (
+            select.options.length === 0
+        ) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                "";
+
+
+            option.textContent =
+                "سورت منتخب کریں";
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+
+    }
+);
+
+
+// =====================================================
+// FINAL ERROR CHECK
+// =====================================================
+
+window.addEventListener(
+    "error",
+    function (event) {
+
+        console.error(
+            "Quran website error:",
+            event.error ||
+            event.message
+        );
+
+    }
+);
+
+
+// =====================================================
+// FINAL DATA CHECK
+// =====================================================
+
+setTimeout(
+    function () {
+
+        const data =
+            Array.isArray(
+                window.generatedQuranData
+            )
+                ? window.generatedQuranData
+                : (
+                    Array.isArray(
+                        window.quranData
+                    )
+                        ? window.quranData
+                        : []
+                );
+
+
+        console.log(
+            "Quran data loaded:",
+            data.length,
+            "ayahs"
+        );
+
+
+        if (
+            data.length > 0
+        ) {
+
+            console.log(
+                "First ayah:",
+                data[0]
+            );
+
+
+            console.log(
+                "Last ayah:",
+                data[data.length - 1]
+            );
+
+        } else {
+
+            console.error(
+                "❌ Quran data is EMPTY."
+            );
+
+        }
+
+    },
+    1500
+);
+
+
+// =====================================================
+// END OF CLEAN SCRIPT
+// =====================================================
