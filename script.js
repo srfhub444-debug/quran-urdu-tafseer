@@ -4298,3 +4298,201 @@ setTimeout(
     );
 
 })();
+/* =====================================================
+   FINAL DIRECT QURAN DISPLAY
+   114 SURAH - ARABIC ONLY
+   PASTE AT VERY END OF script.js
+   ===================================================== */
+
+(function () {
+
+    async function showCompleteQuran() {
+
+        const container =
+            document.getElementById("ayahContainer");
+
+        if (!container) {
+            console.error("ayahContainer not found");
+            return;
+        }
+
+        container.innerHTML = `
+            <div class="ayah-card">
+                <div class="urdu"
+                     style="text-align:center;padding:30px;">
+                    قرآن لوڈ ہو رہا ہے...
+                </div>
+            </div>
+        `;
+
+        try {
+
+            const response = await fetch(
+                "https://api.alquran.cloud/v1/quran/quran-uthmani"
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    "Quran API Error: " +
+                    response.status
+                );
+            }
+
+            const result =
+                await response.json();
+
+            const surahs =
+                result.data &&
+                result.data.surahs;
+
+            if (
+                !Array.isArray(surahs) ||
+                surahs.length !== 114
+            ) {
+                throw new Error(
+                    "114 Surahs data not received"
+                );
+            }
+
+            let html = "";
+
+            surahs.forEach(function (surah) {
+
+                html += `
+                    <section
+                        class="surah-section"
+                        id="surah-${surah.number}"
+                    >
+
+                        <div class="surah-title"
+                             style="
+                             text-align:center;
+                             margin:35px 0 20px;
+                             padding:18px;
+                             font-size:28px;
+                             font-weight:bold;
+                             ">
+
+                            ${surah.name}
+
+                        </div>
+                `;
+
+                surah.ayahs.forEach(
+                    function (ayah) {
+
+                        html += `
+                            <article
+                                class="ayah-card"
+                                id="ayah-${surah.number}-${ayah.numberInSurah}"
+                            >
+
+                                <div
+                                    class="ayah-header"
+                                    style="direction:rtl;"
+                                >
+
+                                    <strong>
+                                        ${surah.name}
+                                    </strong>
+
+                                    <span>
+                                        — آیت
+                                        ${ayah.numberInSurah}
+                                    </span>
+
+                                </div>
+
+                                <div
+                                    class="ayah-content"
+                                    style="
+                                    display:block;
+                                    "
+                                >
+
+                                    <div
+                                        class="arabic"
+                                        dir="rtl"
+                                        style="
+                                        text-align:right;
+                                        font-size:28px;
+                                        line-height:2.2;
+                                        "
+                                    >
+
+                                        ${ayah.text}
+
+                                        <span
+                                            style="
+                                            font-size:20px;
+                                            margin-right:8px;
+                                            "
+                                        >
+                                            ﴿${ayah.numberInSurah}﴾
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+                        `;
+
+                    }
+                );
+
+                html += `
+                    </section>
+                `;
+
+            });
+
+            container.innerHTML = html;
+
+            console.log(
+                "SUCCESS: 114 Surahs loaded",
+                surahs.length
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "QURAN LOAD ERROR:",
+                error
+            );
+
+            container.innerHTML = `
+                <div class="ayah-card">
+                    <div
+                        style="
+                        text-align:center;
+                        padding:30px;
+                        direction:rtl;
+                        "
+                    >
+                        قرآن لوڈ نہیں ہو سکا۔
+                        <br><br>
+                        براہِ کرم صفحہ دوبارہ Refresh کریں۔
+                    </div>
+                </div>
+            `;
+
+        }
+
+    }
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            setTimeout(
+                showCompleteQuran,
+                1000
+            );
+
+        }
+    );
+
+})();
