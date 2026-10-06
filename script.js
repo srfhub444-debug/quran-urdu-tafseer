@@ -4106,3 +4106,195 @@ setTimeout(
 // =====================================================
 // END OF CLEAN SCRIPT
 // =====================================================
+/* =====================================================
+   EMERGENCY QURAN DATA LOADER
+   114 SURAH — ARABIC ONLY
+   Paste at END of script.js
+   ===================================================== */
+
+(function () {
+
+    const QURAN_API =
+        "https://api.alquran.cloud/v1";
+
+    async function loadArabicQuran() {
+
+        try {
+
+            if (
+                typeof ayahContainer === "undefined" ||
+                !ayahContainer
+            ) {
+                return;
+            }
+
+            ayahContainer.innerHTML = `
+                <div class="ayah-card">
+                    <div class="urdu">
+                        قرآن لوڈ ہو رہا ہے...
+                    </div>
+                </div>
+            `;
+
+            const allAyahs = [];
+
+            for (
+                let surahNumber = 1;
+                surahNumber <= 114;
+                surahNumber++
+            ) {
+
+                const response = await fetch(
+                    QURAN_API +
+                    "/surah/" +
+                    surahNumber +
+                    "/quran-uthmani"
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Surah " +
+                        surahNumber +
+                        " load failed"
+                    );
+                }
+
+                const result =
+                    await response.json();
+
+                const surah = result.data;
+
+                if (
+                    !surah ||
+                    !Array.isArray(surah.ayahs)
+                ) {
+                    continue;
+                }
+
+                surah.ayahs.forEach(function (ayah) {
+
+                    allAyahs.push({
+
+                        surah:
+                            surah.number,
+
+                        ayah:
+                            ayah.numberInSurah,
+
+                        surahNameArabic:
+                            surah.name || "",
+
+                        surahNameUrdu:
+                            "",
+
+                        arabic:
+                            ayah.text || "",
+
+                        urdu:
+                            "",
+
+                        translations: {
+                            ar: ayah.text || ""
+                        },
+
+                        tafseer: ""
+
+                    });
+
+                });
+
+            }
+
+            /*
+             * Make Quran data available
+             * to the existing website.
+             */
+
+            window.quranData =
+                allAyahs;
+
+            window.generatedQuranData =
+                allAyahs;
+
+            /*
+             * Display the complete Quran
+             */
+
+            if (
+                typeof displayAyahs ===
+                "function"
+            ) {
+
+                displayAyahs(
+                    allAyahs
+                );
+
+            }
+
+            /*
+             * Rebuild Surah dropdown
+             */
+
+            if (
+                typeof loadSurahs ===
+                "function"
+            ) {
+
+                loadSurahs();
+
+            }
+
+            console.log(
+                "Quran loaded:",
+                allAyahs.length,
+                "Ayahs"
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Quran loading error:",
+                error
+            );
+
+            if (
+                typeof ayahContainer !==
+                "undefined" &&
+                ayahContainer
+            ) {
+
+                ayahContainer.innerHTML = `
+                    <div class="ayah-card">
+                        <div class="urdu">
+                            قرآن ڈیٹا لوڈ نہیں ہو سکا۔
+                            براہِ کرم صفحہ دوبارہ کھولیں۔
+                        </div>
+                    </div>
+                `;
+
+            }
+
+        }
+
+    }
+
+    /*
+     * Run after the existing page
+     * has finished loading.
+     */
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            setTimeout(
+                loadArabicQuran,
+                300
+            );
+
+        }
+    );
+
+})();
