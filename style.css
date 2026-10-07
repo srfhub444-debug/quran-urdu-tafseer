@@ -3868,3 +3868,334 @@ html[lang="ur"] .back-to-top {
     }
 
 }
+/* =========================================================
+   PREMIUM AYAH BUTTONS
+   SVG ICONS + PERFECT ALIGNMENT
+========================================================= */
+
+.ayah-card .ayah-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    margin: 18px 0 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* =========================================
+   EVERY BUTTON
+========================================= */
+
+.ayah-card .ayah-actions .premium-action {
+    position: relative !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 8px !important;
+    padding: 9px 12px !important;
+
+    border: 1px solid rgba(180, 148, 76, .32) !important;
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffdf8,
+            #f3ecdc
+        ) !important;
+
+    color: #0b5a43 !important;
+
+    box-shadow:
+        0 5px 16px rgba(30, 58, 45, .08),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+
+    font-family: inherit !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+
+    white-space: nowrap !important;
+
+    cursor: pointer !important;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease,
+        border-color .18s ease !important;
+
+    box-sizing: border-box !important;
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+.ayah-card .ayah-actions .premium-action:hover {
+
+    transform: translateY(-2px) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b5a43,
+            #064532
+        ) !important;
+
+    color: #ffffff !important;
+
+    border-color: #0b5a43 !important;
+
+    box-shadow:
+        0 9px 22px rgba(6, 69, 50, .20),
+        inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+
+/* =========================================
+   CLICK
+========================================= */
+
+.ayah-card .ayah-actions .premium-action:active {
+    transform: translateY(0) scale(.98) !important;
+}
+
+/* =========================================
+   ICON
+========================================= */
+
+.ayah-card .premium-action .button-icon {
+
+    width: 22px !important;
+    height: 22px !important;
+
+    flex: 0 0 22px !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ayah-card .premium-action .button-icon svg {
+
+    width: 21px !important;
+    height: 21px !important;
+
+    display: block !important;
+
+    fill: none !important;
+
+    stroke: currentColor !important;
+
+    stroke-width: 1.7 !important;
+
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+/* =========================================
+   BUTTON TEXT
+========================================= */
+
+.ayah-card .premium-action .button-text {
+
+    display: inline-block !important;
+
+    line-height: 1.2 !important;
+}
+
+/* =========================================
+   BOOKMARK GOLD
+========================================= */
+
+.ayah-card .bookmark-button {
+    color: #8a6b28 !important;
+}
+
+.ayah-card .bookmark-button:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   TAFSEER PREMIUM GREEN
+========================================= */
+
+.ayah-card .tafseer-button {
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b5a43,
+            #064532
+        ) !important;
+
+    color: #ffffff !important;
+
+    border-color: #0b5a43 !important;
+}
+
+.ayah-card .tafseer-button:hover {
+
+    background:
+        linear-gradient(
+            145deg,
+            #084936,
+            #043526
+        ) !important;
+}
+
+/* =========================================
+   TAFSEER BOX
+========================================= */
+
+.ayah-card .tafseer-box {
+
+    width: 100% !important;
+
+    margin-top: 12px !important;
+
+    padding: 20px 22px !important;
+
+    border:
+        1px solid
+        rgba(180, 148, 76, .28) !important;
+
+    border-radius: 15px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffdf8,
+            #f7f1e5
+        ) !important;
+
+    box-shadow:
+        0 8px 24px
+        rgba(30, 58, 45, .07) !important;
+
+    box-sizing: border-box !important;
+}
+
+/* =========================================
+   TAFSEER TITLE
+========================================= */
+
+.ayah-card .tafseer-title {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+
+    color: #0b5a43 !important;
+
+    font-weight: 700 !important;
+
+    margin-bottom: 10px !important;
+}
+
+.ayah-card .tafseer-title::before {
+
+    content: "◆" !important;
+
+    color: #b18a3a !important;
+
+    font-size: 11px !important;
+}
+
+/* =========================================
+   TAFSEER TEXT
+========================================= */
+
+.ayah-card .tafseer-text {
+
+    color: #3f403c !important;
+
+    font-size: 16px !important;
+
+    line-height: 2.1 !important;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .ayah-card .ayah-actions {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 9px !important;
+    }
+
+    .ayah-card
+    .ayah-actions
+    .premium-action {
+
+        min-height: 46px !important;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .ayah-card .ayah-actions {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+
+        margin-top: 14px !important;
+    }
+
+    .ayah-card
+    .ayah-actions
+    .premium-action {
+
+        min-height: 44px !important;
+
+        padding: 8px 7px !important;
+
+        gap: 6px !important;
+
+        border-radius: 11px !important;
+
+        font-size: 13px !important;
+    }
+
+    .ayah-card
+    .premium-action
+    .button-icon {
+
+        width: 20px !important;
+        height: 20px !important;
+
+        flex-basis: 20px !important;
+    }
+
+    .ayah-card
+    .premium-action
+    .button-icon
+    svg {
+
+        width: 19px !important;
+        height: 19px !important;
+    }
+}
