@@ -1492,3 +1492,354 @@
     }
 
 })();
+/* =========================================================
+   FINAL PREMIUM BUTTON SYSTEM
+   Sab buttons ko ek hi jagah + premium SVG icons
+========================================================= */
+
+(function () {
+
+    const ICONS = {
+
+        bookmark: `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.7L6 21V4.5Z"/>
+            </svg>
+        `,
+
+        bookmarkSaved: `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.7L6 21V4.5Z"/>
+                <path d="m9 11 2 2 4-4"/>
+            </svg>
+        `,
+
+        tafseer: `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+                <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5A2.5 2.5 0 0 1 20 21V5.5Z"/>
+                <path d="M7 7h2M7 10h2"/>
+            </svg>
+        `,
+
+        copy: `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="11" height="12" rx="2"/>
+                <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/>
+            </svg>
+        `,
+
+        share: `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="18" cy="5" r="2.5"/>
+                <circle cx="6" cy="12" r="2.5"/>
+                <circle cx="18" cy="19" r="2.5"/>
+                <path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/>
+            </svg>
+        `
+
+    };
+
+
+    function premiumButton(button, icon, text) {
+
+        if (!button) return;
+
+        button.classList.add("premium-action");
+
+        button.innerHTML =
+            '<span class="button-icon">' +
+                icon +
+            '</span>' +
+
+            '<span class="button-text">' +
+                text +
+            '</span>';
+
+    }
+
+
+    function fixAyahButtons(card) {
+
+        if (!card) return;
+
+
+        const actions =
+            card.querySelector(".ayah-actions");
+
+        if (!actions) return;
+
+
+        /* -----------------------------------------
+           BOOKMARK FIND
+        ----------------------------------------- */
+
+        let bookmark =
+            card.querySelector(".bookmark-button");
+
+
+        /* -----------------------------------------
+           BOOKMARK ko header se nikaal kar
+           action bar mein move karo
+        ----------------------------------------- */
+
+        if (
+            bookmark &&
+            bookmark.parentElement !== actions
+        ) {
+            actions.insertBefore(
+                bookmark,
+                actions.firstChild
+            );
+        }
+
+
+        /* -----------------------------------------
+           BUTTONS
+        ----------------------------------------- */
+
+        const tafseer =
+            actions.querySelector(".tafseer-button");
+
+        const copy =
+            actions.querySelector(".copy-button");
+
+        const share =
+            actions.querySelector(".share-button");
+
+
+        /* -----------------------------------------
+           TEXT
+        ----------------------------------------- */
+
+        let bookmarkText = "محفوظ کریں";
+
+        if (
+            bookmark &&
+            bookmark.dataset.premiumReady === "true"
+        ) {
+            const oldText =
+                bookmark.querySelector(".button-text");
+
+            if (
+                oldText &&
+                oldText.textContent.trim() !== ""
+            ) {
+                bookmarkText =
+                    oldText.textContent.trim();
+            }
+        }
+
+
+        if (
+            bookmark &&
+            bookmark.dataset.premiumReady !== "true"
+        ) {
+
+            const old =
+                bookmark.textContent.trim();
+
+            if (
+                old.includes("محفوظ") &&
+                old.includes("شدہ")
+            ) {
+                bookmarkText = "محفوظ شدہ";
+            }
+
+            premiumButton(
+                bookmark,
+                ICONS.bookmark,
+                bookmarkText
+            );
+
+            bookmark.dataset.premiumReady =
+                "true";
+        }
+
+
+        /* -----------------------------------------
+           TAFSEER
+        ----------------------------------------- */
+
+        if (
+            tafseer &&
+            tafseer.dataset.premiumReady !== "true"
+        ) {
+
+            premiumButton(
+                tafseer,
+                ICONS.tafseer,
+                "تفسیر دیکھیں"
+            );
+
+            tafseer.dataset.premiumReady =
+                "true";
+        }
+
+
+        /* -----------------------------------------
+           COPY
+        ----------------------------------------- */
+
+        if (
+            copy &&
+            copy.dataset.premiumReady !== "true"
+        ) {
+
+            premiumButton(
+                copy,
+                ICONS.copy,
+                "کاپی"
+            );
+
+            copy.dataset.premiumReady =
+                "true";
+        }
+
+
+        /* -----------------------------------------
+           SHARE
+        ----------------------------------------- */
+
+        if (
+            share &&
+            share.dataset.premiumReady !== "true"
+        ) {
+
+            premiumButton(
+                share,
+                ICONS.share,
+                "شیئر"
+            );
+
+            share.dataset.premiumReady =
+                "true";
+        }
+
+
+        /* -----------------------------------------
+           FINAL CLASS
+        ----------------------------------------- */
+
+        actions.classList.add(
+            "premium-actions"
+        );
+
+
+        /* -----------------------------------------
+           OLD INLINE STYLES REMOVE
+        ----------------------------------------- */
+
+        actions.style.display = "";
+        actions.style.gridTemplateColumns = "";
+        actions.style.flexDirection = "";
+        actions.style.justifyContent = "";
+
+
+        /* -----------------------------------------
+           PREMIUM ORDER
+        ----------------------------------------- */
+
+        [
+            bookmark,
+            tafseer,
+            copy,
+            share
+        ].forEach(function (button) {
+
+            if (button) {
+                actions.appendChild(button);
+            }
+
+        });
+
+    }
+
+
+    function scanAyahs() {
+
+        const cards =
+            document.querySelectorAll(
+                ".ayah-card"
+            );
+
+        cards.forEach(function (card) {
+
+            fixAyahButtons(card);
+
+        });
+
+    }
+
+
+    /* -----------------------------------------
+       INITIAL
+    ----------------------------------------- */
+
+    function startPremiumButtons() {
+
+        scanAyahs();
+
+        setTimeout(
+            scanAyahs,
+            300
+        );
+
+        setTimeout(
+            scanAyahs,
+            1000
+        );
+
+        setTimeout(
+            scanAyahs,
+            2000
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       PAGE LOAD
+    ----------------------------------------- */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            startPremiumButtons
+        );
+
+    } else {
+
+        startPremiumButtons();
+
+    }
+
+
+    /* -----------------------------------------
+       NEW AYAH RENDER HONE PAR
+       AUTOMATICALLY PREMIUM BUTTONS
+    ----------------------------------------- */
+
+    const observer =
+        new MutationObserver(
+            function () {
+
+                scanAyahs();
+
+            }
+        );
+
+
+    observer.observe(
+        document.body,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+})();
