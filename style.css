@@ -4199,3 +4199,345 @@ html[lang="ur"] .back-to-top {
         height: 19px !important;
     }
 }
+/* =========================================================
+   QURAN NAVIGATION PREMIUM UI
+========================================================= */
+
+.quran-nav-button {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #0f5132, #176b45);
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: 0 8px 25px rgba(0,0,0,.22);
+}
+
+.quran-nav-button:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+
+/* DRAWER */
+
+.quran-nav-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    visibility: hidden;
+}
+
+.quran-nav-drawer.open {
+    visibility: visible;
+}
+
+.qnav-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    opacity: 0;
+    transition: .3s;
+}
+
+.quran-nav-drawer.open .qnav-overlay {
+    opacity: 1;
+}
+
+
+.qnav-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(390px, 92vw);
+    height: 100%;
+    background: #fff;
+    transform: translateX(100%);
+    transition: .35s ease;
+    box-shadow: -12px 0 35px rgba(0,0,0,.22);
+    overflow-y: auto;
+}
+
+.quran-nav-drawer.open .qnav-panel {
+    transform: translateX(0);
+}
+
+
+/* HEADER */
+
+.qnav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 20px;
+    background: linear-gradient(
+        135deg,
+        #0d422a,
+        #176b45
+    );
+    color: white;
+}
+
+.qnav-title {
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.qnav-subtitle {
+    margin-top: 2px;
+    opacity: .8;
+    font-size: 14px;
+}
+
+.qnav-close {
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* BODY */
+
+.qnav-body {
+    padding: 15px;
+}
+
+
+/* MAIN BUTTON */
+
+.qnav-main-btn {
+    width: 100%;
+    min-height: 55px;
+    margin-bottom: 9px;
+    padding: 12px 15px;
+    border: 1px solid #e4e8e5;
+    border-radius: 13px;
+    background: #fff;
+    color: #174d35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.qnav-main-btn:hover {
+    background: #f4faf7;
+}
+
+
+/* LIST */
+
+.qnav-list {
+    display: none;
+    margin: -2px 0 12px;
+    padding: 6px;
+    border-radius: 12px;
+    background: #f7faf8;
+    max-height: 330px;
+    overflow-y: auto;
+}
+
+.qnav-list.show {
+    display: block;
+}
+
+
+/* ITEMS */
+
+.qnav-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 9px;
+    border: 0;
+    border-bottom: 1px solid #e4e9e5;
+    background: transparent;
+    text-align: right;
+    direction: rtl;
+    cursor: pointer;
+    color: #183c2b;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 17px;
+}
+
+.qnav-item:last-child {
+    border-bottom: 0;
+}
+
+.qnav-item:hover {
+    background: #eaf5ef;
+    border-radius: 9px;
+}
+
+
+.qnav-number {
+    min-width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #176b45;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    direction: ltr;
+}
+
+.qnav-item span:last-child {
+    flex: 1;
+}
+
+.qnav-item small {
+    display: block;
+    margin-top: 2px;
+    color: #777;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    direction: rtl;
+}
+
+
+.qnav-error {
+    padding: 15px;
+    color: #a33;
+    text-align: center;
+}
+
+
+/* ABOUT */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+}
+
+.about-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(500px, 90vw);
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 22px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    z-index: 10001;
+}
+
+#aboutUsModal {
+    display: none;
+}
+
+#aboutUsModal.show {
+    display: block;
+}
+
+.about-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #f1f4f2;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.about-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.about-box h2 {
+    margin: 0 0 8px;
+    color: #176b45;
+}
+
+.about-box h3 {
+    margin: 5px 0;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 25px;
+}
+
+.about-box p {
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.about-line {
+    width: 80px;
+    height: 2px;
+    margin: 20px auto;
+    background: #c59b45;
+}
+
+
+/* HIGHLIGHT AYAH */
+
+.nav-highlight {
+    animation: navAyahHighlight 2.5s ease;
+}
+
+@keyframes navAyahHighlight {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(197,155,69,.7);
+    }
+
+    30% {
+        box-shadow: 0 0 0 8px rgba(197,155,69,.25);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(197,155,69,0);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .quran-nav-button {
+        right: 10px;
+        width: 46px;
+        height: 46px;
+        font-size: 28px;
+        border-radius: 14px;
+    }
+
+    .qnav-panel {
+        width: 92vw;
+    }
+
+    .qnav-title {
+        font-size: 22px;
+    }
+
+}
