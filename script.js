@@ -1843,3 +1843,526 @@
     );
 
 })();
+/* =========================================================
+   QURAN PREMIUM NAVIGATION
+   PARA + RUKU + SURAH + ABOUT US
+========================================================= */
+
+(function () {
+
+    const NAV_API = "https://api.alquran.cloud/v1/quran/quran-uthmani";
+
+    let navMeta = [];
+    let navReady = false;
+
+    /* ---------- CREATE NAVIGATION BUTTON ---------- */
+
+    const navButton = document.createElement("button");
+    navButton.id = "quranNavButton";
+    navButton.className = "quran-nav-button";
+    navButton.type = "button";
+    navButton.innerHTML = "⋮";
+
+    document.body.appendChild(navButton);
+
+
+    /* ---------- CREATE DRAWER ---------- */
+
+    const drawer = document.createElement("div");
+    drawer.id = "quranNavDrawer";
+    drawer.className = "quran-nav-drawer";
+
+    drawer.innerHTML = `
+        <div class="qnav-overlay"></div>
+
+        <aside class="qnav-panel">
+
+            <div class="qnav-header">
+                <div>
+                    <div class="qnav-title">قرآن نیویگیشن</div>
+                    <div class="qnav-subtitle">
+                        پارہ • سورت • رکوع
+                    </div>
+                </div>
+
+                <button id="qnavClose" class="qnav-close">
+                    ×
+                </button>
+            </div>
+
+            <div class="qnav-body">
+
+                <button class="qnav-main-btn" data-section="para">
+                    📖 30 پارے
+                    <span>⌄</span>
+                </button>
+
+                <div id="paraList" class="qnav-list"></div>
+
+
+                <button class="qnav-main-btn" data-section="surah">
+                    🕌 114 سورتیں
+                    <span>⌄</span>
+                </button>
+
+                <div id="surahList" class="qnav-list"></div>
+
+
+                <button class="qnav-main-btn" data-section="ruku">
+                    📜 تمام رکوع
+                    <span>⌄</span>
+                </button>
+
+                <div id="rukuList" class="qnav-list"></div>
+
+
+                <button id="aboutUsButton" class="qnav-main-btn about-btn">
+                    ℹ️ About Us
+                </button>
+
+            </div>
+
+        </aside>
+    `;
+
+    document.body.appendChild(drawer);
+
+
+    /* ---------- OPEN / CLOSE ---------- */
+
+    function openNav() {
+        drawer.classList.add("open");
+        document.body.classList.add("nav-open");
+    }
+
+    function closeNav() {
+        drawer.classList.remove("open");
+        document.body.classList.remove("nav-open");
+    }
+
+    navButton.addEventListener("click", openNav);
+
+    drawer.querySelector("#qnavClose")
+        .addEventListener("click", closeNav);
+
+    drawer.querySelector(".qnav-overlay")
+        .addEventListener("click", closeNav);
+
+
+    /* ---------- COLLAPSIBLE SECTIONS ---------- */
+
+    drawer.querySelectorAll(".qnav-main-btn[data-section]")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const section = button.dataset.section;
+                const list = document.getElementById(section + "List");
+
+                list.classList.toggle("show");
+
+                const arrow = button.querySelector("span");
+
+                if (arrow) {
+                    arrow.textContent =
+                        list.classList.contains("show") ? "⌃" : "⌄";
+                }
+
+            });
+
+        });
+
+
+    /* ---------- LOAD QURAN METADATA ---------- */
+
+    async function loadNavigationData() {
+
+        try {
+
+            const response = await fetch(NAV_API);
+
+            const json = await response.json();
+
+            if (!json || !json.data || !json.data.ayahs) {
+                throw new Error("Quran metadata unavailable");
+            }
+
+            navMeta = json.data.ayahs;
+
+            navReady = true;
+
+            buildParaList();
+            buildSurahList();
+            buildRukuList();
+
+        } catch (error) {
+
+            console.error("Navigation data error:", error);
+
+            document.getElementById("paraList").innerHTML =
+                `<div class="qnav-error">
+                    Navigation data load نہیں ہو سکا۔
+                </div>`;
+
+        }
+
+    }
+
+
+    /* ---------- FIND AYAH ---------- */
+
+    function findAyah(globalNumber) {
+
+        return navMeta.find(
+            ayah => Number(ayah.number) === Number(globalNumber)
+        );
+
+    }
+
+
+    /* ---------- OPEN SURAH ---------- */
+
+    function openSurah(surahNumber, ayahNumber) {
+
+        closeNav();
+
+        const select = document.getElementById("surahSelect");
+
+        if (!select) return;
+
+        select.value = String(surahNumber);
+
+        select.dispatchEvent(new Event("change"));
+
+        setTimeout(() => {
+
+            if (!ayahNumber) return;
+
+            const cards =
+                document.querySelectorAll(".ayah-card");
+
+            cards.forEach(card => {
+
+                const number =
+                    card.dataset.ayah ||
+                    card.dataset.ayahNumber;
+
+                if (String(number) === String(ayahNumber)) {
+
+                    card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    card.classList.add("nav-highlight");
+
+                    setTimeout(() => {
+                        card.classList.remove("nav-highlight");
+                    }, 2500);
+
+                }
+
+            });
+
+        }, 700);
+
+    }
+
+
+    /* ---------- PARA LIST ---------- */
+
+    function buildParaList() {
+
+        const container =
+            document.getElementById("paraList");
+
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        for (let para = 1; para <= 30; para++) {
+
+            const ayah =
+                navMeta.find(a => Number(a.juz) === para);
+
+            if (!ayah) continue;
+
+            const item =
+                document.createElement("button");
+
+            item.className = "qnav-item";
+
+            item.innerHTML = `
+                <span class="qnav-number">${para}</span>
+                <span>
+                    پارہ ${para}
+                    <small>
+                        ${ayah.surah.name}
+                        • آیت ${ayah.numberInSurah}
+                    </small>
+                </span>
+            `;
+
+            item.addEventListener("click", () => {
+
+                openSurah(
+                    ayah.surah.number,
+                    ayah.numberInSurah
+                );
+
+            });
+
+            container.appendChild(item);
+
+        }
+
+    }
+
+
+    /* ---------- SURAH LIST ---------- */
+
+    function buildSurahList() {
+
+        const container =
+            document.getElementById("surahList");
+
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        const surahs = {};
+
+        navMeta.forEach(ayah => {
+
+            if (!surahs[ayah.surah.number]) {
+
+                surahs[ayah.surah.number] = ayah.surah;
+
+            }
+
+        });
+
+
+        Object.values(surahs).forEach(surah => {
+
+            const item =
+                document.createElement("button");
+
+            item.className = "qnav-item";
+
+            item.innerHTML = `
+                <span class="qnav-number">
+                    ${surah.number}
+                </span>
+
+                <span>
+                    ${surah.name}
+                    <small>
+                        ${surah.englishName || ""}
+                    </small>
+                </span>
+            `;
+
+            item.addEventListener("click", () => {
+
+                openSurah(surah.number, 1);
+
+            });
+
+            container.appendChild(item);
+
+        });
+
+    }
+
+
+    /* ---------- RUKU LIST ---------- */
+
+    function buildRukuList() {
+
+        const container =
+            document.getElementById("rukuList");
+
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        const rukus = {};
+
+        navMeta.forEach(ayah => {
+
+            if (!ayah.ruku) return;
+
+            const key = String(ayah.ruku);
+
+            if (!rukus[key]) {
+
+                rukus[key] = ayah;
+
+            }
+
+        });
+
+
+        Object.keys(rukus)
+            .sort((a, b) => Number(a) - Number(b))
+            .forEach(rukuNumber => {
+
+                const ayah = rukus[rukuNumber];
+
+                const item =
+                    document.createElement("button");
+
+                item.className = "qnav-item";
+
+                item.innerHTML = `
+                    <span class="qnav-number">
+                        ${rukuNumber}
+                    </span>
+
+                    <span>
+                        رکوع ${rukuNumber}
+                        <small>
+                            ${ayah.surah.name}
+                            • آیت ${ayah.numberInSurah}
+                            • پارہ ${ayah.juz}
+                        </small>
+                    </span>
+                `;
+
+                item.addEventListener("click", () => {
+
+                    openSurah(
+                        ayah.surah.number,
+                        ayah.numberInSurah
+                    );
+
+                });
+
+                container.appendChild(item);
+
+            });
+
+    }
+
+
+    /* ---------- ABOUT US ---------- */
+
+    const aboutButton =
+        document.getElementById("aboutUsButton");
+
+    if (aboutButton) {
+
+        aboutButton.addEventListener("click", () => {
+
+            closeNav();
+
+            let about =
+                document.getElementById("aboutUsModal");
+
+            if (!about) {
+
+                about =
+                    document.createElement("div");
+
+                about.id = "aboutUsModal";
+
+                about.innerHTML = `
+                    <div class="about-overlay"></div>
+
+                    <div class="about-box">
+
+                        <button class="about-close">
+                            ×
+                        </button>
+
+                        <div class="about-icon">
+                            📖
+                        </div>
+
+                        <h2>
+                            About Us
+                        </h2>
+
+                        <h3>
+                            القرآن الكريم
+                        </h3>
+
+                        <p>
+                            قرآن کریم، اردو ترجمہ اور تفسیر
+                        </p>
+
+                        <p>
+                            ہمارا مقصد قرآنِ کریم کے پیغام کو
+                            آسان، خوبصورت اور قابلِ رسائی انداز
+                            میں پیش کرنا ہے۔
+                        </p>
+
+                        <div class="about-line"></div>
+
+                        <small>
+                            قرآن کو سمجھنے اور عام کرنے کی ایک کوشش
+                        </small>
+
+                    </div>
+                `;
+
+                document.body.appendChild(about);
+
+                about.querySelector(".about-close")
+                    .addEventListener("click", () => {
+                        about.classList.remove("show");
+                    });
+
+                about.querySelector(".about-overlay")
+                    .addEventListener("click", () => {
+                        about.classList.remove("show");
+                    });
+
+            }
+
+            about.classList.add("show");
+
+        });
+
+    }
+
+
+    /* ---------- ADD ABOUT US TO TOP NAV ---------- */
+
+    const mainNav =
+        document.querySelector(".main-nav");
+
+    if (mainNav &&
+        !mainNav.querySelector(".about-nav-link")) {
+
+        const aboutLink =
+            document.createElement("a");
+
+        aboutLink.href = "#about";
+
+        aboutLink.className = "about-nav-link";
+
+        aboutLink.innerHTML =
+            "ℹ️ About Us";
+
+        aboutLink.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            if (aboutButton) {
+                aboutButton.click();
+            }
+
+        });
+
+        mainNav.appendChild(aboutLink);
+
+    }
+
+
+    /* ---------- START ---------- */
+
+    loadNavigationData();
+
+})();
